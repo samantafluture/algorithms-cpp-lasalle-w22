@@ -1,4 +1,4 @@
-// Read two values from the user and print the sum of these two values
+// Read two values from the user and print basic operations 
 
 #include <iostream>
 
@@ -36,6 +36,6 @@ Enter two numbers: 12.3
 12.3 + 485.4 = 497.7
 12.3 - 485.4 = -473.1
 12.3 * 485.4 = 5970.42
-12.3 / 485.4 = 0.0253399%  
+12.3 / 485.4 = 0.0253399 
 
 */
