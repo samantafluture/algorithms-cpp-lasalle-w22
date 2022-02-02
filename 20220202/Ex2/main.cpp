@@ -11,5 +11,5 @@ int main() {
 
     cout << "You entered " << number;
 
-    return 0; 
+    return 0; // finish with the instructions inside that block
 }
