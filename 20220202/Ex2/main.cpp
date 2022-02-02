@@ -4,7 +4,9 @@
 using namespace std;
 
 int main() {
-    int number;
+    // int number; // show integer values, even if you input a float, shows only the integer part
+    // char number; // shows only one character, the first one, can be a letter or a number
+    float number; // shows a decimal number, in order to be more precise
 
     cout << "Enter an integer: ";
     cin >> number;
