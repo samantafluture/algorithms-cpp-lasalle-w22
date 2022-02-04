@@ -42,7 +42,7 @@ int main()
             cout << "Enter y to continue\n";
             cin >> ans;
         }
-    } while (ans == 'y'); // if true, repeat, if false, break
+    } while (ans == 'y' || ans == 'Y'); // if true, repeat, if false, break
 
     return 0;
 }
