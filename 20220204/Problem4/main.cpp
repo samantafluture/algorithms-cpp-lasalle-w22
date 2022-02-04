@@ -17,23 +17,30 @@ int main()
             cout << "Enter two numbers: " << endl;
             cin >> num1 >> num2;
 
-            switch (oper)
+            if (num1 >= 0 && num2 >= 0)
             {
-            case '+':
-                cout << num1 << " + " << num2 << " = " << num1 + num2;
-                break;
-            case '-':
-                cout << num1 << " - " << num2 << " = " << num1 - num2;
-                break;
-            case '*':
-                cout << num1 << " * " << num2 << " = " << num1 * num2;
-                break;
-            case '/':
-                cout << num1 << " / " << num2 << " = " << num1 / num2;
-                break;
-                // default:
-                //     cout << "Error! The operator is not correct";
-                //     break;
+                switch (oper)
+                {
+                case '+':
+                    cout << num1 << " + " << num2 << " = " << num1 + num2;
+                    break;
+                case '-':
+                    cout << num1 << " - " << num2 << " = " << num1 - num2;
+                    break;
+                case '*':
+                    cout << num1 << " * " << num2 << " = " << num1 * num2;
+                    break;
+                case '/':
+                    cout << num1 << " / " << num2 << " = " << num1 / num2;
+                    break;
+                    // default:
+                    //     cout << "Error! The operator is not correct";
+                    //     break;
+                }
+            }
+            else
+            {
+                cout << "Error! The input is not correct. Please enter a valid positive number!";
             }
         }
         else
