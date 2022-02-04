@@ -5,39 +5,44 @@ using namespace std;
 // Program to build a simple calculator using switch statement
 int main()
 {
-    char oper;
+    char oper, ans;
     float num1, num2;
 
-    cout << "Enter an operator (+, -, *, /): ";
-    cin >> oper;
-
-    if (oper == '+' || oper == '-' || oper == '*' || oper == '/')
+    do
     {
-        cout << "Enter two numbers: " << endl;
-        cin >> num1 >> num2;
-
-        switch (oper)
+        cout << "Enter an operator (+, -, *, /): ";
+        cin >> oper;
+        if (oper == '+' || oper == '-' || oper == '*' || oper == '/')
         {
-        case '+':
-            cout << num1 << " + " << num2 << " = " << num1 + num2;
-            break;
-        case '-':
-            cout << num1 << " - " << num2 << " = " << num1 - num2;
-            break;
-        case '*':
-            cout << num1 << " * " << num2 << " = " << num1 * num2;
-            break;
-        case '/':
-            cout << num1 << " / " << num2 << " = " << num1 / num2;
-            break;
-        default:
-            // operator is doesn't match any case constant (+, -, *, /)
-            cout << "Error! The operator is not correct";
-            break;
+            cout << "Enter two numbers: " << endl;
+            cin >> num1 >> num2;
+
+            switch (oper)
+            {
+            case '+':
+                cout << num1 << " + " << num2 << " = " << num1 + num2;
+                break;
+            case '-':
+                cout << num1 << " - " << num2 << " = " << num1 - num2;
+                break;
+            case '*':
+                cout << num1 << " * " << num2 << " = " << num1 * num2;
+                break;
+            case '/':
+                cout << num1 << " / " << num2 << " = " << num1 / num2;
+                break;
+                // default:
+                //     cout << "Error! The operator is not correct";
+                //     break;
+            }
         }
-    } else {
-        cout << "Error! The operator is not correct";
-    }
+        else
+        {
+            cout << "Error! The operator is not correct\n"; // operator is doesn't match any case constant (+, -, *, /)
+            cout << "Enter y to continue\n";
+            cin >> ans;
+        }
+    } while (ans == 'y'); // if true, repeat, if false, break
 
     return 0;
 }
