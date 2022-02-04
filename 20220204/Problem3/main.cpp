@@ -2,7 +2,38 @@
 
 using namespace std;
 
-// EX. 2 - SWAP NUMBERS USING TEMPORARY VARIABLE
+// EX. 3 - SWAP VARIABLES WITHOUT TEMPORARY VARIABLE
+
+int main()
+{
+    int a = 5, b = 10;
+
+    cout << "Before swapping." << endl;
+    cout << "a = " << a << ", b = " << b << endl;
+    
+    a = a + b; // a = 5 + 10 (= 15)
+    b = a - b; // b = 15 - 10 (= 5)
+    a = a - b; // a = 15 - 5 (= 10)
+    
+    cout << "\nAfter swapping." << endl;
+    cout << "a = " << a << ", b = " << b << endl;
+    
+    return 0;
+}
+
+/*
+EX. 3 - EXPECTED OUTPUT
+
+Before swapping.
+a = 5, b = 10
+
+After swapping.
+a = 10, b = 5
+*/
+
+/******************************************************************************/
+/*
+EX. 2 - SWAP NUMBERS USING TEMPORARY VARIABLE
 
 int main()
 {
@@ -20,6 +51,7 @@ int main()
     
     return 0;
 }
+*/
 
 /*
 EX. 2 - EXPECTED OUTPUT
