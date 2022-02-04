@@ -2,7 +2,29 @@
 
 using namespace std;
 
-// EX. 3 - SWAP VARIABLES WITHOUT TEMPORARY VARIABLE
+/******************************************************************************/
+// Ex. 4 - Print ASCII value 
+int main()
+{
+    char c;
+
+    cout << "Enter a character: ";
+    cin >> c;
+    
+    cout << "ASCII Value of " << c << " is " << int(c); // convert char into int value
+    
+    return 0;
+}
+
+/*
+Ex. 4 - Expected output
+
+Enter a character: a
+ASCII Value of a is 97      
+*/
+
+/******************************************************************************/
+/* Ex. 3 - Swap variables without temporary variable
 
 int main()
 {
@@ -10,19 +32,27 @@ int main()
 
     cout << "Before swapping." << endl;
     cout << "a = " << a << ", b = " << b << endl;
-    
-    a = a + b; // a = 5 + 10 (= 15)
-    b = a - b; // b = 15 - 10 (= 5)
-    a = a - b; // a = 15 - 5 (= 10)
-    
+
+    // using addition and subtraction
+    // a = a + b; // a = 5 + 10 => 15
+    // b = a - b; // b = 15 - 10 => 5
+    // a = a - b; // a = 15 - 5 => 10
+
+    // using multiplication and division
+    // issue -> initial variable can't be 0
+    a = a * b; // a = 5 * 10 => 50
+    b = a / b; // b = 50 / 10 => 5
+    a = a / b; // a = 50 / 5 => 10
+
     cout << "\nAfter swapping." << endl;
     cout << "a = " << a << ", b = " << b << endl;
-    
+
     return 0;
 }
+*/
 
 /*
-EX. 3 - EXPECTED OUTPUT
+Ex. 3 - Expected output
 
 Before swapping.
 a = 5, b = 10
@@ -33,7 +63,7 @@ a = 10, b = 5
 
 /******************************************************************************/
 /*
-EX. 2 - SWAP NUMBERS USING TEMPORARY VARIABLE
+Ex. 2 - Swap numbers using temporary variable
 
 int main()
 {
@@ -54,7 +84,7 @@ int main()
 */
 
 /*
-EX. 2 - EXPECTED OUTPUT
+Ex. 2 - Expected output
 
 Before swapping.
 a = 5, b = 10, temp = 0
@@ -64,7 +94,7 @@ a = 10, b = 5, temp = 5
 */
 
 /******************************************************************************/
-/* EX. 1 - FIND SIZE OF VARIABLES
+/* Ex. 1 - Find size of variables
 
 int main() {
 
@@ -88,7 +118,7 @@ int main() {
 */
 
 /* 
-EX 1 - EXPECTED OUTPUT
+Ex. 1 - Expected output
 
 Size of char: 1 byte
 Size of int: 4 bytes
