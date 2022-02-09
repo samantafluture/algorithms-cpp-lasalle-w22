@@ -159,7 +159,6 @@ After 'while' loop, i = 6
 
 // find the sum of positive numbers
 // if the user enters a negative number, the loop ends
-// the negative number entered is not added to the sum
 int main()
 {
     int number;
