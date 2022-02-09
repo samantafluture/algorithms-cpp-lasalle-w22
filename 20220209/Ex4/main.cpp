@@ -1,3 +1,4 @@
+// Samanta Gimenez Fluture, 2022-02-09, Testing case switch
 
 #include <iostream>
 using namespace std;
@@ -5,6 +6,7 @@ using namespace std;
 // Exercise 4.2
 // Algorithm to print out the name of the week
 
+/*
 int main()
 {
     int num1;
@@ -42,6 +44,7 @@ int main()
     
     return 0;
 }
+*/
 
 /*
 Expected output:
@@ -54,7 +57,7 @@ Sunday
 // Exercise 4.1
 // Algorithm to print out the name of the month
 
-/*
+
 int main()
 {
     int num1;
@@ -107,7 +110,7 @@ int main()
 
     return 0;
 }
-*/
+
 
 /*
 Expected output:
@@ -115,5 +118,3 @@ Expected output:
 Enter a number between 1 and 12: 5
 May
 */
-
-/******************************************************/

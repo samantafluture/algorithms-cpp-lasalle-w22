@@ -1,3 +1,5 @@
+// Samanta Gimenez Fluture, 2022-02-09, Translating algorithms to C++
+
 /************************************************************/
 // Exercise 6
 
@@ -37,6 +39,7 @@ int main()
 
     return 0;
 }
+
 
 /*
 Expected Output:
@@ -78,6 +81,30 @@ int main()
     cout << "Enter third number: ";
     cin >> Num3;
 
+    ResultAsBig = Num1;
+    ResultAsSmall = Num1;
+
+    if (ResultAsBig < Num2)
+    {
+        ResultAsBig = Num2;
+    }
+    else if (ResultAsBig < Num3)
+    {
+        ResultAsBig = Num3;
+    } 
+
+    if (ResultAsSmall > Num2)
+    {
+        ResultAsSmall = Num2;
+    }
+    else if (ResultAsSmall > Num3)
+    {
+        ResultAsSmall = Num3;
+    } 
+
+    */
+   
+    /*
     // find the largest value
     if (Num1 >= Num2 && Num1 >= Num3)
     {
@@ -109,12 +136,15 @@ int main()
     {
         ResultAsSmall = Num3;
     }
+    */
 
+    /*
     cout << "The largest value is: " << ResultAsBig << endl;
     cout << "The smallest value is: " << ResultAsSmall << endl;
 
     return 0;
 }
+
 */
 
 /*
