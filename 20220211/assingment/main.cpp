@@ -31,7 +31,11 @@ int main()
         case '3':
             for (i = 0; i <= 20; i = i + 1)
             {
-                cout << i << endl;
+                cout << i << " ";
+                if (i % 2 == 1 || i == 20)
+                {
+                    cout << endl;
+                } 
             }
             break;
         case '4':
