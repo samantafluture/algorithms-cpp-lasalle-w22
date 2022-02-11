@@ -32,7 +32,10 @@ int main()
             for (i = 0; i <= 20; i = i + 1)
             {
                 cout << i << " ";
-                if (i % 2 == 1 || i == 20)
+                if (i % 2 == 1 || i == 20) // check if it's odd or 20
+                {
+                    cout << endl;
+                }
                 {
                     cout << endl;
                 } 
