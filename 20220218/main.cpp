@@ -51,10 +51,10 @@ int main()
 
     do
     {
-        cout << "Enter numer 1: ";
+        cout << "Enter number 1: ";
         cin >> num1;
 
-        cout << "Enter numer 2: ";
+        cout << "Enter number 2: ";
         cin >> num2;
 
         cout.precision(3);         // 3 decimal places
@@ -91,7 +91,7 @@ int main()
         switch (ans)
         {
         case 1:
-            cout << "#### Exercise 1 ####" << endl;
+            cout << "\n#### Exercise 1 ####" << endl;
 
             cout << "Enter a number between 1 and 15: ";
             cin >> num;
@@ -116,12 +116,12 @@ int main()
 
             break;
         case 2:
-            cout << "#### Exercise 2 ####" << endl;
+            cout << "\n#### Exercise 2 ####" << endl;
 
-            cout << "Enter numer 1: ";
+            cout << "Enter number 1: ";
             cin >> num1;
 
-            cout << "Enter numer 2: ";
+            cout << "Enter number 2: ";
             cin >> num2;
 
             cout.precision(3);         // 3 decimal places
