@@ -1,4 +1,4 @@
-// Samanta Gimenez Fluture, 2022-02-18, Exercises on loops Lab 5.2.
+// Samanta Gimenez Fluture, 2022-02-16, Exercises on loops Lab 5.2.
 
 #include <iostream>
 using namespace std;
