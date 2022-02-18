@@ -6,7 +6,6 @@ using namespace std;
 int main()
 {
 
-    /************************************************************/
     // Exercise 5
 
     /*
@@ -42,7 +41,7 @@ int main()
     cout << "\n\nNow we leave the application!" << endl;
     */
 
-    /************************************************************/
+    
     // Exercise 6
 
     /*
@@ -74,10 +73,11 @@ int main()
     cout << "\n\nNow we leave the application!" << endl;
     */
 
-    /************************************************************/
     // Exercise 7
 
-    int ans, num;
+
+    char ans; // if options as less than 10, use char instead of int
+    int num;
     double num1, num2;
 
     do
@@ -90,7 +90,7 @@ int main()
 
         switch (ans)
         {
-        case 1:
+        case '1':
             cout << "\n#### Exercise 1 ####" << endl;
 
             cout << "Enter a number between 1 and 15: ";
@@ -115,7 +115,7 @@ int main()
             }
 
             break;
-        case 2:
+        case '2':
             cout << "\n#### Exercise 2 ####" << endl;
 
             cout << "Enter number 1: ";
@@ -135,7 +135,7 @@ int main()
             cout << endl;
 
             break;
-        case 0:
+        case '0':
             cout << "\n#### Goodbye ####" << endl;
             cout << "Quiting the application...\n" << endl;
             break;
@@ -143,7 +143,8 @@ int main()
             cout << "Invalid input!\n" << endl;
             break;
         }
-    } while (ans != 0);
+    } while (ans != '0');
+
 
     return 0;
 }
