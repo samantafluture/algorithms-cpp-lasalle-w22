@@ -137,7 +137,7 @@ int main()
             break;
         case '0':
             cout << "\n#### Goodbye ####" << endl;
-            cout << "Quiting the application...\n" << endl;
+            cout << "Quitting the application...\n" << endl;
             break;
         default:
             cout << "Invalid input!\n" << endl;
