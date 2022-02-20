@@ -10,8 +10,10 @@
 // structure switch to print out the name of the weekday.
 // Example: 1 ="Monday", … , 5 ="Friday", 6 and 7 = " Weekend".
 
+
 // Problem 3: create a simple calculator that asks for two numbers and the operator sign
 // User choose the operations via operator sign
+
 
 // Problem 4: Create a menu by using switch structure to communicate with the user and test one of the 3
 // exercises and have the option to quit the application.

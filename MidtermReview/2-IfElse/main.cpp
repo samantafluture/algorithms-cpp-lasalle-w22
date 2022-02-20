@@ -143,18 +143,23 @@ int main() {
 // Problem 4: Write the code in C++ based on this algorithm that requires input two numbers, 
 // and if the result of addition is equal to the result of multiplication, display the values of those two numbers, else display a message.
 
+
 // Problem 5: Write the code in C++ based on this algorithm that requires input three numbers, 
 // it will show the largest and the smallest number.
 
+
 // Problem 6: Write the code in C++ based on this algorithm that requires input 5 numbers, it will show the result of the
 // addition if all 5 numbers are positive numbers else show an error message.
+
 
 // Problem 7: Write an algorithm that requires an input number, it will check if the value is between 1 and 30. 
 // If the value is biggest than 20, show the message: ”The value is between 20 and 30’’, else,  show the message: 
 // ”The value is between 1 and 20” (use either AND or OR between conditions). Display an error message if the value is outside of this range.
 
+
 // Problem 8: Write an algorithm that requires to input one positive number, and then it will display the next 10 values. 
 // Example: if we enter -6, display error message; if we enter 6, display the values 7, 8, 9, 10, 11, 12, 13, 14, 15, 16.
+
 
 // Problem 9: Write an algorithm that requires to input one positive number between 1 to 10, then, 
 // it will calculate and display the sum from 1 to the entered number. 

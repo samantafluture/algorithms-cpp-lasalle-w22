@@ -65,5 +65,6 @@ int main() {
 // Problem 3:  Enter a numerical value and printout (display) the next and the previous value
 // Use the variables declared in the instruction number 1 and complete the algorithm.
 
+
 // Problem 4: Display the result of the addition, subtraction, multiplication, and division of two numbers. 
 // Use the variables declared in the instruction number 1 and complete the algorithm.

@@ -2,8 +2,10 @@
 
 // Problem 1: Printing Numbers From 1 to 5
 
+
 // Problem 2: C++ program to find the sum of first n natural numbers
 // positive integers such as 1,2,3,...n are known as natural numbers
+
 
 // Problem 3: Using the template, write a complete C++ program that: 
 // 1. outputs the numbers 0 to 200 with the step of 10 if the user choose the option 1(one per line)
@@ -11,11 +13,13 @@
 // 3. outputs the numbers 0 to 20 with the step of 1 if the user choose the option 3(two values per line)
 // 4. Allow to exit if the user choose the option 4.
 
+
 // Problem 4: Create the code in C++ by using the loop For to describe an algorithm that:
 // - Ask for a number (int) we show a message: Enter a number: and if it is smaller than 0, we
 // show a message: Smaller than 0! for 5 times, if the number is bigger than 0, we show a
 // message: Bigger than 0! for 7 times, and if the number is equal to 0, we show a message:
 // Number is 0! for 3 times. 
+
 
 // Problem 5: Create the code in C++ by using the loop of your choice to describe an algorithm that:
 //  Ask for a number (int) by showing a message: Enter a number between 1 and 18: », and then,
@@ -27,6 +31,7 @@
 // The result is : 10 x 11 = 110
 // The result is : 10 x 12 = 120
 
+
 // Problem 6: Create an application (a .cpp file) using Visual Studio and C++ to describe an algorithm:-which
 // requires an integer between 1 and 15, and that calculates the sum of the positive integers up to
 // this number. For example, if you enter 5, the program must calculate: 1 + 2 + 3 + 4 + 5 = 15
@@ -37,6 +42,7 @@
 // leave the application!"
 // use the following loop structure:
 // do{ ... }while((ans =='y')||(ans =='Y')) 
+
 
 // Problem 7: Create an application (.cpp file) using the Visual Studio tool and the C++ language to describe an
 // algorithm that:
