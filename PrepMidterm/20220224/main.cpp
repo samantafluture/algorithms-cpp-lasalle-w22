@@ -70,8 +70,8 @@ Algo_name: PrintMaxMin
 Variable declarations: num, max, min - numerical
 
 START
-    max := 0
-    min := 0
+    max := -99999
+    min := 99999
     WRITE "Enter the first number: "
     READ num
     REPEAT
@@ -80,7 +80,7 @@ START
         IF (num > max) THEN
             max := num
         ENDIF
-        IF (num < min) THEN
+        IF ((num < min) AND (num > 0)) THEN
             min := num
         ENDIF
     UNTIL (i < 0)
