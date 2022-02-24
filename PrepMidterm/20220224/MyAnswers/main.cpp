@@ -5,7 +5,7 @@
 /*
 
 Algo_name: FindMaxAvg
-Variable declarations: num, max, avg, total, i - integers
+Variable declarations: num, max, avg, total, i - numericals
 
 START
     max := 0
@@ -36,9 +36,9 @@ using namespace std;
 int main()
 {
     int num, i;
-    int max = 0;
-    int avg = 0;
-    int total = 0;
+    float max = 0;
+    float avg = 0;
+    float total = 0;
 
     for (i = 0; i < 5; i++)
     {
@@ -91,7 +91,6 @@ END
 
 // Question 4
 
-
 #include <iostream>
 using namespace std;
 
@@ -106,9 +105,6 @@ int main()
 
     do
     {
-        cout << "Enter another number or if you want to quit, enter 0 or a negative number: ";
-        cin >> num;
-
         if (num > max)
         {
             max = num;
@@ -119,14 +115,15 @@ int main()
             min = num;
         }
 
+        cout << "Enter another number or if you want to quit, enter 0 or a negative number: ";
+        cin >> num;
+
     } while (num > 0);
 
-    cout << "The bigger number you enter is: "
-         << max << " and d the smallest number you enter is: " << min;
+    cout << "The bigger number you enter is: " << max << " and d the smallest number you enter is: " << min;
 
     return 0;
 }
-
 
 // Question 5
 
@@ -135,7 +132,8 @@ int main()
 Line 1 - <iostream>
 Line 2 - namespace
 Line 6 - nbrnbr;
-Line 7 - double nbr1 = 0
+Line 7 - nbr1 = 0
+Line 7 - nbrmax = 0
 Line 9 - remove one ;
 Line 12 - (i = 1; i <= nbrnbr; i++)
 Line 17 - nbrmax = nbr1;
@@ -150,7 +148,7 @@ using namespace std;
 int main()
 {
     int i, nbrnbr;
-    double nbr1 = 0, nbrmax;
+    double nbr1 = 0, nbrmax=0;
 
     do
     {
