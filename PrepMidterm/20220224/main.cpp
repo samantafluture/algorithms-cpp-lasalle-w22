@@ -119,10 +119,6 @@ int main()
             min = num;
         }
 
-        cout << max << endl;
-        cout << min << endl;
-        cout << num << endl;
-
     } while (num > 0);
 
     cout << "The bigger number you enter is: "
