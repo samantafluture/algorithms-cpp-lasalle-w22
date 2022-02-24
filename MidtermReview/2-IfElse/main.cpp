@@ -410,8 +410,8 @@ int main()
 // Example: if we enter 0 or 13, display error message; if we enter 5, then the result will be 1 + 2 + 3 + 4 + 5 = 15
 
 /*
-Algo_name: 
-Declared variables: 
+Algo_name: PrintSum
+Declared variables: num, i, sum - numerical
 
 START
     sum := 0
