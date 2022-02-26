@@ -164,6 +164,7 @@ int main()
 // Problem 5: reads positive integer from user, indicate if n is perfect
 // n = sum of its strict divisors
 
+/*
 #include <iostream>
 using namespace std;
 
@@ -194,4 +195,172 @@ int main()
     }
     return 0;
 }
+*/
 
+// Problem 6: Check Whether Number is Even or Odd using if else
+
+/*
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int n;
+
+    cout << "Enter an integer: ";
+    cin >> n;
+
+    if (n % 2 == 0)
+    {
+        cout << n << " is even.";
+    }
+    else
+    {
+        cout << n << " is odd.";
+    }
+
+    return 0;
+}
+*/
+
+// Problem 7: Sum of Natural Numbers using loop
+/*
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int n, sum = 0;
+
+    cout << "Enter a positive integer: ";
+    cin >> n;
+
+    for (int i = 1; i <= n; ++i)
+    {
+        sum += i;
+    }
+
+    cout << "Sum = " << sum;
+    return 0;
+}
+*/
+
+// Problem 8: Find Factorial
+// 5! = 1 * 2 * 3 * 4 * 5 = 120
+// n! = 1 if n = 0 or n = 1
+
+/*
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int n;
+    long double f = 1.0;
+
+    cout << "Enter a positive integer: ";
+    cin >> n;
+
+    if (n < 0)
+        cout << "Error! Factorial of a negative number doesn't exist.";
+    else
+    {
+        for (int i = 1; i <= n; ++i)
+        {
+            f *= i;
+        }
+        cout << "Factorial of " << n << " = " << f;
+    }
+
+    return 0;
+}
+*/
+
+// Problem 8: Check Prime Number
+// 0 and 1 are not prime numbers
+
+/*
+#include <iostream>
+using namespace std;
+
+int main()
+{
+
+    int i, n;
+    bool is_prime = true;
+
+    cout << "Enter a positive integer: ";
+    cin >> n;
+
+    // 0 and 1 are not prime numbers
+    if (n == 0 || n == 1)
+    {
+        is_prime = false;
+    }
+
+    // loop to check if n is prime
+    for (i = 2; i <= n / 2; ++i)
+    {
+        if (n % i == 0)
+        {
+            is_prime = false;
+            break;
+        }
+    }
+
+    if (is_prime)
+    {
+        cout << n << " is a prime number";
+    }
+    else
+    {
+        cout << n << " is not a prime number";
+    }
+
+    return 0;
+}
+*/
+
+// Problem 9: Display Prime Numbers Between two Intervals
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+
+    int low, high, i;
+    bool is_prime = true;
+
+    cout << "Enter two numbers (intervals): ";
+    cin >> low >> high;
+
+    cout << "\nPrime numbers between " << low << " and " << high << " are: " << endl;
+
+    while (low < high)
+    {
+        is_prime = true;
+
+        // 0 and 1 are not prime numbers
+        if (low == 0 || low == 1)
+        {
+            is_prime = false;
+        }
+
+        for (i = 2; i <= low / 2; ++i)
+        {
+            if (low % i == 0)
+            {
+                is_prime = false;
+                break;
+            }
+        }
+
+        if (is_prime)
+            cout << low << " ";
+
+        ++low;
+    }
+
+    return 0;
+}
