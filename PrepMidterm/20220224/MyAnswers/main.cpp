@@ -29,16 +29,16 @@ END
 
 // Question 2
 
-/*
+
 #include <iostream>
 using namespace std;
 
 int main()
 {
     int num, i;
-    float max = 0;
-    float avg = 0;
-    float total = 0;
+    double max = 0;
+    double avg = 0;
+    double total = 0;
 
     for (i = 0; i < 5; i++)
     {
@@ -60,7 +60,7 @@ int main()
 
     return 0;
 }
-*/
+
 
 // Question 3
 
@@ -91,6 +91,7 @@ END
 
 // Question 4
 
+/*
 #include <iostream>
 using namespace std;
 
@@ -124,6 +125,7 @@ int main()
 
     return 0;
 }
+*/
 
 // Question 5
 

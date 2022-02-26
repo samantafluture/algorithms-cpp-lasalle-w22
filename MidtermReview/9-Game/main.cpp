@@ -1,5 +1,4 @@
-// Jogo de Adivinhação
-// https://cursos.alura.com.br/course/cpp-introducao-a-linguagem/task/45920
+// Guessing Game
 
 #include <iostream>
 #include <cstdlib>
