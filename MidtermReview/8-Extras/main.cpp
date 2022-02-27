@@ -323,6 +323,7 @@ int main()
 
 // Problem 9: Display Prime Numbers Between two Intervals
 
+/*
 #include <iostream>
 using namespace std;
 
@@ -361,6 +362,56 @@ int main()
 
         ++low;
     }
+
+    return 0;
+}
+*/
+
+// Problem 10: Count down from 10 to -5
+/*
+#include <iostream>
+using namespace std;
+
+int main()
+{
+
+    // while version
+    int i = 10;
+    while (i >= -5)
+    {
+        cout << i << " ";
+    }
+
+    // for version
+    for (int i = 10; i >= -5; i--)
+    {
+        cout << i << " ";
+    }
+
+    return 0;
+}
+*/
+
+// Problem 11: generate the sum and product of the numbers in the range 1 to 10
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int i;
+    int product = 1;
+    int sum = 0;
+
+    for (i = 2; i < 10; i++)
+    {   
+        cout << i << " ";
+        product *= i;
+        sum += i;
+    }
+
+    cout << "\nProduct: " << product << endl;
+    cout << "Sum: " << sum << endl;
 
     return 0;
 }

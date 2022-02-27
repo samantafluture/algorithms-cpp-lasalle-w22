@@ -78,6 +78,7 @@ int main()
     {
         cout << "\n* You lost!" << endl;
         cout << "* You played all your rounds..." << endl;
+        cout << "* The secret number is " << SECRET_NUMBER << endl;
         cout << "* Try again!" << endl;
     }
     else
