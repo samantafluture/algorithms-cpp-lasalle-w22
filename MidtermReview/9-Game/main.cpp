@@ -1,5 +1,74 @@
 // Guessing Game
 
+/*
+Algo_name: GuessTheNumber
+Declared variables: SECRET_NUMBER, guess, round, inputs - numericals / wrong - boolean / level - char
+
+START
+    WRITE "*********************************"
+    WRITE "* Welcome: Guess the Number Game *"
+    WRITE "*********************************"
+    SECRET_NUMBER := 42
+    wrong := true
+    points := 1000.0
+    WRITE "\nChoose level easy [E], medium [M] or hard [H]: "
+    READ level
+    SWITCH
+        case 'E'
+            inputs := 15
+            WRITE "* Welcome to level EASY. You have " + inputs + " rounds *"
+            break
+        case 'M'
+            inputs := 10
+            WRITE "* Welcome to level EASY. You have " + inputs + " rounds *"
+            break
+        case 'E'
+            inputs := 5
+            WRITE "* Welcome to level EASY. You have " + inputs + " rounds *"
+            break
+        default
+            WRITE "Invalid input!"
+            WRITE "* The default level is EASY. You have " + inputs + " rounds *"
+            break
+    END SWITCH
+    round := 1
+    REPEAT 
+        ADD 1 to round
+        WRITE "\nTry number: " round
+        WRITE "Your guess: "
+        READ guess
+        lost := ((guess - SECRET_NUMBER) / 2.0)
+        points := (pints - lost)
+        IF ((guess <= 0) OR (guess >= 101)) THEN
+            WRITE "Please input a number between 1 and 100!"
+        ELSE   
+            IF (guess == SECRET_NUMBER) THEN
+                WRITE "\nYay! You guessed"
+                wrong := false;
+                break
+            ELSE IF (guess > SECRET_NUMBER) THEN
+                WRITE "\nWrong! Your guess is too high"
+            ELSE
+                WRITE "\nWrong! Your guess is too low"
+            ENDIF
+        ENDIF
+    UNTIL (round <= inputs)
+    IF (wrong) THEN
+        WRITE "\n* You lost!"
+        WRITE "* You played all your rounds..." 
+        WRITE "* The secret number is " SECRET_NUMBER 
+        WRITE "* Try again!"
+    ELSE<
+        WRITE "\n* Congrats! You guessed in " + round + " rounds"
+        WRITE "* The secret number is " SECRET_NUMBER 
+        WRITE "* Your final score is " points
+    ENDIF
+    WRITE "*********************************"
+    WRITE "* Good-bye! Thanks for playing! *"
+    WRITE "*********************************"
+END
+*/
+
 #include <iostream>
 #include <cstdlib>
 using namespace std;
