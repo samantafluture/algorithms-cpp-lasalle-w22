@@ -1,5 +1,3 @@
-// Samanta Gimenez Fluture, 2022-03-02, Midterm Exam
-
 // Question 1
 
 /*
@@ -15,7 +13,7 @@ START
         WRITE "Enter the  qty. for product " + (i + 1) + " : "
         READ qty
         IF ((price > 0) AND (qty > 0)) THEN
-            subtotal = ((price * qty) * (1 + 0.1498))
+            subtotal := ((price * qty) * (1 + 0.1498))
             WRITE "The total with QC sales taxes is: " + subtotal + " $""
         ELSE
             WRITE "Error! The price and qty. should be positive numbers"
@@ -26,6 +24,7 @@ END
 */
 
 // Question 2
+
 /*
 #include <iostream>
 using namespace std;
@@ -35,26 +34,30 @@ int main()
     double price, subtotal;
     int i, qty;
 
+    cout.precision(2);
+    cout << fixed;
+
     for (i = 0; i < 5; i++)
     {
         cout << "Enter the price for product " << i + 1 << " : ";
         cin >> price;
 
+        if (price <= 0)
+        {
+            cout << "Error! The price should be positive number" << endl;
+        }
+
         cout << "Enter the  qty. for product " << i + 1 << " : ";
         cin >> qty;
 
-        if (price > 0 && qty > 0)
+        if (qty <= 0)
         {
-            subtotal = ((price * qty) * (1 + 0.1498));
+            cout << "Error! The qty. should be positive number" << endl;
+        }
 
-            cout.precision(2);
-            cout << fixed;
-            cout << "The total with QC sales taxes is: " << subtotal << " $" << endl;
-        }
-        else
-        {
-            cout << "Error! The price and qty. should be positive numbers" << endl;
-        }
+        subtotal = ((price * qty) * (1 + 0.1498));
+
+        cout << "The total with QC sales taxes is: " << subtotal << " $" << endl;
     }
 
     return 0;
@@ -63,29 +66,34 @@ int main()
 
 // Question 3
 
+
 /*
 
 Algo_name: PrintSubTotalAndTotal
 Declared variables: price, qty, subtotal, total, count - numericals
 
 START
-    count 1 := 1
+    count := 1
     WRITE "Enter the price for product 1 (to quit, enter 0): "
     READ price
     IF (price != 0) THEN
         WRITE "Enter the qty for product 1 (to quit, enter 0): "
         READ qty
-        REPEAT
-            subtotal := ((price * qty) * (1 + 0.1498))
-            WRITE "The total with QC sales taxes is: " + subtotal + " $"
-            total := subtotal
-            IF (price == 0) THEN
-                break
-            ENDIF
-            WRITE "Enter the qty for product " + count + " (to quit, enter 0): "
-            READ qty
-        UNTIL ((price > 0) AND (qty > 0))
+        IF (qty != 0) THEN
+            REPEAT
+                subtotal := ((price * qty) * (1 + 0.1498))
+                WRITE "The total with QC sales taxes is: " + subtotal + " $"
+                total := subtotal
+                IF (price == 0) THEN
+                    break
+                ENDIF
+                WRITE "Enter the qty for product " + count + " (to quit, enter 0): "
+                READ qty
+            UNTIL ((price > 0) AND (qty > 0))
         WRITE "The total with QC sales taxes is " + total + " $ " for " + (count - 1) + " transactions."
+        ELSE
+            WRITE "Quitting application..."
+        ENDIF
     ELSE
         WRITE "Quitting application..."
     ENDIF
@@ -93,9 +101,10 @@ END
 
 */
 
+
 // Question 4
 
-
+/*
 #include <iostream>
 using namespace std;
 
@@ -116,30 +125,37 @@ int main()
         cout << "Enter the qty for product 1 (to quit, enter 0): ";
         cin >> qty;
 
-        do
+        if (qty != 0)
         {
-            subtotal = ((price * qty) * (1 + 0.1498));
-
-            cout << "The total with QC sales taxes is: " << subtotal << " $" << endl;
-
-            total += subtotal;
-            count++;
-
-            cout << "Enter the price for product " << count << " (to quit, enter 0): ";
-            cin >> price;
-
-            if (price == 0)
+            do
             {
-                break;
-            }
+                subtotal = ((price * qty) * (1 + 0.1498));
 
-            cout << "Enter the qty for product " << count << " (to quit, enter 0): ";
-            cin >> qty;
+                cout << "The total with QC sales taxes is: " << subtotal << " $" << endl;
 
-        } while (price > 0 && qty > 0);
+                total += subtotal;
+                count++;
 
-        cout << "The total with QC sales taxes is " << total << " $"
-             << " for " << (count - 1) << " transactions." << endl;
+                cout << "Enter the price for product " << count << " (to quit, enter 0): ";
+                cin >> price;
+
+                if (price == 0)
+                {
+                    break;
+                }
+
+                cout << "Enter the qty for product " << count << " (to quit, enter 0): ";
+                cin >> qty;
+
+            } while (price > 0 && qty > 0);
+
+            cout << "The total with QC sales taxes is " << total << " $"
+                 << " for " << (count - 1) << " transactions." << endl;
+        }
+        else
+        {
+            cout << "Quitting application..." << endl;
+        }
     }
     else
     {
@@ -148,35 +164,24 @@ int main()
 
     return 0;
 }
-
+*/
 
 // Question 5
 
-/*
-Errors:
-
-Line 7 - int nbr -> should be inside int main() function
-Line 9 - main()
-Line 11 - cout
-Line 12 - cin >> nbr;
-Line 14 - ((nbr > 1) || (nbr > 18))
-Line 22 - return 0;
-*/
-
-/*
 #include <iostream>
 using namespace std;
 
 int main()
 {
+
     int nbr;
 
-    cout << "Enter an integer number between 1 and 18: ";
+    cout << "Enter an integer number between 5 and 22: ";
     cin >> nbr;
 
-    while ((nbr < 1) || (nbr > 18))
+    while ((nbr < 5) || (nbr > 22))
     {
-        cout << "Enter an integer number between 1 and 18: ";
+        cout << "Enter an integer number between 5 and 22: ";
         cin >> nbr;
     }
 
@@ -186,4 +191,3 @@ int main()
 
     return 0;
 }
-*/
