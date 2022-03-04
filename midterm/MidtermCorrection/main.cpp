@@ -104,7 +104,7 @@ END
 
 // Question 4
 
-/*
+
 #include <iostream>
 using namespace std;
 
@@ -164,10 +164,22 @@ int main()
 
     return 0;
 }
-*/
+
 
 // Question 5
 
+/*
+Errors identified:
+
+Line 7 - int nbr -> should be inside int main() function [could not be an error, and be a global variable]
+Line 9 - main()
+Line 11 - cout
+Line 12 - cin >> nbr;
+Line 14 - ((nbr > 1) || (nbr > 18))
+Line 22 - return 0;
+*/
+
+/*
 #include <iostream>
 using namespace std;
 
@@ -191,3 +203,4 @@ int main()
 
     return 0;
 }
+*/
