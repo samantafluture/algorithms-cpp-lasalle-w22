@@ -87,20 +87,20 @@ int main()
     double points = 1000.0;
     char level;
 
-    cout << "\nChoose level easy [E], medium [M] or hard [H]: ";
+    cout << "\nChoose level easy [1], medium [2] or hard [3]: ";
     cin >> level;
 
     switch (level)
     {
-    case 'E':
+    case '1':
         inputs = 15;
         cout << "* Welcome to level EASY. You have " << inputs << " rounds *" << endl;
         break;
-    case 'M':
+    case '2':
         inputs = 10;
         cout << "* Welcome to level MEDIUM. You have " << inputs << " rounds *" << endl;
         break;
-    case 'H':
+    case '3':
         inputs = 5;
         cout << "* Welcome to level HARD. You have " << inputs << " rounds *" << endl;
         break;
