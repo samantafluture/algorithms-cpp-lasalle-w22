@@ -5,6 +5,7 @@ TO DO'S
 
 - create functions for validations
 - understand behavior of find_similar() and print better results
+- create the algorithm
 */
 
 #include <iostream>
@@ -17,6 +18,7 @@ string sign, element;
 string find_sign(int, int);
 string find_element(string);
 void find_similar(string, string);
+void print_horoscope(int, int, string, string);
 
 int main()
 {
@@ -86,10 +88,9 @@ int main()
         }
 
         sign = find_sign(month, day);
-        cout << "\n# Your sign is: " << sign << endl;
-
         element = find_element(sign);
-        cout << "# Your element is: " << element << endl;
+
+        print_horoscope(month, day, sign, element);
 
         find_similar(sign, element);
 
@@ -107,126 +108,126 @@ string find_sign(int month, int day)
     case 1:
         if (day >= 1 && day <= 19)
         {
-            return "Capricorn";
+            sign = "Capricorn";
         }
         else
         {
-            return "Aquarius";
+            sign = "Aquarius";
         }
         break;
     case 2:
         if (day >= 1 && day <= 18)
         {
-            return "Aquarius";
+            sign = "Aquarius";
         }
         else
         {
-            return "Pisces";
+            sign = "Pisces";
         }
         break;
     case 3:
         if (day >= 1 && day <= 20)
         {
-            return "Pisces";
+            sign = "Pisces";
         }
         else
         {
-            return "Aries";
+            sign = "Aries";
         }
         break;
     case 4:
         if (day >= 1 && day <= 19)
         {
-            return "Aries";
+            sign = "Aries";
         }
         else
         {
-            return "Taurus";
+            sign = "Taurus";
         }
         break;
     case 5:
         if (day >= 1 && day <= 20)
         {
-            return "Taurus";
+            sign = "Taurus";
         }
         else
         {
-            return "Gemini";
+            sign = "Gemini";
         }
         break;
     case 6:
         if (day >= 1 && day <= 21)
         {
-            return "Gemini";
+            sign = "Gemini";
         }
         else
         {
-            return "Cancer";
+            sign = "Cancer";
         }
         break;
     case 7:
         if (day >= 1 && day <= 22)
         {
-            return "Cancer";
+            sign = "Cancer";
         }
         else
         {
-            return "Leo";
+            sign = "Leo";
         }
         break;
     case 8:
         if (day >= 1 && day <= 22)
         {
-            return "Leo";
+            sign = "Leo";
         }
         else
         {
-            return "Virgo";
+            sign = "Virgo";
         }
         break;
     case 9:
         if (day >= 1 && day <= 22)
         {
-            return "Virgo";
+            sign = "Virgo";
         }
         else
         {
-            return "Libra";
+            sign = "Libra";
         }
         break;
     case 10:
         if (day >= 1 && day <= 22)
         {
-            return "Libra";
+            sign = "Libra";
         }
         else
         {
-            return "Scorpio";
+            sign = "Scorpio";
         }
         break;
     case 11:
         if (day >= 1 && day <= 21)
         {
-            return "Scorpio";
+            sign = "Scorpio";
         }
         else
         {
-            return "Sagittarius";
+            sign = "Sagittarius";
         }
         break;
     case 12:
         if (day >= 1 && day <= 21)
         {
-            return "Sagittarius";
+            sign = "Sagittarius";
         }
         else
         {
-            return "Capricorn";
+            sign = "Capricorn";
         }
         break;
-    default:
-        break;
     }
+
+    return sign;
 }
 
 string find_element(string sign)
@@ -234,23 +235,25 @@ string find_element(string sign)
 
     if (sign == "Aries" || sign == "Leo" || sign == "Sagittarius")
     {
-        return "Fire";
+        element = "Fire";
     }
 
     if (sign == "Taurus" || sign == "Virgo" || sign == "Capricorn")
     {
-        return "Earth";
+        element = "Earth";
     }
 
     if (sign == "Gemini" || sign == "Libra" || sign == "Aquarius")
     {
-        return "Air";
+        element = "Air";
     }
 
     if (sign == "Cancer" || sign == "Scorpio" || sign == "Pisces")
     {
-        return "Water";
+        element = "Water";
     }
+
+    return element;
 }
 
 void find_similar(string sign, string element)
@@ -261,20 +264,16 @@ void find_similar(string sign, string element)
     string water[] = {"Cancer", "Scorpio", "Pisces"};
     // string similar[2] = {};
 
-    cout << "# You get along with:" << endl;
-
     if (element == "Fire")
     {
         for (int i = 0; i < 3; i++)
         {
             if (fire[i].find(sign))
             {
-                cout << fire[i] << endl;
+                cout << "♥ " << fire[i] << endl;
                 // similar->append(fire[i]);
             }
         }
-
-        // cout << "You get along with: " << similar[0] << " and " << similar[1];
     }
 
     if (element == "Earth")
@@ -283,7 +282,8 @@ void find_similar(string sign, string element)
         {
             if (earth[i].find(sign))
             {
-                cout << earth[i] << endl;
+                cout << "♥ " << earth[i] << endl;
+                // similar->append(earth[i]);
             }
         }
     }
@@ -294,7 +294,8 @@ void find_similar(string sign, string element)
         {
             if (air[i].find(sign))
             {
-                cout << air[i] << endl;
+                cout << "♥ " << air[i] << endl;
+                // similar->append(air[i]);
             }
         }
     }
@@ -305,8 +306,20 @@ void find_similar(string sign, string element)
         {
             if (water[i].find(sign))
             {
-                cout << water[i] << endl;
+                cout << "♥ " << water[i] << endl;
+                // similar->append(water[i]);
             }
         }
     }
+
+    // cout << similar[0] << " and " << similar[1];
+    
+}
+
+void print_horoscope(int month, int day, string sign, string element)
+{
+    cout << "\n# Horoscope for (mm/dd): " << month << "/" << day
+         << "\n# Sign: " << sign
+         << "\n# Element: " << element
+         << "\n# " << sign << " gets along with: " << endl;
 }
