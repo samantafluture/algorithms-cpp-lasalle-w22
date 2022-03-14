@@ -4,6 +4,7 @@
 TO DO'S
 
 - create functions for validations
+- create functions to get data from the user
 - understand behavior of find_similar() and print better results
 - create the algorithm
 */
