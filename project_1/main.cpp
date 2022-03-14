@@ -2,7 +2,6 @@
 
 /*
 TO DO'S
-
 - create functions for validations
 - create functions to get data from the user
 - understand behavior of find_similar() and print better results
@@ -16,6 +15,8 @@ using namespace std;
 int day, month;
 string sign, element;
 
+int get_month(int);
+int get_day(int);
 string find_sign(int, int);
 string find_element(string);
 void find_similar(string, string);
@@ -25,7 +26,7 @@ int main()
 {
     char ans;
 
-    cout << "******** Horoscope App *********" << endl;
+    cout << "\n******** Horoscope App *********" << endl;
 
     do
     {
@@ -39,53 +40,18 @@ int main()
             break;
         }
 
-        cout << "\nEnter the MONTH of your birthday (1 - 12) or 0 to quit: ";
-        cin >> month;
+        month = get_month(month);
 
         if (month == 0)
         {
             break;
         }
 
-        if (month < 0 || month > 12)
-        {
-            do
-            {
-                cout << "Error! Number must be between 1 and 12!";
-                cout << "\nEnter the MONTH of your birthday (1 - 12): ";
-                cin >> month;
-            } while (month < 0 || month > 12);
-        }
-
-        cout << "Enter the DAY of your birthday (1 - 31) or 0 to quit: ";
-        cin >> day;
+        day = get_day(day);
 
         if (day == 0)
         {
             break;
-        }
-
-        if (day < 0 || day > 31)
-        {
-            do
-            {
-                cout << "Error! Number must be between 1 and 31!";
-                cout << "\nEnter the DAY of your birthday (1 - 31): ";
-                cin >> day;
-            } while (day < 0 || day > 31);
-        }
-
-        if (month == 2)
-        {
-            if (day > 28)
-            {
-                do
-                {
-                    cout << "Error! February only have 28 days!";
-                    cout << "\nEnter the DAY of your birthday (1 - 31) or (1 - 28 for February): ";
-                    cin >> day;
-                } while (day > 28);
-            }
         }
 
         sign = find_sign(month, day);
@@ -97,9 +63,58 @@ int main()
 
     } while (ans != '0');
 
-    cout << "\n******** Thank you. Bye! *********" << endl;
+    cout << "\n******** Thank you. Bye! *********\n\n";
 
     return 0;
+}
+
+int get_month(int month)
+{
+    cout << "\nEnter the MONTH of your birthday (1 - 12) or 0 to quit: ";
+    cin >> month;
+
+    if (month < 0 || month > 12)
+    {
+        do
+        {
+            cout << "Error! Number must be between 1 and 12!";
+            cout << "\nEnter the MONTH of your birthday (1 - 12): ";
+            cin >> month;
+        } while (month < 0 || month > 12);
+    }
+
+    return month;
+}
+
+int get_day(int day)
+{
+    cout << "Enter the DAY of your birthday (1 - 31) or 0 to quit: ";
+    cin >> day;
+    
+    if (day < 0 || day > 31)
+    {
+        do
+        {
+            cout << "Error! Number must be between 1 and 31!";
+            cout << "\nEnter the DAY of your birthday (1 - 31): ";
+            cin >> day;
+        } while (day < 0 || day > 31);
+    }
+
+    if (month == 2)
+    {
+        if (day > 28)
+        {
+            do
+            {
+                cout << "Error! February only have 28 days!";
+                cout << "\nEnter the DAY of your birthday (1 - 31) or (1 - 28 for February): ";
+                cin >> day;
+            } while (day > 28);
+        }
+    }
+
+    return day;
 }
 
 string find_sign(int month, int day)
@@ -314,7 +329,6 @@ void find_similar(string sign, string element)
     }
 
     // cout << similar[0] << " and " << similar[1];
-    
 }
 
 void print_horoscope(int month, int day, string sign, string element)
