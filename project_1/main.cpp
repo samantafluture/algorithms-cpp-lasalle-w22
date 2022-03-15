@@ -128,7 +128,7 @@ int get_month(int month)
     {
         do
         {
-            cout << "Error! Number must be between 1 and 12!";
+            cout << ">>> Error! Number must be between 1 and 12!";
             cout << "\nEnter the MONTH of your birthday (1 - 12): ";
             cin >> month;
         } while (month < 0 || month > 12);
@@ -176,7 +176,7 @@ int get_day(int day)
     {
         do
         {
-            cout << "Error! Number must be between 1 and 31!";
+            cout << ">>> Error! Number must be between 1 and 31!";
             cout << "\nEnter the DAY of your birthday (1 - 31): ";
             cin >> day;
         } while (day < 0 || day > 31);
@@ -189,7 +189,7 @@ int get_day(int day)
         {
             do
             {
-                cout << "Error! February only have 28 days!";
+                cout << ">>> Error! February only have 28 days!";
                 cout << "\nEnter the DAY of your birthday (1 - 31) or (1 - 28 for February): ";
                 cin >> day;
             } while (day > 28);
