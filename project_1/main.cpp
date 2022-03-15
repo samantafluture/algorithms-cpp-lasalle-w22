@@ -1,12 +1,6 @@
 // Samanta Gimenez Fluture, 2022-03-15, Project #1
 
 /*
-TO DO'S
-- understand behavior of find_similar() and print better results
-- use bool instead of hard-code condition
-*/
-
-/*
 ALGORITHM for main()
 
 Name: CalcHoroscope
@@ -541,11 +535,13 @@ void find_similar(string sign, string element)
     {
         for (int i = 0; i < 3; i++)
         {
-            // find occurrance of the sign entered by the user in the array of its element
-            if (fire[i].find(sign))
+            // compare -> returns integer < 0, 0 or > 0
+            // if the sign the user entered is not equal to i,
+            // then print this sign,
+            // else, don't print it
+            if (fire[i].compare(sign))
             {
-                // print the other elements i from the array
-                cout << "♥ " << fire[i] << endl;
+                cout << "- " << fire[i] << endl;
             }
         }
     }
@@ -554,9 +550,10 @@ void find_similar(string sign, string element)
     {
         for (int i = 0; i < 3; i++)
         {
-            if (earth[i].find(sign))
+            //
+            if (earth[i].compare(sign))
             {
-                cout << "♥ " << earth[i] << endl;
+                cout << "- " << earth[i] << endl;
             }
         }
     }
@@ -565,9 +562,10 @@ void find_similar(string sign, string element)
     {
         for (int i = 0; i < 3; i++)
         {
-            if (air[i].find(sign))
+            //
+            if (air[i].compare(sign))
             {
-                cout << "♥ " << air[i] << endl;
+                cout << "- " << air[i] << endl;
             }
         }
     }
@@ -576,9 +574,10 @@ void find_similar(string sign, string element)
     {
         for (int i = 0; i < 3; i++)
         {
-            if (water[i].find(sign))
+            //
+            if (water[i].compare(sign))
             {
-                cout << "♥ " << water[i] << endl;
+                cout << "- " << water[i] << endl;
             }
         }
     }
