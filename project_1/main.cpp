@@ -635,7 +635,7 @@ START
     WRITE "\n# Horoscope for (mm/dd): " + month + "/" + day
     WRITE "\n# Sign: " + sign
     WRITE "\n# Element: " + element
-    WRITE "\n# " + sign + " gets along with: "
+    WRITE "\n# " + sign + " is compatible with: "
 END
 
 ALGORITHM in natural language:
@@ -647,5 +647,5 @@ void print_horoscope(int month, int day, string sign, string element)
     cout << "\n# Horoscope for (mm/dd): " << month << "/" << day
          << "\n# Sign: " << sign
          << "\n# Element: " << element
-         << "\n# " << sign << " gets along with: " << endl;
+         << "\n# " << sign << " is compatible with: " << endl;
 }
