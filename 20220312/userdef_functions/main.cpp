@@ -209,11 +209,19 @@ bool is_even(int a) {
 
 // question 13
 bool is_digit(char i) {
-    if (isdigit(i)) {
+    // if (isdigit(i)) {
+    //     return true;
+    // } else {
+    //     return false;
+    // }
+
+    if (i >= '0' && i <= '9')
+    {
         return true;
     } else {
         return false;
     }
+    
 }
 
 // question 14

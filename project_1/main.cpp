@@ -530,16 +530,20 @@ void find_similar(string sign, string element)
     string earth[] = {"Taurus", "Virgo", "Capricorn"};
     string air[] = {"Gemini", "Libra", "Aquarius"};
     string water[] = {"Cancer", "Scorpio", "Pisces"};
+    int i, is_similar;
 
     if (element == "Fire")
     {
-        for (int i = 0; i < 3; i++)
+        for (i = 0; i < 3; i++)
         {
-            // compare -> returns integer < 0, 0 or > 0
-            // if the sign the user entered is not equal to i,
-            // then print this sign,
-            // else, don't print it
-            if (fire[i].compare(sign))
+            // pre-defined function compare()
+            // returns integer < 0 (before), 0 (equivalent) or > 0 (after)
+            is_similar = fire[i].compare(sign);
+
+            // if the sign the user entered is not equivalent to i (!= 0),
+            // then print this sign
+            // will only print the other 2 similar signs of the array
+            if (is_similar) 
             {
                 cout << "- " << fire[i] << endl;
             }
@@ -548,10 +552,11 @@ void find_similar(string sign, string element)
 
     if (element == "Earth")
     {
-        for (int i = 0; i < 3; i++)
+        for (i = 0; i < 3; i++)
         {
-            //
-            if (earth[i].compare(sign))
+            is_similar = earth[i].compare(sign);
+
+            if (is_similar)
             {
                 cout << "- " << earth[i] << endl;
             }
@@ -560,10 +565,11 @@ void find_similar(string sign, string element)
 
     if (element == "Air")
     {
-        for (int i = 0; i < 3; i++)
+        for (i = 0; i < 3; i++)
         {
-            //
-            if (air[i].compare(sign))
+            is_similar = air[i].compare(sign);
+
+            if (is_similar)
             {
                 cout << "- " << air[i] << endl;
             }
@@ -572,10 +578,11 @@ void find_similar(string sign, string element)
 
     if (element == "Water")
     {
-        for (int i = 0; i < 3; i++)
+        for (i = 0; i < 3; i++)
         {
-            //
-            if (water[i].compare(sign))
+            is_similar = water[i].compare(sign);
+
+            if (is_similar)
             {
                 cout << "- " << water[i] << endl;
             }
