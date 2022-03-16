@@ -1,6 +1,11 @@
 // Samanta Gimenez Fluture, 2022-03-15, Project #1
 
 /*
+TO DO'S
+- validate days of months (30-31)
+*/
+
+/*
 ALGORITHM for main()
 
 Name: CalcHoroscope
@@ -26,9 +31,12 @@ START
         sign := find_sign(month, day)
         element := find_element(sign)
         print_horoscope(month, day, sign, element)
-        find_similar(sign, element)
+        find_compatible(sign, element)
     UNTIL (ans != '0')
 END
+
+ALGORITHM in natural language:
+    The user can enter anything to get a horoscope or 0 to quit the application. While he does not type 0, the application continues to loop and he can input new values. The user is asked to enter a month (value between 1 - 12) and a day (value between 1 - 31). If it's February, it can only input values from 1 - 29 for the day. The program will calculate: the sign (depending on the month and date entered), what is the element of this sign (depending on the sign calculated previously), and the other signs that are in the same element group (based on the results of previously calculations of sign and element). Those results will be printed. The user can input new values until he types 0 to quit.
 */
 
 #include <iostream>
@@ -43,7 +51,7 @@ int get_month(int);
 int get_day(int);
 string find_sign(int, int);
 string find_element(string);
-void find_similar(string, string);
+void find_compatible(string, string);
 void print_horoscope(int, int, string, string);
 
 int main()
@@ -85,9 +93,9 @@ int main()
         sign = find_sign(month, day);
         element = find_element(sign);
 
-        // call functions to print and find similar sign
+        // call functions to print and find compatible signs
         print_horoscope(month, day, sign, element);
-        find_similar(sign, element);
+        find_compatible(sign, element);
 
     } while (ans != '0');
 
@@ -116,6 +124,9 @@ START
     ENDIF
     RETURN month
 END
+
+ALGORITHM in natural language:
+    This function will ask the user to input a value between 1 to 12, meaning the month. If the value is out of the range, it will print and error message and ask for the value again until the user enters a valid input. The function, then, returns this value as the variable month, to be used by other functions. 
 */
 
 int get_month(int month)
@@ -154,16 +165,19 @@ START
         UNTIL (day < 0 OR day > 31)
     ENDIF
     IF (month == 2) THEN
-        IF (day > 28) THEN
+        IF (day > 29) THEN
             REPEAT
                 WRITE "Error! February only have 28 days!"
-                WRITE "\nEnter the DAY of your birthday (1 - 31) or (1 - 28 for February): "
+                WRITE "\nEnter the DAY of your birthday (1 - 31) or (1 - 29 for February): "
                 READ day
-            UNTIL (day > 28)
+            UNTIL (day > 29)
         ENDIF
     ENDIF
     RETURN day
 END
+
+ALGORITHM in natural language:
+    This function will ask the user to input a value between 1 to 31, meaning the day. If the value is out of the range, it will print and error message and ask for the value again until the user enters a valid input. If the month previously input is 2 (meaning February), then the user will need to input a value between 1 to 29. The function, then, returns this value as the variable day, to be used by other functions.
 */
 
 int get_day(int day)
@@ -185,14 +199,14 @@ int get_day(int day)
     // february validation
     if (month == 2)
     {
-        if (day > 28)
+        if (day > 29)
         {
             do
             {
-                cout << ">>> Error! February only have 28 days!";
-                cout << "\nEnter the DAY of your birthday (1 - 31) or (1 - 28 for February): ";
+                cout << ">>> Error! February only have 29 days!";
+                cout << "\nEnter the DAY of your birthday (1 - 31) or (1 - 29 for February): ";
                 cin >> day;
-            } while (day > 28);
+            } while (day > 29);
         }
     }
 
@@ -294,6 +308,9 @@ START
     END SWITCH
     RETURN sign
 END
+
+ALGORITHM in natural language:
+    This functions takes the value of month entered by the user previously. For each month (1 - 12), there will be a condition to be fullfiled. Depending on the date of the month, it will return the sign of the user.
 */
 
 string find_sign(int month, int day)
@@ -446,6 +463,9 @@ START
     ENDIF
     RETURN element
 END
+
+ALGORITHM in natural language:
+    This functions takes the values of the sign previously calculated. Depending on the sign, it returns the element of this particular sign. As there are four different elements, this function uses four different conditions the sign has to match/fulfil.
 */
 
 string find_element(string sign)
@@ -475,9 +495,9 @@ string find_element(string sign)
 }
 
 /*
-ALGORITHM for find_similar()
+ALGORITHM for find_compatible()
 
-Name: FindSimilar
+Name: FindCompatible
 Variables: element, sign - strings / fire[], earth[], air[], water[] - arrays / i - numerical
 
 START
@@ -489,7 +509,7 @@ START
         i := 0
         REPEAT 3 times
             ADD 1 to i
-            IF (sign is in fire[i]) THEN
+            IF (fire[i] is not equal to sign) THEN
                 WRITE fire[i]
             ENDIF
         END REPEAT
@@ -498,7 +518,7 @@ START
         i := 0
         REPEAT 3 times
             ADD 1 to i
-            IF (sign is in earth[i]) THEN
+            IF (earth[i] is not equal to sign) THEN
                 WRITE earth[i]
             ENDIF
         END REPEAT
@@ -507,7 +527,7 @@ START
         i := 0
         REPEAT 3 times
             ADD 1 to i
-            IF (sign is in air[i]) THEN
+            IF (air[i] is not equal to sign) THEN
                 WRITE air[i]
             ENDIF
         END REPEAT
@@ -516,21 +536,24 @@ START
         i := 0
         REPEAT 3 times
             ADD 1 to i
-            IF (sign is in water[i]) THEN
+            IF (water[i] is not equal to sign) THEN
                 WRITE water[i]
             ENDIF
         END REPEAT
     ENDIF
 END
+
+ALGORITHM in natural language:
+    This functions uses the the previously calculated values of sign and element. There are four different conditions to fulfil, depending on the four elements. Each element has a group of 3 signs. If the element of the user matches a particular element, the function enters a loop to read all the signs that are in the same group. It will check each sign one by one. If the sign matches the sign of the user, it will not print it. Otherwise, it will then print the other signs of the same element group. Meaning, those are the signs that are compatible.
 */
 
-void find_similar(string sign, string element)
+void find_compatible(string sign, string element)
 {
     string fire[] = {"Aries", "Leo", "Sagittarius"};
     string earth[] = {"Taurus", "Virgo", "Capricorn"};
     string air[] = {"Gemini", "Libra", "Aquarius"};
     string water[] = {"Cancer", "Scorpio", "Pisces"};
-    int i, is_similar;
+    int i, is_compatible;
 
     if (element == "Fire")
     {
@@ -538,12 +561,12 @@ void find_similar(string sign, string element)
         {
             // pre-defined function compare()
             // returns integer < 0 (before), 0 (equivalent) or > 0 (after)
-            is_similar = fire[i].compare(sign);
+            is_compatible = fire[i].compare(sign);
 
             // if the sign the user entered is not equivalent to i (!= 0),
             // then print this sign
-            // will only print the other 2 similar signs of the array
-            if (is_similar) 
+            // will only print the other 2 compatibles signs of the array
+            if (is_compatible) 
             {
                 cout << "- " << fire[i] << endl;
             }
@@ -554,9 +577,9 @@ void find_similar(string sign, string element)
     {
         for (i = 0; i < 3; i++)
         {
-            is_similar = earth[i].compare(sign);
+            is_compatible = earth[i].compare(sign);
 
-            if (is_similar)
+            if (is_compatible)
             {
                 cout << "- " << earth[i] << endl;
             }
@@ -567,9 +590,9 @@ void find_similar(string sign, string element)
     {
         for (i = 0; i < 3; i++)
         {
-            is_similar = air[i].compare(sign);
+            is_compatible = air[i].compare(sign);
 
-            if (is_similar)
+            if (is_compatible)
             {
                 cout << "- " << air[i] << endl;
             }
@@ -580,9 +603,9 @@ void find_similar(string sign, string element)
     {
         for (i = 0; i < 3; i++)
         {
-            is_similar = water[i].compare(sign);
+            is_compatible = water[i].compare(sign);
 
-            if (is_similar)
+            if (is_compatible)
             {
                 cout << "- " << water[i] << endl;
             }
@@ -593,7 +616,7 @@ void find_similar(string sign, string element)
 /*
 ALGORITHM for print_horoscope()
 
-Name: FindSimilar
+Name: FindCompatible
 Variables: element, sign - strings / month, day - numericals
 
 START
@@ -602,6 +625,9 @@ START
     WRITE "\n# Element: " + element
     WRITE "\n# " + sign + " gets along with: "
 END
+
+ALGORITHM in natural language:
+    This functions takes all the important values entered by the user and computed by other functions (day, month, sign and element) and print them in a more visual and readable way for the user.
 */
 
 void print_horoscope(int month, int day, string sign, string element)
