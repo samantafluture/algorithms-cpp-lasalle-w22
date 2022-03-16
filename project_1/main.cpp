@@ -1,4 +1,4 @@
-// Samanta Gimenez Fluture, 2022-03-15, Project #1
+// Samanta Gimenez Fluture, 2022-03-16, Project #1
 
 /*
 ALGORITHM for main()
