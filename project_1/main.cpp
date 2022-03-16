@@ -164,20 +164,27 @@ START
             READ day
         UNTIL (day < 0 OR day > 31)
     ENDIF
-    IF (month == 2) THEN
+    IF (month := 2) THEN
         IF (day > 29) THEN
             REPEAT
-                WRITE "Error! February only have 28 days!"
+                WRITE "Error! February only have 29 days!"
                 WRITE "\nEnter the DAY of your birthday (1 - 31) or (1 - 29 for February): "
                 READ day
             UNTIL (day > 29)
         ENDIF
     ENDIF
+    IF (month := 4 OR month := 6 OR month := 9 or month := 11) THEN
+        REPEAT
+            WRITE "Error! This month only have 30 days!"
+            WRITE "\nEnter the DAY of your birthday (1 - 30): "
+            READ day
+        UNTIL (day < 0 OR day > 30)
+    ENDIF
     RETURN day
 END
 
 ALGORITHM in natural language:
-    This function will ask the user to input a value between 1 to 31, meaning the day. If the value is out of the range, it will print and error message and ask for the value again until the user enters a valid input. If the month previously input is 2 (meaning February), then the user will need to input a value between 1 to 29. The function, then, returns this value as the variable day, to be used by other functions.
+    This function will ask the user to input a value between 1 to 31, meaning the day. If the value is out of the range, it will print and error message and ask for the value again until the user enters a valid input. If the month previously input is 2 (meaning February), then the user will need to input a value between 1 to 29. If the months are April, June, September or November, the user only can input values from 1 to 30. The function, then, returns this value as the variable day, to be used by other functions.
 */
 
 int get_day(int day)
@@ -208,6 +215,16 @@ int get_day(int day)
                 cin >> day;
             } while (day > 29);
         }
+    }
+
+    // validate for months that ends on 30
+    if (month == 4 || month == 6 || month == 9 || month == 11) {
+        do
+            {
+                cout << ">>> Error! This month have only 30 days!";
+                cout << "\nEnter the DAY of your birthday (1 - 30): ";
+                cin >> day;
+            } while (day < 0 || day > 30);
     }
 
     return day;
