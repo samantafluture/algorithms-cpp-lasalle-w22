@@ -1,11 +1,6 @@
 // Samanta Gimenez Fluture, 2022-03-15, Project #1
 
 /*
-TO DO'S
-- validate days of months (30-31)
-*/
-
-/*
 ALGORITHM for main()
 
 Name: CalcHoroscope
