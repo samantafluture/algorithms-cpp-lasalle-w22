@@ -46,7 +46,7 @@ int main() {
 using namespace std;
 
 int main() {
-    double pi = 3.14159;
+    const double PI = 3.14159;
 
     cout << "The square root of PI (3.14159) = " << sqrt(pi) << endl;
 
