@@ -9,10 +9,13 @@ void print_value(double);
 double *calc_subtotal(int qty, double price);
 // double calc_transaction(int qty, double price, double subtotal[10], double total);
 
+// const values (taxes)
+const double TPS = 0.5;
+const double TVQ = 0.9975;
+
 // global variables
-const double SALES_TAXES = 0.15;
 double price, total = 0;
-int qty = 0, products = 0;
+int qty;
 double subtotal[10];
 
 int main()
@@ -41,21 +44,29 @@ int main()
         {
         case '1':
             cout << "You can enter up to 10 different products, with any item quantity you desire." << endl;
-            // total = calc_transaction(qty, price, subtotal, total);
             st = calc_subtotal(qty, price);
+
             break;
         case '2':
             cout << "Your subtotals are:" << endl;
             for (int i = 0; i < 3; i++)
             {
-                cout << "$ " << *(st + i) << endl;
+                cout << "Product #" << (i + 1) << " .............. $ " << *(st + i) << endl;
             }
+
             break;
         case '3':
-            // total = calc_transaction(qty, price, subtotal, total);
-            total *= SALES_TAXES;
-            cout << "The final price of the transaction is: $ ";
+            for (int i = 0; i < 3; i++)
+            {
+                total += *st;
+            }
+ 
+            cout << "Total without taxes .............. $ ";
             print_value(total);
+            cout << "TPS (5.000%) ..................... $ " << ((total * TPS) / 10.0) << endl;
+            cout << "TVQ (9.975%) ..................... $ " << ((total * TVQ) / 10.0) << endl;
+            cout << "Total with QC sales taxes ........ $ " << total * (1 + ((TPS + TVQ)/ 10.0)) << endl;
+
             break;
         case '0':
             cout << "\nQuitting the application..." << endl;
@@ -109,68 +120,3 @@ double *calc_subtotal(int qty, double price)
 
     return subtotal;
 }
-
-// double calc_total(double subtotal[10], double total) {
-//     for (int i = 0; i < 3; i++)
-//     {
-//         cout << "Enter the price of the product: $ ";
-//         cin >> price;
-
-//         cout << "Enter the quantity of the product: ";
-//         cin >> qty;
-
-//         if (qty < 1)
-//         {
-//             do
-//             {
-//                 cout << "Error! Quantity value should be positive!" << endl;
-//                 cout << "Enter the quantity of the product: ";
-//                 cin >> qty;
-//             } while (qty < 1);
-//         }
-
-//         subtotal[i] = multiply(qty, price);
-//         total += subtotal[i];
-
-//         cout << "The subtotal is: $ ";
-//         print_value(subtotal[i]);
-
-//         cout << "The final price of the transaction is: $ ";
-//         print_value(total);
-//     }
-
-//     return total;
-// }
-
-// double calc_transaction(int qty, double price, double subtotal[10], double total)
-// {
-//     for (int i = 0; i < 3; i++)
-//     {
-//         cout << "Enter the price of the product: $ ";
-//         cin >> price;
-
-//         cout << "Enter the quantity of the product: ";
-//         cin >> qty;
-
-//         if (qty < 1)
-//         {
-//             do
-//             {
-//                 cout << "Error! Quantity value should be positive!" << endl;
-//                 cout << "Enter the quantity of the product: ";
-//                 cin >> qty;
-//             } while (qty < 1);
-//         }
-
-//         subtotal[i] = multiply(qty, price);
-//         total += subtotal[i];
-
-//         cout << "The subtotal is: $ ";
-//         print_value(subtotal[i]);
-
-//         cout << "The final price of the transaction is: $ ";
-//         print_value(total);
-//     }
-
-//     return total;
-// }
