@@ -28,37 +28,44 @@ int main()
     cout.setf(ios::fixed);     // set fixed point notation
     cout.setf(ios::showpoint); // show decimal point
 
-    cout << "********** LET'S SHOP **********\n"
-         << endl;
+    cout << "\n********** LET'S SHOP **********" << endl;
 
     do
     {
-        cout << "Enter 1 to type prices and quantities of products\n"
+        cout << "\nEnter 1 to type prices and quantities of products\n"
              << "Enter 2 to display subtotals\n"
              << "Enter 3 to display the final price of the transaction with taxes\n"
              << "Enter 4 to see other results of the final price\n"
-             << "Enter 0 to quit the application\n";
+             << "Enter 0 to quit the application\n"
+             << ">> Your option: ";
         cin >> ans;
 
         switch (ans)
         {
         case '1':
-            cout << "You can enter up to 10 different products, with any item quantity you desire.\n"
+            cout << "\n* You can enter UP TO 10 (TEN) different products, with any item quantity you desire *\n"
                  << endl;
             st = calc_subtotal(qty, price);
 
             break;
         case '2':
-            cout << "Your subtotals are:" << endl;
-            for (int i = 0; i < 10; i++)
+            cout << "\nYour subtotals are:" << endl;
+            if (*st == 0.0)
             {
-                if (*(st + i) != 0.0)
+                cout << "$ " << *st << endl;
+            }
+            else
+            {
+                for (int i = 0; i < 10; i++)
                 {
-                    cout << "Product #0" << (i + 1) << " .............. $ " << *(st + i) << endl;
-                }
-                else
-                {
-                    break;
+                    if (*(st + i) != 0.0)
+                    {
+                        cout << "Product #" << (i + 1) << " .............. $ " << *(st + i) << endl;
+                    }
+                    else
+                    {
+                        break;
+                    }
                 }
             }
 
@@ -69,7 +76,7 @@ int main()
                 total = total + *(st + i);
             }
 
-            cout << "Total without taxes .............. $ ";
+            cout << "\nTotal without taxes .............. $ ";
             print_value(total);
 
             tps_val = ((total * TPS) / 10.0);
@@ -86,19 +93,23 @@ int main()
 
             break;
         case '4':
-            // TO DO -> functions pre-defined
+            cout << "\nTotal with QS sales taxes ROUND DOWN ........ $ " << floor(total_net) << endl;
+            cout << "Total with QS sales taxes ROUND UP .......... $ " << ceil(total_net) << endl;
             break;
         case '0':
             cout << "\nQuitting the application..." << endl;
             break;
         default:
-            cout << "\nInvalid input, try again!" << endl;
+            cout << "\n* Invalid input, try again [1 - 5]! *" << endl;
             break;
         }
 
     } while (ans != '0' || ans != '0');
 
-    cout << "\n********** THANKS FOR SHOPPING **********" << endl;
+    cout << "\n********** THANKS FOR SHOPPING **********\n"
+         << endl;
+
+    return 0;
 }
 
 // function definition
@@ -126,6 +137,11 @@ double *calc_subtotal(int qty, double price)
 
         price = validate_price(price);
 
+        if (price == 0.0)
+        {
+            break;
+        }
+
         cout << "Enter the quantity of the product (or enter 0 to go back to the menu): ";
         cin >> qty;
 
@@ -138,16 +154,23 @@ double *calc_subtotal(int qty, double price)
         {
             do
             {
-                cout << "Error! Quantity value should be positive!" << endl;
-                cout << "Enter the quantity of the product: ";
+                cout << "\n* Error! Quantity value should be positive *\n"
+                     << endl;
+                cout << "Enter the quantity of the product (or enter 0 to go back to the menu): ";
                 cin >> qty;
             } while (qty < 0);
         }
 
+        if (qty == 0)
+        {
+            break;
+        }
+
         subtotal[i] = multiply(qty, price);
 
-        cout << "The subtotal is: $ ";
+        cout << ">> Subtotal .............. $ ";
         print_value(subtotal[i]);
+        cout << "\n";
     }
 
     return subtotal;
@@ -162,9 +185,16 @@ double validate_price(double price)
     {
         do
         {
-            cout << "Error! Price should be between 10.50$ and 164.90$!" << endl;
-            cout << "Enter the price of the product: ";
+            cout << "\n* Error! Price should be between $10.50 and $164.90 *\n"
+                 << endl;
+            cout << "Enter the price of the product (or enter 0 to go back to the menu): ";
             cin >> price;
+
+            if (price == 0.0)
+            {
+                return 0.0;
+            }
+
         } while ((fabs(price) < min) || (fabs(price) > max));
     }
 
