@@ -1,28 +1,28 @@
-// Samanta Gimenez Fluture, 2022-03-18, Working with functions and arrays
+// Samanta Gimenez Fluture, 2022-03-19, Working with functions and arrays
 
 #include <iostream>
+#include <math.h>
 using namespace std;
 
 // function declaration
 double multiply(int, double);
 void print_value(double);
-double *calc_subtotal(int qty, double price);
-// double calc_transaction(int qty, double price, double subtotal[10], double total);
+double *calc_subtotal(int, double);
+double validate_price(double);
 
-// const values (taxes)
+// global variable
 const double TPS = 0.5;
 const double TVQ = 0.9975;
-
-// global variables
-double price, total = 0;
-int qty;
 double subtotal[10];
 
 int main()
 {
-
     char ans;
+    int qty;
     double *st;
+    double tps_val, tvq_val;
+    double total_net;
+    double price, total = 0;
 
     cout.precision(2);         // 2 decimal places
     cout.setf(ios::fixed);     // set fixed point notation
@@ -43,30 +43,50 @@ int main()
         switch (ans)
         {
         case '1':
-            cout << "You can enter up to 10 different products, with any item quantity you desire." << endl;
+            cout << "You can enter up to 10 different products, with any item quantity you desire.\n"
+                 << endl;
             st = calc_subtotal(qty, price);
 
             break;
         case '2':
             cout << "Your subtotals are:" << endl;
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 10; i++)
             {
-                cout << "Product #" << (i + 1) << " .............. $ " << *(st + i) << endl;
+                if (*(st + i) != 0.0)
+                {
+                    cout << "Product #0" << (i + 1) << " .............. $ " << *(st + i) << endl;
+                }
+                else
+                {
+                    break;
+                }
             }
 
             break;
         case '3':
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 10; i++)
             {
-                total += *st;
+                total = total + *(st + i);
             }
- 
+
             cout << "Total without taxes .............. $ ";
             print_value(total);
-            cout << "TPS (5.000%) ..................... $ " << ((total * TPS) / 10.0) << endl;
-            cout << "TVQ (9.975%) ..................... $ " << ((total * TVQ) / 10.0) << endl;
-            cout << "Total with QC sales taxes ........ $ " << total * (1 + ((TPS + TVQ)/ 10.0)) << endl;
 
+            tps_val = ((total * TPS) / 10.0);
+            cout << "TPS (5.000%) ..................... $ ";
+            print_value(tps_val);
+
+            tvq_val = ((total * TVQ) / 10.0);
+            cout << "TVQ (9.975%) ..................... $ ";
+            print_value(tvq_val);
+
+            total_net = total * (1 + ((TPS + TVQ) / 10.0));
+            cout << "Total with QC sales taxes ........ $ ";
+            print_value(total_net);
+
+            break;
+        case '4':
+            // TO DO -> functions pre-defined
             break;
         case '0':
             cout << "\nQuitting the application..." << endl;
@@ -94,22 +114,34 @@ void print_value(double c)
 
 double *calc_subtotal(int qty, double price)
 {
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < 10; i++)
     {
-        cout << "Enter the price of the product: $ ";
+        cout << "Enter the price of the product (or enter 0 to go back to the menu): $ ";
         cin >> price;
 
-        cout << "Enter the quantity of the product: ";
+        if (price == 0.0)
+        {
+            break;
+        }
+
+        price = validate_price(price);
+
+        cout << "Enter the quantity of the product (or enter 0 to go back to the menu): ";
         cin >> qty;
 
-        if (qty < 1)
+        if (qty == 0)
+        {
+            break;
+        }
+
+        if (qty < 0)
         {
             do
             {
                 cout << "Error! Quantity value should be positive!" << endl;
                 cout << "Enter the quantity of the product: ";
                 cin >> qty;
-            } while (qty < 1);
+            } while (qty < 0);
         }
 
         subtotal[i] = multiply(qty, price);
@@ -119,4 +151,22 @@ double *calc_subtotal(int qty, double price)
     }
 
     return subtotal;
+}
+
+double validate_price(double price)
+{
+    double min = 10.50;
+    double max = 164.90;
+
+    if ((fabs(price) < min) || (fabs(price) > max))
+    {
+        do
+        {
+            cout << "Error! Price should be between 10.50$ and 164.90$!" << endl;
+            cout << "Enter the price of the product: ";
+            cin >> price;
+        } while ((fabs(price) < min) || (fabs(price) > max));
+    }
+
+    return price;
 }
