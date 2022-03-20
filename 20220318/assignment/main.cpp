@@ -120,6 +120,7 @@ void print_value(double c)
     cout << c << endl;
 }
 
+// using pointers to return an array
 double *calc_subtotal(int qty, double price)
 {
     for (int i = 0; i < 10; i++)
