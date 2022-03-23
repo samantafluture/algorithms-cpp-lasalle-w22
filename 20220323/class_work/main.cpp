@@ -25,6 +25,7 @@ int main()
         cout << "\nEnter 1 to add a value to the vector\n"
              << "Enter 2 to remove a value from the vector\n"
              << "Enter 3 to print out the values from the vector\n"
+             << "Enter 4 to clear all the values from the vector\n"
              << "Enter 0 to quit\n"
              << ">> Your option: ";
         cin >> ans;
@@ -91,16 +92,42 @@ int main()
 
             cout << "\n* Final vector *\n";
 
+            if (nums.size() == 0)
+            {
+                cout << "Empty" << endl;
+            }
+
             for (int i = 0; i < nums.size(); i++)
             {
                 cout << "Index: " << i << " Value: " << nums[i] << endl;
             }
             break;
+        case '4':
+            cout << "\n Let's clear all the values from the vector" << endl;
+
+            do
+            {
+                nums.pop_back();
+            } while (nums.size() != 0);
+
+            cout << "\n* Final vector *\n";
+
+            if (nums.size() == 0)
+            {
+                cout << "Empty" << endl;
+            }
+
+            for (int i = 0; i < nums.size(); i++)
+            {
+                cout << "Index: " << i << " Value: " << nums[i] << endl;
+            }
+
+            break;
         case '0':
             cout << "\nQuitting the application..." << endl;
             break;
         default:
-            cout << "\n>> Invalid input! Please enter a number between 0 and 3." << endl;
+            cout << "\n>> Invalid input! Please enter a number between 0 and 4." << endl;
             break;
         }
 
