@@ -97,7 +97,7 @@ int main()
             cout << "\nQuitting the application..." << endl;
             break;
         default:
-            cout << "\n* Invalid input, try again [1 - 5]! *" << endl;
+            cout << "\n* Invalid input, try again [0 - 4]! *" << endl;
             break;
         }
 
