@@ -1,7 +1,7 @@
 // Samanta Gimenez Fluture, 2022-03-19, Working with functions and arrays
 
 #include <iostream>
-#include <math.h>
+#include <cmath>
 using namespace std;
 
 // function declaration
@@ -101,7 +101,7 @@ int main()
             break;
         }
 
-    } while (ans != '0' || ans != '0');
+    } while (ans != '0');
 
     cout << "\n********** THANK YOU FOR SHOPPING **********\n"
          << endl;
