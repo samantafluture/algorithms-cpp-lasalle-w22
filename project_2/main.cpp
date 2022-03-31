@@ -12,7 +12,6 @@
 data:
 > 2.2046 pounds in a kilogram
 > 1000 grams in a kilogram
-> 1000 grams in a kilogram
 
 1st option:
 > input: a weight in pounds and/or ounces
@@ -37,11 +36,18 @@ pseudo-code:
 */
 
 #include <iostream>
+#include <vector>
 using namespace std;
 
 int main()
 {
     char ans;
+    vector<double> lb(0), kg(0);
+    double weight_in, weight_out;
+    double max = -99999; 
+    double min = 99999;
+    double sum = 0;
+    double avg = 0;
 
     cout << "\n******** Conversion App *********" << endl;
 
@@ -49,11 +55,11 @@ int main()
     {
         cout << "\nEnter 1 to convert pounds in kilograms\n"
              << "Enter 2 to convert kilograms to pounds\n"
-             << "Enter 0 to quit\n"
+             << "Enter 3 to quit\n"
              << "Your option: ";
         cin >> ans;
 
-        if (ans == '0')
+        if (ans == '3')
         {
             cout << "Enter Y to confirm you want to quit or enter N to go back" << endl;
             cin >> ans;
@@ -67,7 +73,9 @@ int main()
             {
                 cout << "Going back to the menu..." << endl;
                 continue;
-            } else {
+            }
+            else
+            {
                 cout << "\n* Invalid input, try again [Y | N]! *" << endl;
                 continue;
             }
@@ -78,7 +86,42 @@ int main()
             switch (ans)
             {
             case '1':
-                cout << "Convertion 1";
+                while (lb.size() < 15)
+                {
+                    cout << "Enter a weight in pounds and/or ounces: ";
+                    cin >> weight_in;
+
+                    if (weight_in <= 0.0)
+                    {
+                        break;
+                    }
+
+                    lb.push_back(weight_in);
+
+                    weight_out = (weight_in * 0.454);
+                    kg.push_back(weight_out);
+                    cout << weight_in << " pounds is equal to " << weight_out << " kilograms" << endl;
+                }
+                for (int i = 0; i < lb.size(); i++)
+                {
+                    if (lb[i] > max)
+                    {
+                        max = lb[i];
+                    }
+
+                    if (lb[i] < min)
+                    {
+                        min = lb[i];
+                    }
+
+                    sum += lb[i];
+                }
+
+                avg = sum / lb.size();
+                cout << "Max: " << max << endl;
+                cout << "Min: " << min << endl;
+                cout << "Average: " << avg << endl;
+
                 break;
             case '2':
                 cout << "Convertion 2";
@@ -89,7 +132,7 @@ int main()
             }
         }
 
-    } while (ans != '0');
+    } while (ans != '3');
 
     cout << "\n******** Thank you. Bye! *********\n\n";
 
