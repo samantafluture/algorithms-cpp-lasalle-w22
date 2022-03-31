@@ -38,9 +38,6 @@ pseudo-code:
 /*
 
 TO DO'S
-> improve display layout
-> improve converting calcs (include const values)
-> improve results (0.0, grams, ounces)
 > improve code by using functions
 
 */
@@ -55,6 +52,12 @@ int main()
     vector<double> lb(0), kg(0);
     double weight_in, weight_out;
     double max = -99999, min = 99999, sum = 0, avg = 0;
+    const double POUND_TO_KILO = 0.454;
+    const double KILO_TO_POUND = 2.2;
+
+    cout.precision(3);
+    cout.setf(ios::fixed);
+    cout.setf(ios::showpoint);
 
     cout << "\n******** Conversion App *********" << endl;
 
@@ -84,7 +87,7 @@ int main()
             }
             else
             {
-                cout << "\n* Invalid input, try again [Y | N]! *" << endl;
+                cout << "\n* Invalid input, try again [y | n]! *" << endl;
                 continue;
             }
         }
@@ -97,11 +100,12 @@ int main()
 
                 cout << "\n* 1. From pounds to kilograms *\n"
                      << "* Enter 0 or negative to quit this feature *\n"
-                     << "* You have up to 15 conversions *\n";
+                     << "* You have up to 15 conversions *\n"
+                     << "* The weight will be calculated in pounds *\n";
 
                 while (lb.size() < 15)
                 {
-                    cout << "\n>> Enter a weight in pounds and/or ounces: ";
+                    cout << "\n>> Enter a weight in pounds (or ounces as 0.XXX): ";
                     cin >> weight_in;
 
                     if (weight_in <= 0.0)
@@ -111,7 +115,7 @@ int main()
 
                     lb.push_back(weight_in);
 
-                    weight_out = (weight_in * 0.454);
+                    weight_out = (weight_in * POUND_TO_KILO);
                     kg.push_back(weight_out);
 
                     cout << "\nResult: " << weight_in << " pounds is equal to " << weight_out << " kilograms" << endl;
@@ -149,11 +153,12 @@ int main()
             case '2':
                 cout << "\n* 2. From kilograms to pounds *\n"
                      << "* Enter 0 or negative to quit this feature *\n"
-                     << "* You have up to 15 conversions *\n";
+                     << "* You have up to 15 conversions *\n"
+                     << "* The weight will be calculated in kilograms *\n";
 
                 while (kg.size() < 15)
                 {
-                    cout << "\n>> Enter a weight in kilograms and/or grams: ";
+                    cout << "\n>> Enter a weight in kilograms (or grams as 0.XXX): ";
                     cin >> weight_in;
 
                     if (weight_in <= 0.0)
@@ -163,7 +168,7 @@ int main()
 
                     kg.push_back(weight_in);
 
-                    weight_out = (weight_in * 2.2);
+                    weight_out = (weight_in * KILO_TO_POUND);
                     lb.push_back(weight_out);
                     cout << "\nResult: " << weight_in << " kilograms is equal to " << weight_out << " pounds" << endl;
                 }
