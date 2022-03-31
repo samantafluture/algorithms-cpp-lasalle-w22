@@ -44,7 +44,7 @@ int main()
     char ans;
     vector<double> lb(0), kg(0);
     double weight_in, weight_out;
-    double max = -99999; 
+    double max = -99999;
     double min = 99999;
     double sum = 0;
     double avg = 0;
@@ -118,13 +118,47 @@ int main()
                 }
 
                 avg = sum / lb.size();
-                cout << "Max: " << max << endl;
-                cout << "Min: " << min << endl;
-                cout << "Average: " << avg << endl;
+                cout << "Max: " << max << " pounds" << endl;
+                cout << "Min: " << min << " pounds" << endl;
+                cout << "Average: " << avg << " pounds" << endl;
 
                 break;
             case '2':
-                cout << "Convertion 2";
+                while (kg.size() < 15)
+                {
+                    cout << "Enter a weight in kilograms and/or grams: ";
+                    cin >> weight_in;
+
+                    if (weight_in <= 0.0)
+                    {
+                        break;
+                    }
+
+                    kg.push_back(weight_in);
+
+                    weight_out = (weight_in * 2.2);
+                    lb.push_back(weight_out);
+                    cout << weight_in << " kilograms is equal to " << weight_out << " pounds" << endl;
+                }
+                for (int i = 0; i < lb.size(); i++)
+                {
+                    if (lb[i] > max)
+                    {
+                        max = lb[i];
+                    }
+
+                    if (lb[i] < min)
+                    {
+                        min = lb[i];
+                    }
+
+                    sum += lb[i];
+                }
+
+                avg = sum / lb.size();
+                cout << "Max: " << max << " kilograms" << endl;
+                cout << "Min: " << min << " kilograms" << endl;
+                cout << "Average: " << avg << " kilograms" << endl;
                 break;
             default:
                 cout << "\n* Invalid input, try again [0 | 1 | 2]! *" << endl;
