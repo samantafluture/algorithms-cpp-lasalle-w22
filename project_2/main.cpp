@@ -53,10 +53,7 @@ int main()
     char ans;
     vector<double> lb(0), kg(0);
     double weight_in, weight_out;
-    double max = -99999;
-    double min = 99999;
-    double sum = 0;
-    double avg = 0;
+    double max = -99999, min = 99999, sum = 0, avg = 0;
 
     cout << "\n******** Conversion App *********" << endl;
 
@@ -149,22 +146,22 @@ int main()
                     lb.push_back(weight_out);
                     cout << weight_in << " kilograms is equal to " << weight_out << " pounds" << endl;
                 }
-                for (int i = 0; i < lb.size(); i++)
+                for (int i = 0; i < kg.size(); i++)
                 {
-                    if (lb[i] > max)
+                    if (kg[i] > max)
                     {
-                        max = lb[i];
+                        max = kg[i];
                     }
 
-                    if (lb[i] < min)
+                    if (kg[i] < min)
                     {
-                        min = lb[i];
+                        min = kg[i];
                     }
 
-                    sum += lb[i];
+                    sum += kg[i];
                 }
 
-                avg = sum / lb.size();
+                avg = sum / kg.size();
                 cout << "Max: " << max << " kilograms" << endl;
                 cout << "Min: " << min << " kilograms" << endl;
                 cout << "Average: " << avg << " kilograms" << endl;
