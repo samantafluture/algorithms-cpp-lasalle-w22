@@ -35,6 +35,15 @@ pseudo-code:
 
 */
 
+/*
+
+TO DO'S
+> improve converting calcs (include const values)
+> improve results (0.0, grams, ounces)
+> improve code by using functions
+
+*/
+
 #include <iostream>
 #include <vector>
 using namespace std;
