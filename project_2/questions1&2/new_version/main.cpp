@@ -35,15 +35,6 @@ pseudo-code:
 
 TO DO'S
 > divide into question 1 (algo) and question 2 (code)
-> enter grams and ounces
-> save outputs
-
-CORRECTIONS
-> if keeping void function > have global variables instead of &
-> if not, do a return function > return double
-> if goes more than 15 convertions > warn the user
-> i don't need in / out !! keep simple
-> if you have a calling inside the function you dont the arguments
 
 */
 
@@ -64,15 +55,12 @@ void convertWeight();
 void displayConversion();
 void calcMaxMinAvg();
 void clear();
+void startConverter(int);
 
 int main()
 {
     char ans;
     int count = 0;
-
-    cout.precision(2);
-    cout.setf(ios::fixed);
-    cout.setf(ios::showpoint);
 
     cout << "\n******** Conversion App *********" << endl;
 
@@ -86,8 +74,8 @@ int main()
 
         if (ans == '3')
         {
-            cout << "\nDo you want to quit?" 
-                    "\nEnter Y to exit or N to go back"
+            cout << "\nDo you want to quit?"
+                 << "\nEnter Y to exit or N to go back"
                  << "\n>> Your option: ";
             cin >> ans;
 
@@ -103,48 +91,37 @@ int main()
             }
             else
             {
-                cout << "\n* Invalid input, try again! *" << endl;
+                cout << "\n* Invalid input, try again! *\n";
                 continue;
             }
         }
-
-        if (ans == '1')
-        {
-            isPound = true;
-            count = 0;
-
-            cout << "\n1. From pounds to kilograms\n";
-        }
-        else if (ans == '2')
-        {
-            isPound = false;
-            count = 0;
-
-            cout << "\n2. From kilograms to pounds\n";
-        }
         else
         {
-            cout << "\n* Invalid input, try again! *\n";
-        }
-
-        while (enteredWeights.size() < 15)
-        {
-            count++;
-            weight = getWeight(count);
-
-            if (weight <= 0.0)
+            switch (ans)
             {
-                enteredWeights.pop_back();
+            case '1':
+                isPound = true;
+                count = 0;
+
+                cout << "\n1. From pounds to kilograms\n";
+                startConverter(count);
+
+                break;
+            case '2':
+                isPound = false;
+                count = 0;
+
+                cout << "\n2. From kilograms to pounds\n";
+                startConverter(count);
+
+                break;
+            default:
+                cout << "\n* Invalid input, try again! *\n";
                 break;
             }
-
-            convertWeight();
-            displayConversion();
         }
 
-        calcMaxMinAvg();
-
-        } while (ans != '3');
+    } while (ans != '3');
 
     cout << "\n******** Thank you. Bye! *********\n";
 
@@ -154,7 +131,7 @@ int main()
 double getWeight(int count)
 {
     cout << "\n* Enter 0 or negative to quit this feature *\n"
-         << "* You have " << (16 - count) << " conversions left*\n"
+         << "* You have " << (16 - count) << " conversions left *\n"
          << "\n>> Enter a weight to be converted: ";
     cin >> weight;
 
@@ -183,15 +160,23 @@ void displayConversion()
 
     if (isPound == 1)
     {
-        cout << weight
-             << " pounds = "
-             << result << " kilograms\n";
+        cout.precision(0);
+        cout.setf(ios::fixed);
+        cout << weight << " pounds = ";
+
+        cout.precision(2);
+        cout.setf(ios::fixed);
+        cout << result << " kilograms\n";
     }
     else if (isPound == 0)
     {
-        cout << weight
-             << " kilograms is equal to "
-             << result << " pounds\n";
+        cout.precision(2);
+        cout.setf(ios::fixed);
+        cout << weight << " kilograms = ";
+
+        cout.precision(0);
+        cout.setf(ios::fixed);
+        cout << result << " pounds\n";
     }
 }
 
@@ -246,4 +231,24 @@ void clear()
     maxResult = -99999, minResult = 99999, sumResult = 0, avgResult = 0;
     enteredWeights.clear();
     convertedWeights.clear();
+}
+
+void startConverter(int count)
+{
+    while (enteredWeights.size() < 15)
+    {
+        count++;
+        weight = getWeight(count);
+
+        if (weight <= 0.0)
+        {
+            enteredWeights.pop_back();
+            break;
+        }
+
+        convertWeight();
+        displayConversion();
+    }
+
+    calcMaxMinAvg();
 }
