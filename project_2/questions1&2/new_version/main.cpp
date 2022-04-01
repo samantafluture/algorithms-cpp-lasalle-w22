@@ -55,19 +55,22 @@ const double TO_KILO = 0.4535;
 const double TO_POUND = 2.2046;
 
 vector<double> enteredWeights(0), convertedWeights(0);
-// double max = -99999, min = 99999, sum = 0, avg = 0;
+double maxResult = -99999, minResult = 99999, sumResult = 0, avgResult = 0;
 double weight, result;
-bool isPound = true;
+bool isPound;
 
-double getWeight();
+double getWeight(int);
 void convertWeight();
 void displayConversion();
+void calcMaxMinAvg();
+void clear();
 
 int main()
 {
     char ans;
+    int count = 0;
 
-    cout.precision(3);
+    cout.precision(2);
     cout.setf(ios::fixed);
     cout.setf(ios::showpoint);
 
@@ -83,7 +86,8 @@ int main()
 
         if (ans == '3')
         {
-            cout << "\nEnter y to confirm you want to quit or enter n to go back"
+            cout << "\nDo you want to quit?" 
+                    "\nEnter Y to exit or N to go back"
                  << "\n>> Your option: ";
             cin >> ans;
 
@@ -99,70 +103,59 @@ int main()
             }
             else
             {
-                cout << "\n* Invalid input, try again [y | n]! *" << endl;
+                cout << "\n* Invalid input, try again! *" << endl;
                 continue;
             }
         }
+
+        if (ans == '1')
+        {
+            isPound = true;
+            count = 0;
+
+            cout << "\n1. From pounds to kilograms\n";
+        }
+        else if (ans == '2')
+        {
+            isPound = false;
+            count = 0;
+
+            cout << "\n2. From kilograms to pounds\n";
+        }
         else
         {
-            switch (ans)
-            {
-            case '1':
-                isPound = true;
-
-                cout << "\n* 1. From pounds to kilograms *\n"
-                     << "* Enter 0 or negative to quit this feature *\n"
-                     << "* You have up to 15 conversions *\n"
-                     << "* The weight will be calculated in pounds *\n";
-
-                while (enteredWeights.size() < 15)
-                {
-                    weight = getWeight();
-
-                    if (weight <= 0.0)
-                    {
-                        enteredWeights.pop_back();
-                        break;
-                    }
-
-                    convertWeight();
-                    displayConversion();
-                }
-
-                // calcMaxMinAvg();
-
-                break;
-            case '2':
-                isPound = false;
-
-                cout << "\n* 2. From kilograms to pounds *\n"
-                     << "* Enter 0 or negative to quit this feature *\n"
-                     << "* You have up to 15 conversions *\n"
-                     << "* The weight will be calculated in kilograms *\n";
-
-                getWeight();
-                convertWeight();
-                displayConversion();
-                // calcMaxMinAvg();
-
-                break;
-            default:
-                cout << "\n* Invalid input, try again! *"
-                     << endl;
-                break;
-            }
+            cout << "\n* Invalid input, try again! *\n";
         }
 
-    } while (ans != '3');
+        while (enteredWeights.size() < 15)
+        {
+            count++;
+            weight = getWeight(count);
+
+            if (weight <= 0.0)
+            {
+                enteredWeights.pop_back();
+                break;
+            }
+
+            convertWeight();
+            displayConversion();
+        }
+
+        calcMaxMinAvg();
+
+        } while (ans != '3');
 
     cout << "\n******** Thank you. Bye! *********\n";
 
     return 0;
 }
 
-double getWeight()
+double getWeight(int count)
 {
-    cout << "\n>> Enter weight to be converted: ";
+    cout << "\n* Enter 0 or negative to quit this feature *\n"
+         << "* You have " << (16 - count) << " conversions left*\n"
+         << "\n>> Enter a weight to be converted: ";
     cin >> weight;
 
     enteredWeights.push_back(weight);
@@ -172,11 +165,11 @@ double getWeight()
 
 void convertWeight()
 {
-    if (isPound = true)
+    if (isPound == 1)
     {
         result = (weight * TO_KILO);
     }
-    else
+    else if (isPound == 0)
     {
         result = (weight * TO_POUND);
     }
@@ -186,15 +179,15 @@ void convertWeight()
 
 void displayConversion()
 {
-    cout << "Result" << endl;
+    cout << "\nResult: ";
 
     if (isPound == 1)
     {
         cout << weight
-             << " pounds is equal to "
+             << " pounds = "
              << result << " kilograms\n";
     }
-    else
+    else if (isPound == 0)
     {
         cout << weight
              << " kilograms is equal to "
@@ -202,39 +195,55 @@ void displayConversion()
     }
 }
 
-// void calcMaxMinAvg()
-// {
-//     for (int i = 0; i < convertedWeights.size(); i++)
-//     {
-//         if (convertedWeights[i] > max)
-//         {
-//             max = convertedWeights[i];
-//         }
+void calcMaxMinAvg()
+{
+    string metric;
 
-//         if (convertedWeights[i] < min)
-//         {
-//             min = convertedWeights[i];
-//         }
+    for (int i = 0; i < convertedWeights.size(); i++)
+    {
+        if (convertedWeights[i] > maxResult)
+        {
+            maxResult = convertedWeights[i];
+        }
 
-//         sum += convertedWeights[i];
-//     }
+        if (convertedWeights[i] < minResult)
+        {
+            minResult = convertedWeights[i];
+        }
 
-//     if (convertedWeights.size() == 0)
-//     {
-//         cout << "\nYou don't have any conversions..." << endl;
-//     }
-//     else
-//     {
-//         avg = (sum / convertedWeights.size());
+        sumResult += convertedWeights[i];
+    }
 
-//         cout << "\n* Summary of Results *\n"
-//              << "Maximum: " << max << "\n"
-//              << "Minimum: " << min << "\n"
-//              << "Average: " << avg << "\n";
-//     }
+    if (convertedWeights.size() == 0)
+    {
+        cout << "\nYou don't have any conversions..." << endl;
+    }
+    else
+    {
+        avgResult = (sumResult / convertedWeights.size());
 
-//     // reseting the values and the vectors
-//     // max = -99999, min = 99999, sum = 0, avg = 0;
-//     enteredWeights.clear();
-//     convertedWeights.clear();
-// }
+        if (isPound == 1)
+        {
+            metric = " kgs";
+        }
+        else if (isPound == 0)
+        {
+            metric = " lbs";
+        }
+
+        cout << "\n* Summary of Results*"
+             << "\nMaximum: " << maxResult << metric
+             << "\nMinimum: " << minResult << metric
+             << "\nAverage: " << avgResult << metric << "\n";
+    }
+
+    clear();
+}
+
+void clear()
+{
+    // reseting the values and the vectors
+    maxResult = -99999, minResult = 99999, sumResult = 0, avgResult = 0;
+    enteredWeights.clear();
+    convertedWeights.clear();
+}
