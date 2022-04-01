@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 using namespace std;
 
 struct Person
@@ -32,41 +33,55 @@ struct Student
 void getStudents();
 void displayStudents();
 
+Student students[2]; // create array global
+
 int main()
 {
-    getStudents();
-    displayStudents();
+    getStudents(); // call
+
+    // students[0] = s1; // add to array
+
+    displayStudents(); // display
 
     return 0;
 }
 
 void getStudents()
 {
-    cout << "Enter the student ID: ";
-    getline(cin, s1.ID);
+    for (int i = 0; i < 2; i++)
+    {
+        cout << "\nStudent #" << (i+1) << endl;
 
-    cout << "Enter the student age: ";
-    cin >> s1.age;
-    cin.ignore();
+        cout << "Enter the student ID: ";
+        getline(cin, students[i].ID);
 
-    cout << "Enter the student first name: ";
-    getline(cin, s1.p1.firstName);
+        cout << "Enter the student age: ";
+        cin >> students[i].age;
+        cin.ignore();
 
-    cout << "Enter the student address: ";
-    cin.get(s1.a1.address, 41);
-    cin.ignore();
+        cout << "Enter the student first name: ";
+        getline(cin, students[i].p1.firstName);
 
-    cout << "Enter the student postal code: ";
-    cin.get(s1.a1.postalCode, 8);
-    cin.ignore();
+        cout << "Enter the student address: ";
+        cin.get(students[i].a1.address, 41);
+        cin.ignore();
+
+        cout << "Enter the student postal code: ";
+        cin.get(students[i].a1.postalCode, 8);
+        cin.ignore();
+    }
 }
 
 void displayStudents()
 {
-    cout << "\nStudent ID: " << s1.ID
-         << "\nStudent age: " << s1.age
-         << "\nStudent first name: " << s1.p1.firstName
-         << "\nStudent number and street name: " << s1.a1.address
-         << "\nStudent postal code: " << s1.a1.postalCode
-         << "\n";
+    for (int i = 0; i < 2; i++)
+    {
+        cout << "Displaying the list of students...\n";
+        cout << "\nStudent ID: " << students[i].ID
+             << "\nStudent age: " << students[i].age
+             << "\nStudent first name: " << students[i].p1.firstName
+             << "\nStudent number and street name: " << students[i].a1.address
+             << "\nStudent postal code: " << students[i].a1.postalCode
+             << "\n";
+    }
 }
