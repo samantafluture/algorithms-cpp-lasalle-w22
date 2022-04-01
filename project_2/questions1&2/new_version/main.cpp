@@ -51,23 +51,21 @@ CORRECTIONS
 #include <vector>
 using namespace std;
 
-const double POUND_TO_KILO = 0.454;
-const double KILO_TO_POUND = 2.2;
+const double TO_KILO = 0.4535;
+const double TO_POUND = 2.2046;
 
-double poundToKilograms() {
+vector<double> enteredWeights(0), convertedWeights(0);
+// double max = -99999, min = 99999, sum = 0, avg = 0;
+double weight, result;
+bool isPound = true;
 
-}
-
-void convert_lb(vector<double> &lb, vector<double> &kg, double &in, double &out);
-void convert_kg(vector<double> &lb, vector<double> &kg, double &in, double &out);
-void calc_max_min_avg(vector<double> &weights, double &max, double &min, double &sum, double &avg);
+double getWeight();
+void convertWeight();
+void displayConversion();
 
 int main()
 {
     char ans;
-    vector<double> lb(0), kg(0);
-    double max = -99999, min = 99999, sum = 0, avg = 0;
-    double weight, result;
 
     cout.precision(3);
     cout.setf(ios::fixed);
@@ -110,30 +108,42 @@ int main()
             switch (ans)
             {
             case '1':
+                isPound = true;
 
                 cout << "\n* 1. From pounds to kilograms *\n"
                      << "* Enter 0 or negative to quit this feature *\n"
                      << "* You have up to 15 conversions *\n"
                      << "* The weight will be calculated in pounds *\n";
 
-                convert_lb(lb, kg, weight_in, weight_out);
-                calc_max_min_avg(lb, max, min, sum, avg);
+                while (enteredWeights.size() < 15)
+                {
+                    weight = getWeight();
 
-                lb.clear();
-                kg.clear();
+                    if (weight <= 0.0)
+                    {
+                        enteredWeights.pop_back();
+                        break;
+                    }
+
+                    convertWeight();
+                    displayConversion();
+                }
+
+                // calcMaxMinAvg();
 
                 break;
             case '2':
+                isPound = false;
+
                 cout << "\n* 2. From kilograms to pounds *\n"
                      << "* Enter 0 or negative to quit this feature *\n"
                      << "* You have up to 15 conversions *\n"
                      << "* The weight will be calculated in kilograms *\n";
 
-                convert_kg(lb, kg, weight_in, weight_out);
-                calc_max_min_avg(kg, max, min, sum, avg);
-
-                lb.clear();
-                kg.clear();
+                getWeight();
+                convertWeight();
+                displayConversion();
+                // calcMaxMinAvg();
 
                 break;
             default:
@@ -150,79 +160,81 @@ int main()
     return 0;
 }
 
-void convert_lb(vector<double> &lb, vector<double> &kg, double &in, double &out)
+double getWeight()
 {
-    while (lb.size() < 15)
-    {
-        cout << "\n>> Enter a weight in pounds (or ounces as 0.XXX): ";
-        cin >> in;
+    cout << "\n>> Enter weight to be converted: ";
+    cin >> weight;
 
-        if (in <= 0.0)
-        {
-            break;
-        }
+    enteredWeights.push_back(weight);
 
-        lb.push_back(in);
-
-        out = (in * POUND_TO_KILO);
-        kg.push_back(out);
-
-        cout << "\nResult: " << in << " pounds is equal to " << out << " kilograms" << endl;
-    }
+    return weight;
 }
 
-void convert_kg(vector<double> &lb, vector<double> &kg, double &in, double &out)
+void convertWeight()
 {
-    while (kg.size() < 15)
+    if (isPound = true)
     {
-        cout << "\n>> Enter a weight in kilograms (or grams as 0.XXX): ";
-        cin >> in;
-
-        if (in <= 0.0)
-        {
-            break;
-        }
-
-        kg.push_back(in);
-
-        out = (in * KILO_TO_POUND);
-        lb.push_back(out);
-
-        cout << "\nResult: " << in << " kilograms is equal to " << out << " pounds" << endl;
-    }
-}
-
-void calc_max_min_avg(vector<double> &weights, double &max, double &min, double &sum, double &avg)
-{
-    for (int i = 0; i < weights.size(); i++)
-    {
-        if (weights[i] > max)
-        {
-            max = weights[i];
-        }
-
-        if (weights[i] < min)
-        {
-            min = weights[i];
-        }
-
-        sum += weights[i];
-    }
-
-    if (weights.size() == 0)
-    {
-        cout << "\nYou don't have any conversions..." << endl;
+        result = (weight * TO_KILO);
     }
     else
     {
-        avg = sum / weights.size();
-        cout << "\n* Summary *\n"
-             << "Maximum weight entered: " << max << "\n"
-             << "Minimum weight entered: " << min << "\n"
-             << "Average of weights entered: " << avg << "\n";
-
-        max = -99999, min = 99999, sum = 0, avg = 0;
+        result = (weight * TO_POUND);
     }
 
-    weights.clear();
+    convertedWeights.push_back(result);
 }
+
+void displayConversion()
+{
+    cout << "Result" << endl;
+
+    if (isPound == 1)
+    {
+        cout << weight
+             << " pounds is equal to "
+             << result << " kilograms\n";
+    }
+    else
+    {
+        cout << weight
+             << " kilograms is equal to "
+             << result << " pounds\n";
+    }
+}
+
+// void calcMaxMinAvg()
+// {
+//     for (int i = 0; i < convertedWeights.size(); i++)
+//     {
+//         if (convertedWeights[i] > max)
+//         {
+//             max = convertedWeights[i];
+//         }
+
+//         if (convertedWeights[i] < min)
+//         {
+//             min = convertedWeights[i];
+//         }
+
+//         sum += convertedWeights[i];
+//     }
+
+//     if (convertedWeights.size() == 0)
+//     {
+//         cout << "\nYou don't have any conversions..." << endl;
+//     }
+//     else
+//     {
+//         avg = (sum / convertedWeights.size());
+
+//         cout << "\n* Summary of Results *\n"
+//              << "Maximum: " << max << "\n"
+//              << "Minimum: " << min << "\n"
+//              << "Average: " << avg << "\n";
+//     }
+
+//     // reseting the values and the vectors
+//     // max = -99999, min = 99999, sum = 0, avg = 0;
+//     enteredWeights.clear();
+//     convertedWeights.clear();
+// }

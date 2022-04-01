@@ -43,6 +43,7 @@ CORRECTIONS
 > if not, do a return function > return double
 > if goes more than 15 convertions > warn the user
 > i don't need in / out !! keep simple
+> kgs to pounds and pounds to kg 
 
 */
 
