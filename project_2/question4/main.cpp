@@ -2,6 +2,12 @@
 
 // Question 4
 
+/*
+TO DO'S
+> validations for each field (and the way the user should enter)
+> should be a way to stop inserting students?
+*/
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -32,8 +38,7 @@ struct Student
 Student student;
 vector<Student> studentList(0);
 
-// void mockStudents();
-void addStudents(char);
+void addStudents();
 void displayStudents();
 
 int main()
@@ -44,9 +49,12 @@ int main()
 
     do
     {
-        cout << "\nEnter 1 ...\n"
-             << "Enter 2 ...\n"
-             << "Enter 0 to quit\n"
+        cout << "\nEnter 1 to create and add a student\n"
+             << "Enter 2 to search for a student by number\n"
+             << "Enter 3 to modify the information of the student\n"
+             << "Enter 4 to delete the information of the student\n"
+             << "Enter 5 to display the student list in ascending order\n"
+             << "Enter 0 to exit the application\n"
              << ">> Your option: ";
         cin >> ans;
         cin.ignore();
@@ -54,7 +62,7 @@ int main()
         switch (ans)
         {
         case '1':
-            addStudents(ans);
+            addStudents();
             break;
         case '2':
             displayStudents();
@@ -64,18 +72,6 @@ int main()
         }
 
     } while (ans != '0');
-    // cout << "\n* Press any key to add new student *"
-    //      << "\n* Or enter 0 to quit adding students *\n";
-    // cin >> ans;
-    // cin.ignore();
-
-    // while (ans != '0')
-    // {
-    //     addStudents();
-    // }
-
-    // // addStudents();
-    // displayStudents();
 
     return 0;
 }
@@ -95,65 +91,77 @@ int main()
 //     studentList.push_back(student.ID);
 // }
 
-void addStudents(char ans)
+void addStudents()
 {
+    cout << "\nEnter the student ID: ";
+    getline(cin, student.ID);
+
+    cout << "Enter the student first name: ";
+    getline(cin, student.p1.firstName);
+
+    cout << "Enter the student last name: ";
+    getline(cin, student.p1.lastName);
+
+    cout << "Enter the student age: ";
+    cin >> student.p1.age;
+    cin.ignore();
+
+    // validate age input
     do
     {
-        cout << "\nAdding a new student..."
-             << "\n* Enter 0 to stop adding students *\n";
-
-        cout << "\nEnter the student ID: ";
-        getline(cin, student.ID);
-
-        if (student.ID == "0")
+        if (student.p1.age <= 0 || student.p1.age > 100)
+        {
+            cout << "\n* Please enter a valid age *\n";
+            cout << "Enter the student age: ";
+            cin >> student.p1.age;
+            cin.ignore();
+        }
+        else
         {
             break;
         }
+    } while (student.p1.age <= 0 || student.p1.age > 100);
 
-        cout << "Enter the student first name: ";
-        getline(cin, student.p1.firstName);
+    cout << "Enter the student address: ";
+    cin.get(student.a1.address, 41);
+    cin.ignore();
 
-        cout << "Enter the student last name: ";
-        getline(cin, student.p1.lastName);
+    cout << "Enter the student city: ";
+    cin.get(student.a1.city, 31);
+    cin.ignore();
 
-        cout << "Enter the student age: ";
-        cin >> student.p1.age;
-        cin.ignore();
+    cout << "Enter the student postal code: ";
+    cin.get(student.a1.postalCode, 8);
+    cin.ignore();
 
-        cout << "Enter the student address: ";
-        cin.get(student.a1.address, 41);
-        cin.ignore();
+    cout << "Enter the student state or province: ";
+    cin.get(student.a1.state, 21);
+    cin.ignore();
 
-        cout << "Enter the student city: ";
-        cin.get(student.a1.city, 31);
-        cin.ignore();
-
-        cout << "Enter the student postal code: ";
-        cin.get(student.a1.postalCode, 8);
-        cin.ignore();
-
-        cout << "Enter the student state or province: ";
-        cin.get(student.a1.state, 21);
-        cin.ignore();
-
-        studentList.push_back(student);
-    } while (ans != '0');
+    studentList.push_back(student);
 }
 
 void displayStudents()
 {
-    for (int i = 0; i < studentList.size(); i++)
+    cout << "\n2. Displaying the list of students\n";
+    if (studentList.size() == 0)
     {
-        cout << "\nDisplaying the list of students...\n";
+        cout << "\n* Ops, the list of students is empty *\n";
+    }
+    else
+    {
+        for (int i = 0; i < studentList.size(); i++)
+        {
 
-        cout << "\nStudent ID: " << studentList[i].ID
-             << "\nStudent first name: " << studentList[i].p1.firstName
-             << "\nStudent last name: " << studentList[i].p1.lastName
-             << "\nStudent age: " << studentList[i].p1.age
-             << "\nStudent address: " << studentList[i].a1.address
-             << "\nStudent city: " << studentList[i].a1.city
-             << "\nStudent postal code: " << studentList[i].a1.postalCode
-             << "\nStudent state or province: " << studentList[i].a1.state
-             << "\n";
+            cout << "\nStudent ID: " << studentList[i].ID
+                 << "\nStudent first name: " << studentList[i].p1.firstName
+                 << "\nStudent last name: " << studentList[i].p1.lastName
+                 << "\nStudent age: " << studentList[i].p1.age
+                 << "\nStudent address: " << studentList[i].a1.address
+                 << "\nStudent city: " << studentList[i].a1.city
+                 << "\nStudent postal code: " << studentList[i].a1.postalCode
+                 << "\nStudent state or province: " << studentList[i].a1.state
+                 << "\n";
+        }
     }
 }
