@@ -18,7 +18,7 @@ struct Person
     string firstName;
     string lastName;
     int age;
-} p1;
+} person;
 
 struct Address
 {
@@ -26,16 +26,15 @@ struct Address
     char city[31];
     char postalCode[8];
     char state[21];
-} a1;
+} address;
 
 struct Student
 {
     string ID;
-    Person p1;
-    Address a1;
-} s1;
+    Person person;
+    Address address;
+} student;
 
-Student student;
 vector<Student> studentList(0);
 
 void addStudents();
@@ -97,45 +96,45 @@ void addStudents()
     getline(cin, student.ID);
 
     cout << "Enter the student first name: ";
-    getline(cin, student.p1.firstName);
+    getline(cin, student.person.firstName);
 
     cout << "Enter the student last name: ";
-    getline(cin, student.p1.lastName);
+    getline(cin, student.person.lastName);
 
     cout << "Enter the student age: ";
-    cin >> student.p1.age;
+    cin >> student.person.age;
     cin.ignore();
 
     // validate age input
     do
     {
-        if (student.p1.age <= 0 || student.p1.age > 100)
+        if (student.person.age <= 0 || student.person.age > 100)
         {
             cout << "\n* Please enter a valid age *\n";
             cout << "Enter the student age: ";
-            cin >> student.p1.age;
+            cin >> student.person.age;
             cin.ignore();
         }
         else
         {
             break;
         }
-    } while (student.p1.age <= 0 || student.p1.age > 100);
+    } while (student.person.age <= 0 || student.person.age > 100);
 
     cout << "Enter the student address: ";
-    cin.get(student.a1.address, 41);
+    cin.get(student.address.address, 41);
     cin.ignore();
 
     cout << "Enter the student city: ";
-    cin.get(student.a1.city, 31);
+    cin.get(student.address.city, 31);
     cin.ignore();
 
     cout << "Enter the student postal code: ";
-    cin.get(student.a1.postalCode, 8);
+    cin.get(student.address.postalCode, 8);
     cin.ignore();
 
     cout << "Enter the student state or province: ";
-    cin.get(student.a1.state, 21);
+    cin.get(student.address.state, 21);
     cin.ignore();
 
     studentList.push_back(student);
@@ -154,13 +153,13 @@ void displayStudents()
         {
 
             cout << "\nStudent ID: " << studentList[i].ID
-                 << "\nStudent first name: " << studentList[i].p1.firstName
-                 << "\nStudent last name: " << studentList[i].p1.lastName
-                 << "\nStudent age: " << studentList[i].p1.age
-                 << "\nStudent address: " << studentList[i].a1.address
-                 << "\nStudent city: " << studentList[i].a1.city
-                 << "\nStudent postal code: " << studentList[i].a1.postalCode
-                 << "\nStudent state or province: " << studentList[i].a1.state
+                 << "\nStudent first name: " << studentList[i].person.firstName
+                 << "\nStudent last name: " << studentList[i].person.lastName
+                 << "\nStudent age: " << studentList[i].person.age
+                 << "\nStudent address: " << studentList[i].address.address
+                 << "\nStudent city: " << studentList[i].address.city
+                 << "\nStudent postal code: " << studentList[i].address.postalCode
+                 << "\nStudent state or province: " << studentList[i].address.state
                  << "\n";
         }
     }
