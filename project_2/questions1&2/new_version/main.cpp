@@ -4,15 +4,6 @@
 
 /*
 
-3 options:
-> 1. conversion from pounds to kilograms,
-> 2. conversion from kilograms to pounds,
-> 3. the option to quit.
-
-data:
-> 2.2046 pounds in a kilogram
-> 1000 grams in a kilogram
-
 1st option:
 > input: a weight in pounds and/or ounces
 > output: the equivalent weight in kilograms
@@ -35,6 +26,7 @@ pseudo-code:
 
 TO DO'S
 > divide into question 1 (algo) and question 2 (code)
+> what variables may be local?
 
 */
 

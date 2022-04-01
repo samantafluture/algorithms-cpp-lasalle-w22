@@ -28,7 +28,7 @@ struct Courses
 
 int main()
 {
-    Courses courses;
+    Courses course;
     int qty;
     vector<Courses> currentCourses(0);
 
@@ -69,21 +69,21 @@ int main()
         cout << "\nCourse #" << (i + 1) << "\n";
 
         cout << "Course Number: ";
-        cin >> courses.courseNumber;
+        cin >> course.courseNumber;
         cin.ignore();
 
         cout << "Course title: ";
-        getline(cin, courses.courseTitle);
+        getline(cin, course.courseTitle);
         
         cout << "Hours per week: ";
-        cin >> courses.hoursPerWeek;
+        cin >> course.hoursPerWeek;
         cin.ignore();
 
         cout << "Session: ";
-        cin >> courses.courseSession;
+        cin >> course.courseSession;
         cin.ignore();
         
-        currentCourses.push_back(courses);
+        currentCourses.push_back(course);
     }
 
     cout << "\n* Displaying all the courses you entered... *\n";
