@@ -38,12 +38,13 @@ TO DO'S
 > enter grams and ounces
 > save outputs
 
-DOUBTS
-> can i use vectors instead of arrays?
+CORRECTIONS
+> if keeping void function > have global variables instead of &
+> if not, do a return function > return double
+> if goes more than 15 convertions > warn the user
+> i don't need in / out !! keep simple
 
 */
-
-/*
 
 #include <iostream>
 #include <vector>
@@ -51,6 +52,10 @@ using namespace std;
 
 const double POUND_TO_KILO = 0.454;
 const double KILO_TO_POUND = 2.2;
+
+double poundToKilograms() {
+    
+}
 
 void convert_lb(vector<double> &lb, vector<double> &kg, double &in, double &out);
 void convert_kg(vector<double> &lb, vector<double> &kg, double &in, double &out);
@@ -61,7 +66,7 @@ int main()
     char ans;
     vector<double> lb(0), kg(0);
     double max = -99999, min = 99999, sum = 0, avg = 0;
-    double weight_in, weight_out;
+    double weight, result;
 
     cout.precision(3);
     cout.setf(ios::fixed);
@@ -77,8 +82,6 @@ int main()
              << ">> Your option: ";
         cin >> ans;
 
-        // check if want to quit
-        // confirm quitting
         if (ans == '3')
         {
             cout << "\nEnter y to confirm you want to quit or enter n to go back"
@@ -103,7 +106,6 @@ int main()
         }
         else
         {
-            // access conversions
             switch (ans)
             {
             case '1':
@@ -223,5 +225,3 @@ void calc_max_min_avg(vector<double> &weights, double &max, double &min, double 
 
     weights.clear();
 }
-
-*/
