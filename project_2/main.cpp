@@ -1,6 +1,6 @@
 // Samanta Gimenez Fluture, 2022-03-31, Project #2
 
-// Question 1
+// Question 1 and 2
 
 /*
 
@@ -33,12 +33,12 @@ pseudo-code:
 > name of each function/algorithm
 > name and type of variables
 
-*/
-
-/*
-
 TO DO'S
-> improve code by using functions
+> divide into question 1 (algo) and question 2 (code)
+> enter grams and ounces
+
+DOUBTS
+> can i use vectors instead of arrays?
 
 */
 
@@ -46,14 +46,19 @@ TO DO'S
 #include <vector>
 using namespace std;
 
+const double POUND_TO_KILO = 0.454;
+const double KILO_TO_POUND = 2.2;
+
+void convert_lb(vector<double> &lb, vector<double> &kg, double &in, double &out);
+void convert_kg(vector<double> &lb, vector<double> &kg, double &in, double &out);
+void calc_max_min_avg(vector<double> &weights, double &max, double &min, double &sum, double &avg);
+
 int main()
 {
     char ans;
     vector<double> lb(0), kg(0);
-    double weight_in, weight_out;
     double max = -99999, min = 99999, sum = 0, avg = 0;
-    const double POUND_TO_KILO = 0.454;
-    const double KILO_TO_POUND = 2.2;
+    double weight_in, weight_out;
 
     cout.precision(3);
     cout.setf(ios::fixed);
@@ -69,6 +74,8 @@ int main()
              << ">> Your option: ";
         cin >> ans;
 
+        // check if want to quit
+        // confirm quitting
         if (ans == '3')
         {
             cout << "\nEnter y to confirm you want to quit or enter n to go back"
@@ -93,7 +100,7 @@ int main()
         }
         else
         {
-
+            // access conversions
             switch (ans)
             {
             case '1':
@@ -103,51 +110,11 @@ int main()
                      << "* You have up to 15 conversions *\n"
                      << "* The weight will be calculated in pounds *\n";
 
-                while (lb.size() < 15)
-                {
-                    cout << "\n>> Enter a weight in pounds (or ounces as 0.XXX): ";
-                    cin >> weight_in;
+                convert_lb(lb, kg, weight_in, weight_out);
+                calc_max_min_avg(lb, max, min, sum, avg);
 
-                    if (weight_in <= 0.0)
-                    {
-                        break;
-                    }
-
-                    lb.push_back(weight_in);
-
-                    weight_out = (weight_in * POUND_TO_KILO);
-                    kg.push_back(weight_out);
-
-                    cout << "\nResult: " << weight_in << " pounds is equal to " << weight_out << " kilograms" << endl;
-                }
-
-                for (int i = 0; i < lb.size(); i++)
-                {
-                    if (lb[i] > max)
-                    {
-                        max = lb[i];
-                    }
-
-                    if (lb[i] < min)
-                    {
-                        min = lb[i];
-                    }
-
-                    sum += lb[i];
-                }
-
-                if (lb.size() == 0)
-                {
-                    cout << "\nYou don't have any convertions..." << endl;
-                }
-                else
-                {
-                    avg = sum / lb.size();
-                    cout << "\n* Summary *\n"
-                         << "Maximum weight entered: " << max << " pound\n"
-                         << "Minimum weight entered: " << min << " pounds\n"
-                         << "Average of weights entered: " << avg << " pounds\n";
-                }
+                lb.clear();
+                kg.clear();
 
                 break;
             case '2':
@@ -156,55 +123,11 @@ int main()
                      << "* You have up to 15 conversions *\n"
                      << "* The weight will be calculated in kilograms *\n";
 
-                while (kg.size() < 15)
-                {
-                    cout << "\n>> Enter a weight in kilograms (or grams as 0.XXX): ";
-                    cin >> weight_in;
+                convert_kg(lb, kg, weight_in, weight_out);
+                calc_max_min_avg(kg, max, min, sum, avg);
 
-                    if (weight_in <= 0.0)
-                    {
-                        break;
-                    }
-
-                    kg.push_back(weight_in);
-
-                    weight_out = (weight_in * KILO_TO_POUND);
-                    lb.push_back(weight_out);
-                    cout << "\nResult: " << weight_in << " kilograms is equal to " << weight_out << " pounds" << endl;
-                }
-                for (int i = 0; i < kg.size(); i++)
-                {
-                    if (kg[i] > max)
-                    {
-                        max = kg[i];
-                    }
-
-                    if (kg[i] < min)
-                    {
-                        min = kg[i];
-                    }
-
-                    sum += kg[i];
-                }
-
-                if (kg.size() == 0)
-                {
-                    cout << "\nYou don't have any convertions..."
-                         << endl;
-                }
-                else
-                {
-                    avg = sum / kg.size();
-                    cout << "\n* Summary *\n"
-                         << "Maximum weight entered: " << max << " pound\n"
-                         << "Minimum weight entered: " << min << " pounds\n"
-                         << "Average of weights entered: " << avg << " pounds\n";
-
-                    while (kg.size() > 0)
-                    {
-                        kg.pop_back();
-                    }
-                }
+                lb.clear();
+                kg.clear();
 
                 break;
             default:
@@ -219,4 +142,81 @@ int main()
     cout << "\n******** Thank you. Bye! *********\n";
 
     return 0;
+}
+
+void convert_lb(vector<double> &lb, vector<double> &kg, double &in, double &out)
+{
+    while (lb.size() < 15)
+    {
+        cout << "\n>> Enter a weight in pounds (or ounces as 0.XXX): ";
+        cin >> in;
+
+        if (in <= 0.0)
+        {
+            break;
+        }
+
+        lb.push_back(in);
+
+        out = (in * POUND_TO_KILO);
+        kg.push_back(out);
+
+        cout << "\nResult: " << in << " pounds is equal to " << out << " kilograms" << endl;
+    }
+}
+
+void convert_kg(vector<double> &lb, vector<double> &kg, double &in, double &out)
+{
+    while (kg.size() < 15)
+    {
+        cout << "\n>> Enter a weight in kilograms (or grams as 0.XXX): ";
+        cin >> in;
+
+        if (in <= 0.0)
+        {
+            break;
+        }
+
+        kg.push_back(in);
+
+        out = (in * KILO_TO_POUND);
+        lb.push_back(out);
+
+        cout << "\nResult: " << in << " kilograms is equal to " << out << " pounds" << endl;
+    }
+}
+
+void calc_max_min_avg(vector<double> &weights, double &max, double &min, double &sum, double &avg)
+{
+    for (int i = 0; i < weights.size(); i++)
+    {
+        if (weights[i] > max)
+        {
+            max = weights[i];
+        }
+
+        if (weights[i] < min)
+        {
+            min = weights[i];
+        }
+
+        sum += weights[i];
+    }
+
+    if (weights.size() == 0)
+    {
+        cout << "\nYou don't have any conversions..." << endl;
+    }
+    else
+    {
+        avg = sum / weights.size();
+        cout << "\n* Summary *\n"
+             << "Maximum weight entered: " << max << "\n"
+             << "Minimum weight entered: " << min << "\n"
+             << "Average of weights entered: " << avg << "\n";
+
+        max = -99999, min = 99999, sum = 0, avg = 0;
+    }
+
+    weights.clear();
 }
