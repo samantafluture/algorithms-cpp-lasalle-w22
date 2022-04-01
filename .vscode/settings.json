@@ -4,7 +4,11 @@
         "ostream": "cpp",
         "algorithm": "cpp",
         "sstream": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "*.tcc": "cpp",
+        "deque": "cpp",
+        "string": "cpp",
+        "vector": "cpp"
     },
     "cSpell.words": [
         "Dyna",

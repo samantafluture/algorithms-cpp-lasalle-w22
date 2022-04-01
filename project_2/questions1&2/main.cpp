@@ -43,8 +43,6 @@ DOUBTS
 
 */
 
-/*
-
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -224,4 +222,18 @@ void calc_max_min_avg(vector<double> &weights, double &max, double &min, double 
     weights.clear();
 }
 
+
+// Question 3 
+
+/*
+
+3.1
+> declare a structure named Courses
+> data fields: Course number, Title, Hours per week, Session
+
+3.2 
+> entering all the courses data that you have for current session at compile-time using the structure Courses
+> save output
+
 */
+
