@@ -37,11 +37,8 @@ Student students[2]; // create array global
 
 int main()
 {
-    getStudents(); // call
-
-    // students[0] = s1; // add to array
-
-    displayStudents(); // display
+    getStudents(); // get students
+    displayStudents(); // display students
 
     return 0;
 }
