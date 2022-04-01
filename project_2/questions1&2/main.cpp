@@ -38,8 +38,11 @@ TO DO'S
 > enter grams and ounces
 > save outputs
 
-DOUBTS
-> can i use vectors instead of arrays?
+CORRECTIONS
+> if keeping void function > have global variables instead of &
+> if not, do a return function > return double
+> if goes more than 15 convertions > warn the user
+> i don't need in / out !! keep simple
 
 */
 
