@@ -43,6 +43,7 @@ CORRECTIONS
 > if not, do a return function > return double
 > if goes more than 15 convertions > warn the user
 > i don't need in / out !! keep simple
+> if you have a calling inside the function you dont the arguments
 
 */
 
@@ -54,7 +55,7 @@ const double POUND_TO_KILO = 0.454;
 const double KILO_TO_POUND = 2.2;
 
 double poundToKilograms() {
-    
+
 }
 
 void convert_lb(vector<double> &lb, vector<double> &kg, double &in, double &out);
