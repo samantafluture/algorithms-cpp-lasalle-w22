@@ -66,11 +66,37 @@ int main()
         case '2':
             displayStudents();
             break;
+        case '0':
+            cout << "\nDo you want to quit?"
+                 << "\nEnter Y to exit or N to go back"
+                 << "\n>> Your option: ";
+            cin >> ans;
+
+            if (ans == 'Y' || ans == 'y')
+            {
+                cout << "\nQuitting the application..." << endl;
+                ans = '0';
+                break;
+            }
+            else if (ans == 'N' || ans == 'n')
+            {
+                cout << "\nGoing back to the menu..." << endl;
+                continue;
+            }
+            else
+            {
+                cout << "\n* Invalid input, try again! *\n";
+                continue;
+            }
+            break;
         default:
+            cout << "* Invalid input, try again! *\n";
             break;
         }
 
     } while (ans != '0');
+
+    cout << "\n******** Good-bye! *********" << endl;
 
     return 0;
 }

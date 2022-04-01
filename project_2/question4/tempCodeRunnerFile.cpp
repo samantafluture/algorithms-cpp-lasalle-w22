@@ -1,2 +1,1 @@
-addStudents();
-    displayStudents();
+char exit(char ans);
