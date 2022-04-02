@@ -36,6 +36,7 @@ using namespace std;
 
 const double TO_KILO = 0.4535;
 const double TO_POUND = 2.2046;
+const int MAX_CONVERT = 15;
 
 vector<double> enteredWeights(0), convertedWeights(0);
 double maxResult = -99999, minResult = 99999, sumResult = 0, avgResult = 0;
@@ -52,7 +53,7 @@ void startConverter(int);
 int main()
 {
     char ans;
-    int count = 0;
+    int count;
 
     cout << "\n******** Conversion App *********" << endl;
 
@@ -64,8 +65,27 @@ int main()
              << ">> Your option: ";
         cin >> ans;
 
-        if (ans == '3')
+        switch (ans)
         {
+        case '1':
+            isPound = true;
+            count = 0;
+
+            cout << "\n1. From pounds to kilograms\n";
+
+            startConverter(count);
+
+            break;
+        case '2':
+            isPound = false;
+            count = 0;
+
+            cout << "\n2. From kilograms to pounds\n";
+
+            startConverter(count);
+
+            break;
+        case '3':
             cout << "\nDo you want to quit?"
                  << "\nEnter Y to exit or N to go back"
                  << "\n>> Your option: ";
@@ -74,6 +94,7 @@ int main()
             if (ans == 'Y' || ans == 'y')
             {
                 cout << "\nQuitting the application..." << endl;
+                ans = '3';
                 break;
             }
             else if (ans == 'N' || ans == 'n')
@@ -86,31 +107,10 @@ int main()
                 cout << "\n* Invalid input, try again! *\n";
                 continue;
             }
-        }
-        else
-        {
-            switch (ans)
-            {
-            case '1':
-                isPound = true;
-                count = 0;
-
-                cout << "\n1. From pounds to kilograms\n";
-                startConverter(count);
-
-                break;
-            case '2':
-                isPound = false;
-                count = 0;
-
-                cout << "\n2. From kilograms to pounds\n";
-                startConverter(count);
-
-                break;
-            default:
-                cout << "\n* Invalid input, try again! *\n";
-                break;
-            }
+            break;
+        default:
+            cout << "\n* Invalid input, try again! *\n";
+            break;
         }
 
     } while (ans != '3');
@@ -123,7 +123,7 @@ int main()
 double getWeight(int count)
 {
     cout << "\n* Enter 0 or negative to quit this feature *\n"
-         << "* You have " << (16 - count) << " conversions left *\n"
+         << "* You have " << (MAX_CONVERT - (count-1)) << " conversions left *\n"
          << "\n>> Enter a weight to be converted: ";
     cin >> weight;
 
@@ -149,25 +149,22 @@ void convertWeight()
 void displayConversion()
 {
     cout << "\nResult: ";
+    cout.setf(ios::fixed);
 
     if (isPound == 1)
     {
         cout.precision(0);
-        cout.setf(ios::fixed);
         cout << weight << " pounds = ";
 
         cout.precision(2);
-        cout.setf(ios::fixed);
         cout << result << " kilograms\n";
     }
     else if (isPound == 0)
     {
         cout.precision(2);
-        cout.setf(ios::fixed);
         cout << weight << " kilograms = ";
 
         cout.precision(0);
-        cout.setf(ios::fixed);
         cout << result << " pounds\n";
     }
 }
@@ -227,7 +224,7 @@ void clear()
 
 void startConverter(int count)
 {
-    while (enteredWeights.size() < 15)
+    while (enteredWeights.size() < MAX_CONVERT)
     {
         count++;
         weight = getWeight(count);
