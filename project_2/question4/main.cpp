@@ -44,6 +44,7 @@ void addStudent();
 void displayStudentList();
 void searchStudent();
 void modifyStudent();
+void deleteStudent();
 
 int main()
 {
@@ -76,6 +77,10 @@ int main()
         case '3':
             cout << "\n3. Modifying the information of a student\n";
             modifyStudent();
+            break;
+        case '4':
+            cout << "\n4. Deleting a student of the list\n";
+            deleteStudent();
             break;
         case '5':
             cout << "\n5. Displaying the list of students\n";
@@ -111,6 +116,7 @@ int main()
 
     } while (ans != '0');
 
+    studentList.clear();
     cout << "\n******** Good-bye! *********" << endl;
 
     return 0;
@@ -289,6 +295,64 @@ void modifyStudent()
             studentList.push_back(studentList[i]);
             studentList.pop_back();
             break;
+        }
+        else
+        {
+            cout << "\n* Student of ID " << searchId << " not found! *\n";
+        }
+    }
+}
+
+void deleteStudent()
+{
+    char del;
+
+    cout << "\n* First, search for the student you want to edit *\n";
+
+    cout << "\nEnter the ID of the student: ";
+    cin >> searchId;
+    cin.ignore();
+
+    for (int i = 0; i < studentList.size(); i++)
+    {
+        if (searchId == studentList[i].ID)
+        {
+            cout << "\n* Student of ID " << searchId << " found! *\n";
+
+            cout << "\nStudent ID: " << studentList[i].ID
+                 << "\nStudent first name: " << studentList[i].person.firstName
+                 << "\nStudent last name: " << studentList[i].person.lastName
+                 << "\nStudent age: " << studentList[i].person.age
+                 << "\nStudent address: " << studentList[i].address.address
+                 << "\nStudent city: " << studentList[i].address.city
+                 << "\nStudent postal code: " << studentList[i].address.postalCode
+                 << "\nStudent state or province: " << studentList[i].address.state
+                 << "\n";
+
+            do
+            {
+                cout << "\n* Are you sure you want to delete? *\n"
+                     << "\nEnter Y to delete or N to cancel"
+                     << "\n>> Your option: ";
+                cin >> del;
+
+                if (del == 'Y' || del == 'y')
+                {
+                    studentList.erase(studentList.begin() + i);
+
+                    cout << "\n* Student of ID " << searchId << " deleted *" << endl;
+                    break;
+                }
+                else if (del == 'N' || del == 'n')
+                {
+                    cout << "\nGoing back to the menu..." << endl;
+                    break;
+                }
+                else
+                {
+                    cout << "\n* Invalid input! *\n";
+                }
+            } while (del != 'Y' && del != 'y');
         }
         else
         {
