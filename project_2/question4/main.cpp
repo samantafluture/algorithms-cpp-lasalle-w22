@@ -6,6 +6,8 @@
 TO DO'S
 > validations for each field (and the way the user should enter)
 > should be a way to stop inserting students?
+> you cannot add duplicate id
+> clear vector after when?
 */
 
 #include <iostream>
@@ -36,10 +38,12 @@ struct Student
 } student;
 
 vector<Student> studentList(0);
+string searchId;
 
 void addStudent();
 void displayStudentList();
 void searchStudent();
+void modifyStudent();
 
 int main()
 {
@@ -62,12 +66,19 @@ int main()
         switch (ans)
         {
         case '1':
+            cout << "\n1. Creating and adding a new student\n";
             addStudent();
             break;
         case '2':
+            cout << "\n2. Searching for a student\n";
             searchStudent();
             break;
+        case '3':
+            cout << "\n3. Modifying the information of a student\n";
+            modifyStudent();
+            break;
         case '5':
+            cout << "\n5. Displaying the list of students\n";
             displayStudentList();
             break;
         case '0':
@@ -107,8 +118,6 @@ int main()
 
 void addStudent()
 {
-    cout << "\n1. Creating and adding a new student\n";
-
     cout << "\nEnter the student ID: ";
     getline(cin, student.ID);
 
@@ -159,8 +168,6 @@ void addStudent()
 
 void displayStudentList()
 {
-    cout << "\n5. Displaying the list of students\n";
-
     if (studentList.size() == 0)
     {
         cout << "\n* Ops, the list of students is empty *\n";
@@ -185,10 +192,6 @@ void displayStudentList()
 
 void searchStudent()
 {
-    string searchId;
-
-    cout << "\n5. Searching for a student\n";
-
     cout << "\nEnter the ID of the student: ";
     cin >> searchId;
 
@@ -196,6 +199,8 @@ void searchStudent()
     {
         if (searchId == studentList[i].ID)
         {
+            cout << "\n* Student of ID " << searchId << " found! *\n";
+
             cout << "\nStudent ID: " << studentList[i].ID
                  << "\nStudent first name: " << studentList[i].person.firstName
                  << "\nStudent last name: " << studentList[i].person.lastName
@@ -205,6 +210,85 @@ void searchStudent()
                  << "\nStudent postal code: " << studentList[i].address.postalCode
                  << "\nStudent state or province: " << studentList[i].address.state
                  << "\n";
+        }
+        else
+        {
+            cout << "\n* Student of ID " << searchId << " not found! *\n";
+        }
+    }
+}
+
+void modifyStudent()
+{
+    cout << "\n* First, search for the student you want to edit *\n";
+
+    cout << "\nEnter the ID of the student: ";
+    cin >> searchId;
+    cin.ignore();
+
+    for (int i = 0; i < studentList.size(); i++)
+    {
+        if (searchId == studentList[i].ID)
+        {
+            cout << "\n* Student of ID " << searchId << " found! *\n";
+
+            cout << "\nStudent ID: " << studentList[i].ID
+                 << "\nStudent first name: " << studentList[i].person.firstName
+                 << "\nStudent last name: " << studentList[i].person.lastName
+                 << "\nStudent age: " << studentList[i].person.age
+                 << "\nStudent address: " << studentList[i].address.address
+                 << "\nStudent city: " << studentList[i].address.city
+                 << "\nStudent postal code: " << studentList[i].address.postalCode
+                 << "\nStudent state or province: " << studentList[i].address.state
+                 << "\n";
+
+            cout << "\n* Now, enter the new information *\n\n";
+
+            cout << "Enter the student first name: ";
+            getline(cin, studentList[i].person.firstName);
+
+            cout << "Enter the student last name: ";
+            getline(cin, studentList[i].person.lastName);
+
+            cout << "Enter the student age: ";
+            cin >> studentList[i].person.age;
+            cin.ignore();
+
+            // validate age input
+            do
+            {
+                if (studentList[i].person.age <= 0 || studentList[i].person.age > 100)
+                {
+                    cout << "\n* Please enter a valid age *\n";
+                    cout << "Enter the student age: ";
+                    cin >> studentList[i].person.age;
+                    cin.ignore();
+                }
+                else
+                {
+                    break;
+                }
+            } while (studentList[i].person.age <= 0 || studentList[i].person.age > 100);
+
+            cout << "Enter the student address: ";
+            cin.get(studentList[i].address.address, 41);
+            cin.ignore();
+
+            cout << "Enter the student city: ";
+            cin.get(studentList[i].address.city, 31);
+            cin.ignore();
+
+            cout << "Enter the student postal code: ";
+            cin.get(studentList[i].address.postalCode, 8);
+            cin.ignore();
+
+            cout << "Enter the student state or province: ";
+            cin.get(studentList[i].address.state, 21);
+            cin.ignore();
+
+            studentList.push_back(studentList[i]);
+            studentList.pop_back();
+            break;
         }
         else
         {
