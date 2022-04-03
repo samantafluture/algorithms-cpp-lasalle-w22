@@ -10,6 +10,8 @@
 
 3.2
 > entering all the courses data that you have for current session at compile-time using the structure Courses
+
+TO DO'S
 > save output
 
 */

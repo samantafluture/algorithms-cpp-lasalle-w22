@@ -37,8 +37,9 @@ struct Student
 
 vector<Student> studentList(0);
 
-void addStudents();
-void displayStudents();
+void addStudent();
+void displayStudentList();
+void searchStudent();
 
 int main()
 {
@@ -61,10 +62,13 @@ int main()
         switch (ans)
         {
         case '1':
-            addStudents();
+            addStudent();
             break;
         case '2':
-            displayStudents();
+            searchStudent();
+            break;
+        case '5':
+            displayStudentList();
             break;
         case '0':
             cout << "\nDo you want to quit?"
@@ -101,23 +105,10 @@ int main()
     return 0;
 }
 
-// void mockStudents()
-// {
-//     student.ID = "2130414";
-//     student.p1.age = 33;
-//     student.p1.firstName = "Samanta";
-//     student.p1.lastName = "Gimenez Fluture";
-//     student.p1.age = 33;
-//     student.a1.address = "3846 Wellington";
-//     student.a1.city = "Montreal";
-//     student.a1.postalCode = "H4G 1V2";
-//     student.a1.state = "Quebec";
-
-//     studentList.push_back(student.ID);
-// }
-
-void addStudents()
+void addStudent()
 {
+    cout << "\n1. Creating and adding a new student\n";
+
     cout << "\nEnter the student ID: ";
     getline(cin, student.ID);
 
@@ -166,9 +157,10 @@ void addStudents()
     studentList.push_back(student);
 }
 
-void displayStudents()
+void displayStudentList()
 {
-    cout << "\n2. Displaying the list of students\n";
+    cout << "\n5. Displaying the list of students\n";
+
     if (studentList.size() == 0)
     {
         cout << "\n* Ops, the list of students is empty *\n";
@@ -187,6 +179,36 @@ void displayStudents()
                  << "\nStudent postal code: " << studentList[i].address.postalCode
                  << "\nStudent state or province: " << studentList[i].address.state
                  << "\n";
+        }
+    }
+}
+
+void searchStudent()
+{
+    string searchId;
+
+    cout << "\n5. Searching for a student\n";
+
+    cout << "\nEnter the ID of the student: ";
+    cin >> searchId;
+
+    for (int i = 0; i < studentList.size(); i++)
+    {
+        if (searchId == studentList[i].ID)
+        {
+            cout << "\nStudent ID: " << studentList[i].ID
+                 << "\nStudent first name: " << studentList[i].person.firstName
+                 << "\nStudent last name: " << studentList[i].person.lastName
+                 << "\nStudent age: " << studentList[i].person.age
+                 << "\nStudent address: " << studentList[i].address.address
+                 << "\nStudent city: " << studentList[i].address.city
+                 << "\nStudent postal code: " << studentList[i].address.postalCode
+                 << "\nStudent state or province: " << studentList[i].address.state
+                 << "\n";
+        }
+        else
+        {
+            cout << "\n* Student of ID " << searchId << " not found! *\n";
         }
     }
 }
