@@ -1,1 +1,1 @@
-} while (del != 'Y' && del != 'y' && del == 'N' && del == 'n');
+compare

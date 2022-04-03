@@ -13,6 +13,7 @@ TO DO'S
 #include <iostream>
 #include <string>
 #include <vector>
+#include <algorithm>
 using namespace std;
 
 struct Person
@@ -32,19 +33,20 @@ struct Address
 
 struct Student
 {
-    string ID;
+    int ID;
     Person person;
     Address address;
 } student;
 
 vector<Student> studentList(0);
-string searchId;
+int searchId;
 
 void addStudent();
-void displayStudentList();
 void searchStudent();
 void modifyStudent();
 void deleteStudent();
+void displayStudentList();
+bool compareStudent(Student, Student);
 
 int main()
 {
@@ -125,7 +127,8 @@ int main()
 void addStudent()
 {
     cout << "\nEnter the student ID: ";
-    getline(cin, student.ID);
+    cin >> student.ID;
+    cin.ignore();
 
     cout << "Enter the student first name: ";
     getline(cin, student.person.firstName);
@@ -172,6 +175,11 @@ void addStudent()
     studentList.push_back(student);
 }
 
+bool compareStudent(Student a, Student b)
+{
+    return a.ID < b.ID;
+}
+
 void displayStudentList()
 {
     if (studentList.size() == 0)
@@ -180,6 +188,9 @@ void displayStudentList()
     }
     else
     {
+
+        sort(studentList.begin(), studentList.end(), compareStudent);
+
         for (int i = 0; i < studentList.size(); i++)
         {
 
