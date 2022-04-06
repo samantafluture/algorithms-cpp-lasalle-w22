@@ -318,7 +318,7 @@ void deleteStudent()
 {
     char del;
 
-    cout << "\n* First, search for the student you want to edit *\n";
+    cout << "\n* First, search for the student you want to delete *\n";
 
     cout << "\nEnter the ID of the student: ";
     cin >> searchId;
