@@ -6,7 +6,7 @@
 TO DO'S
 > validations for each field (and the way the user should enter)
 > should be a way to stop inserting students?
-> you cannot add duplicate id or id 0
+> you cannot add duplicate id
 > clear vector after when?
 */
 
@@ -45,8 +45,11 @@ void addStudent();
 void searchStudent();
 void modifyStudent();
 void deleteStudent();
-void displayStudentList();
+void sortStudentList(vector<Student> &studentList);
 bool compareStudent(Student, Student);
+void swapStudent(int *a, int *b);
+void printStudents();
+
 
 int main()
 {
@@ -86,7 +89,8 @@ int main()
             break;
         case '5':
             cout << "\n5. Displaying the list of students\n";
-            displayStudentList();
+            sortStudentList(vector<Student> &studentList);
+            printStudents();
             break;
         case '0':
             cout << "\nDo you want to quit?"
@@ -180,7 +184,14 @@ bool compareStudent(Student a, Student b)
     return a.ID < b.ID;
 }
 
-void displayStudentList()
+void swapStudent(int *a, int *b)
+{
+    int temp = *a->ID;
+    *a->ID = *b->ID;
+    *b->ID = temp;
+}
+
+void sortStudentList(vector<Student> &studentList)
 {
     if (studentList.size() == 0)
     {
@@ -189,21 +200,49 @@ void displayStudentList()
     else
     {
 
-        sort(studentList.begin(), studentList.end(), compareStudent);
-
+        // comparisons will be done n times
         for (int i = 0; i < studentList.size(); i++)
         {
-
-            cout << "\nStudent ID: " << studentList[i].ID
-                 << "\nStudent first name: " << studentList[i].person.firstName
-                 << "\nStudent last name: " << studentList[i].person.lastName
-                 << "\nStudent age: " << studentList[i].person.age
-                 << "\nStudent address: " << studentList[i].address.address
-                 << "\nStudent city: " << studentList[i].address.city
-                 << "\nStudent postal code: " << studentList[i].address.postalCode
-                 << "\nStudent state or province: " << studentList[i].address.state
-                 << "\n";
+            // compare element to the next element, and swap if condition is true
+            for (int j = 0; j < studentList.size() - 1; j++)
+            {
+                if (studentList[j].ID > studentList[j + 1].ID)
+                    swap(&studentList[j].ID, &studentList[j + 1].ID);
+            }
         }
+
+        // sort(studentList.begin(), studentList.end(), compareStudent);
+
+        // for (int i = 0; i < studentList.size(); i++)
+        // {
+
+        //     cout << "\nStudent ID: " << studentList[i].ID
+        //          << "\nStudent first name: " << studentList[i].person.firstName
+        //          << "\nStudent last name: " << studentList[i].person.lastName
+        //          << "\nStudent age: " << studentList[i].person.age
+        //          << "\nStudent address: " << studentList[i].address.address
+        //          << "\nStudent city: " << studentList[i].address.city
+        //          << "\nStudent postal code: " << studentList[i].address.postalCode
+        //          << "\nStudent state or province: " << studentList[i].address.state
+        //          << "\n";
+        // }
+    }
+}
+
+void printStudents()
+{
+    for (int i = 0; i < studentList.size(); i++)
+    {
+
+        cout << "\nStudent ID: " << studentList[i].ID
+             << "\nStudent first name: " << studentList[i].person.firstName
+             << "\nStudent last name: " << studentList[i].person.lastName
+             << "\nStudent age: " << studentList[i].person.age
+             << "\nStudent address: " << studentList[i].address.address
+             << "\nStudent city: " << studentList[i].address.city
+             << "\nStudent postal code: " << studentList[i].address.postalCode
+             << "\nStudent state or province: " << studentList[i].address.state
+             << "\n";
     }
 }
 
