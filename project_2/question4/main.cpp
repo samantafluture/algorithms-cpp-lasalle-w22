@@ -45,8 +45,9 @@ void addStudent();
 void searchStudent();
 void modifyStudent();
 void deleteStudent();
+void swapStudent(Student, Student);
+void sortStudentList();
 void displayStudentList();
-bool compareStudent(Student, Student);
 
 int main()
 {
@@ -175,9 +176,27 @@ void addStudent()
     studentList.push_back(student);
 }
 
-bool compareStudent(Student a, Student b)
+void swapStudents(Student *studentA, Student *studentB)
 {
-    return a.ID < b.ID;
+    Student temp = *studentA;
+    *studentA = *studentB;
+    *studentB = temp;
+}
+
+void sortStudentList()
+{
+    for (int i = 0; i < studentList.size(); i++)
+    {
+        // compare student ID to the next student ID
+        // and swap students if the next ID (j + 1) is smaller then this (j)
+        for (int j = 0; j < studentList.size() - 1; j++)
+        {
+            if (studentList[j].ID > studentList[j + 1].ID)
+            {
+                swapStudents(&studentList[j], &studentList[j + 1]);
+            }
+        }
+    }
 }
 
 void displayStudentList()
@@ -189,7 +208,7 @@ void displayStudentList()
     else
     {
 
-        sort(studentList.begin(), studentList.end(), compareStudent);
+        sortStudentList();
 
         for (int i = 0; i < studentList.size(); i++)
         {
