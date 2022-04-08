@@ -192,8 +192,22 @@ void addStudent()
     cout << "Enter the student first name: ";
     getline(cin, student.person.firstName);
 
+    while (student.person.firstName == "" || student.person.firstName.length() < 1)
+    {
+        cout << "\n* Error! This field can't be empty *\n";
+        cout << "Enter the student first name: ";
+        getline(cin, student.person.firstName);
+    }
+
     cout << "Enter the student last name: ";
     getline(cin, student.person.lastName);
+
+    while (student.person.lastName == "" || student.person.lastName.length() < 1)
+    {
+        cout << "\n* Error! This field can't be empty *\n";
+        cout << "Enter the student last name: ";
+        getline(cin, student.person.lastName);
+    }
 
     cout << "Enter the student age: ";
     cin >> student.person.age;
@@ -334,21 +348,7 @@ void editStudent()
             cin >> studentList[i].person.age;
             cin.ignore();
 
-            // validate age input
-            do
-            {
-                if (studentList[i].person.age <= 0 || studentList[i].person.age > 100)
-                {
-                    cout << "\n* Please enter a valid age *\n";
-                    cout << "Enter the student age: ";
-                    cin >> studentList[i].person.age;
-                    cin.ignore();
-                }
-                else
-                {
-                    break;
-                }
-            } while (studentList[i].person.age <= 0 || studentList[i].person.age > 100);
+            verifyAge(&student.person.age);
 
             cout << "Enter the student address: ";
             cin.get(studentList[i].address.address, 41);
