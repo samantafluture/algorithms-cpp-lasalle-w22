@@ -34,31 +34,6 @@ int main()
     int qty;
     vector<Courses> currentCourses(0);
 
-    /*
-
-    cout << "Enter the course number: ";
-    cin >> c1.courseNumber;
-    cin.ignore();
-
-    cout << "Enter the course title: ";
-    getline(cin, c1.courseTitle);
-
-    cout << "Enter the hours per week: ";
-    cin >> c1.hoursPerWeek;
-    cin.ignore();
-
-    cout << "Enter the course session: ";
-    cin >> c1.courseSession;
-    cin.ignore();
-
-    cout << "*** Displaying information... ***" << endl;
-    cout << "Course Number: " << c1.courseNumber << endl;
-    cout << "Course Title: " << c1.courseTitle << endl;
-    cout << "Hours Per Week: " << c1.hoursPerWeek << endl;
-    cout << "Course Session: " << c1.courseSession << endl;
-
-    */
-
     cout << "*** Courses Information ***" << endl;
 
     cout << "How many courses do you have this session? ";
