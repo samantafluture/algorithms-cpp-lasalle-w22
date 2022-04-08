@@ -1,34 +1,25 @@
 // Samanta Gimenez Fluture, 2022-04-07, Project #2
 // Section 1
 
+/*
+
+========
+TO DO'S
+> pseudo-code
+> comments on the code
+> output
+========
+
+*/
+
 // Question 1 
 
 /*
-
-1st option:
-> input: a weight in pounds and/or ounces
-> output: the equivalent weight in kilograms
-> loop: for up to 15 weights conversions
-> 0 or a negative value: display maximum, minimum and average of weight(s) entered as far
-
-2nd option:
-> input: a weight in kilograms and/or grams
-> output: the equivalent weight in pounds
-> loop: for up to 15 weights conversions
-> 0 or a negative value: display maximum, minimum and average of weight(s) entered as far
-
-3rd option:
-> end the program with confirmation
 
 pseudo-code:
 > each functionality
 > name of each function/algorithm
 > name and type of variables
-
-to-do
-> pseudo-code
-> comments on the code
-> output
 
 */
 
@@ -269,14 +260,6 @@ struct Courses
 */
 
 // 3.2
-
-/*
-
-TO DO'S
-> comment code
-> save output
-
-*/
 
 /*
 #include <iostream>

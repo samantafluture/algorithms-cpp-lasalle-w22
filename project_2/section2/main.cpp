@@ -4,11 +4,13 @@
 // Questions 4 - 9
 
 /*
+
+========
 TO DO'S
-> validations for each field (and the way the user should enter)
-> you cannot add duplicate id or id 0
 > comments on code
 > output
+========
+
 */
 
 #include <iostream>
@@ -42,17 +44,21 @@ struct Student
 vector<Student> studentList(0);
 int searchId;
 
+void verifyZeroId(int);
+void verifyRepId(int);
+void verifyAge(int);
 void addStudent();
 void searchStudent();
-void modifyStudent();
+void editStudent();
 void deleteStudent();
 void swapStudent(Student, Student);
-void sortStudentList();
-void displayStudentList();
+void sortStudent();
+void printStudent();
 
 int main()
 {
     char ans;
+    int searchId;
 
     cout << "\n******** Student Management App *********" << endl;
 
@@ -80,7 +86,7 @@ int main()
             break;
         case '3':
             cout << "\n3. Modifying the information of a student\n";
-            modifyStudent();
+            editStudent();
             break;
         case '4':
             cout << "\n4. Deleting a student of the list\n";
@@ -88,7 +94,7 @@ int main()
             break;
         case '5':
             cout << "\n5. Displaying the list of students\n";
-            displayStudentList();
+            printStudent();
             break;
         case '0':
             cout << "\nDo you want to quit?"
@@ -126,11 +132,63 @@ int main()
     return 0;
 }
 
+void verifyZeroId(int *studentId)
+{
+    while (*studentId == 0)
+    {
+        cout << "\n* Error! The student ID can't be 0! *\n"
+             << "* Please input a valid ID number *\n"
+             << "\nEnter the student ID: ";
+        cin >> *studentId;
+        cin.ignore();
+    }
+}
+
+void verifyRepId(int *studentId)
+{
+    for (int i = 0; i < studentList.size(); i++)
+    {
+        while (*studentId == studentList[i].ID || *studentId == 0)
+        {
+            if (*studentId == studentList[i].ID)
+            {
+                cout << "\n* Error! The student ID " << *studentId << " already exists! *\n"
+                     << "* Please input a valid ID number *\n"
+                     << "\nEnter the student ID: ";
+                cin >> *studentId;
+                cin.ignore();
+            }
+            else if (*studentId == 0)
+            {
+                cout << "\n* Error! The student ID can't be 0! *\n"
+                     << "* Please input a valid ID number *\n"
+                     << "\nEnter the student ID: ";
+                cin >> *studentId;
+                cin.ignore();
+            }
+        }
+    }
+}
+
+void verifyAge(int *studentAge)
+{
+    while (*studentAge <= 0 || *studentAge > 100)
+    {
+        cout << "\n* Please enter a valid age *\n";
+        cout << "Enter the student age: ";
+        cin >> *studentAge;
+        cin.ignore();
+    }
+}
+
 void addStudent()
 {
     cout << "\nEnter the student ID: ";
     cin >> student.ID;
     cin.ignore();
+
+    verifyZeroId(&student.ID);
+    verifyRepId(&student.ID);
 
     cout << "Enter the student first name: ";
     getline(cin, student.person.firstName);
@@ -142,21 +200,7 @@ void addStudent()
     cin >> student.person.age;
     cin.ignore();
 
-    // validate age input
-    do
-    {
-        if (student.person.age <= 0 || student.person.age > 100)
-        {
-            cout << "\n* Please enter a valid age *\n";
-            cout << "Enter the student age: ";
-            cin >> student.person.age;
-            cin.ignore();
-        }
-        else
-        {
-            break;
-        }
-    } while (student.person.age <= 0 || student.person.age > 100);
+    verifyAge(&student.person.age);
 
     cout << "Enter the student address: ";
     cin.get(student.address.address, 41);
@@ -177,14 +221,14 @@ void addStudent()
     studentList.push_back(student);
 }
 
-void swapStudents(Student *studentA, Student *studentB)
+void swapStudent(Student *studentA, Student *studentB)
 {
     Student temp = *studentA;
     *studentA = *studentB;
     *studentB = temp;
 }
 
-void sortStudentList()
+void sortStudent()
 {
     for (int i = 0; i < studentList.size(); i++)
     {
@@ -194,13 +238,13 @@ void sortStudentList()
         {
             if (studentList[j].ID > studentList[j + 1].ID)
             {
-                swapStudents(&studentList[j], &studentList[j + 1]);
+                swapStudent(&studentList[j], &studentList[j + 1]);
             }
         }
     }
 }
 
-void displayStudentList()
+void printStudent()
 {
     if (studentList.size() == 0)
     {
@@ -209,7 +253,7 @@ void displayStudentList()
     else
     {
 
-        sortStudentList();
+        sortStudent();
 
         for (int i = 0; i < studentList.size(); i++)
         {
@@ -229,6 +273,8 @@ void displayStudentList()
 
 void searchStudent()
 {
+    int searchId;
+
     cout << "\nEnter the ID of the student: ";
     cin >> searchId;
 
@@ -255,7 +301,7 @@ void searchStudent()
     }
 }
 
-void modifyStudent()
+void editStudent()
 {
     cout << "\n* First, search for the student you want to edit *\n";
 
