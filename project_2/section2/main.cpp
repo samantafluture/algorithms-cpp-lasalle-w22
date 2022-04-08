@@ -19,6 +19,8 @@ TO DO'S
 #include <vector>
 using namespace std;
 
+// Structures of Person, Address and Student
+// with global objects for each one
 struct Person
 {
     string firstName;
@@ -41,9 +43,11 @@ struct Student
     Address address;
 } student;
 
+// Global variables
 vector<Student> studentList(0);
 int searchId;
 
+// Functions signatures
 void verifyZeroId(int);
 void verifyRepId(int);
 void verifyAge(int);
@@ -77,23 +81,23 @@ int main()
         {
         case '1':
             cout << "\n1. Creating and adding a new student\n";
-            addStudent();
+            addStudent(); // cal the function that creates and add a new student
             break;
         case '2':
             cout << "\n2. Searching for a student\n";
-            searchStudent();
+            searchStudent(); // cal the function that searches for a student by id number
             break;
         case '3':
             cout << "\n3. Modifying the information of a student\n";
-            editStudent();
+            editStudent(); // call the function that modifies student info by its number
             break;
         case '4':
             cout << "\n4. Deleting a student of the list\n";
-            deleteStudent();
+            deleteStudent(); // call the function that deletes a student by its number
             break;
         case '5':
             cout << "\n5. Displaying the list of students\n";
-            printStudent();
+            printStudent(); // call the function that displays the students list in ascending order
             break;
         case '0':
             cout << "\nDo you want to quit?"
@@ -101,6 +105,7 @@ int main()
                  << "\n>> Your option: ";
             cin >> ans;
 
+            // do confirmation if the user wants to quit or wants to go back to menu
             if (ans == 'Y' || ans == 'y')
             {
                 cout << "\nQuitting the application..." << endl;
@@ -125,12 +130,14 @@ int main()
 
     } while (ans != '0');
 
-    studentList.clear();
+    studentList.clear(); // call pre-defined function that clears the vector after the loop end
     cout << "\n******** Good-bye! *********" << endl;
 
     return 0;
 }
 
+// verifies if user enters id number equals to 0
+// loop to enter valid id number until id number is different to 0
 void verifyZeroId(int *studentId)
 {
     while (*studentId == 0)
@@ -143,6 +150,8 @@ void verifyZeroId(int *studentId)
     }
 }
 
+// verifies if user enters id number equals to existing one
+// loop checks if id number exists and other loop aks to enter a valid id number until different to an 
 void verifyRepId(int *studentId)
 {
     for (int i = 0; i < studentList.size(); i++)
