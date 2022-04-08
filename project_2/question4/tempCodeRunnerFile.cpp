@@ -1,1 +1,0 @@
-studentList[j]

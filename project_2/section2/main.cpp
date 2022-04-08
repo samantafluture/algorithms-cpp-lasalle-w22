@@ -1,14 +1,14 @@
 // Samanta Gimenez Fluture, 2022-04-07, Project #2
 // Section 2
 
-// Question 4
+// Questions 4 - 9
 
 /*
 TO DO'S
 > validations for each field (and the way the user should enter)
-> should be a way to stop inserting students?
 > you cannot add duplicate id or id 0
-> clear vector after when?
+> comments on code
+> output
 */
 
 #include <iostream>
@@ -391,3 +391,11 @@ void deleteStudent()
         }
     }
 }
+
+// Output
+
+/*
+
+
+
+*/
