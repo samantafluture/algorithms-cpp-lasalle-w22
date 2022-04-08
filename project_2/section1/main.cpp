@@ -8,6 +8,7 @@ TO DO'S
 > pseudo-code
 > comments on the code
 > output
+> question 3.2 > find a way to enter courses without asking quantity 
 ========
 
 */
@@ -24,6 +25,8 @@ pseudo-code:
 */
 
 // Question 2
+
+/*
 
 #include <iostream>
 #include <vector>
@@ -236,6 +239,7 @@ void startConverter(int count)
 
     calcMaxMinAvg();
 }
+*/
 
 // Question 2 - Output
 
@@ -261,7 +265,7 @@ struct Courses
 
 // 3.2
 
-/*
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -323,7 +327,7 @@ int main()
 
     return 0;
 }
-*/
+
 
 // Question 3 - Output
 

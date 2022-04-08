@@ -9,6 +9,7 @@
 TO DO'S
 > comments on code
 > output
+> validate fields empty
 ========
 
 */
@@ -16,7 +17,6 @@ TO DO'S
 #include <iostream>
 #include <string>
 #include <vector>
-#include <algorithm>
 using namespace std;
 
 struct Person
@@ -58,7 +58,6 @@ void printStudent();
 int main()
 {
     char ans;
-    int searchId;
 
     cout << "\n******** Student Management App *********" << endl;
 
@@ -273,8 +272,6 @@ void printStudent()
 
 void searchStudent()
 {
-    int searchId;
-
     cout << "\nEnter the ID of the student: ";
     cin >> searchId;
 
