@@ -5,12 +5,10 @@
 
 /*
 
-========
-TO DO'S
-> comments on code
-> output
-> validate fields empty
-========
+Name: studentManagementApp
+Variables: 
+START
+END
 
 */
 
@@ -47,7 +45,7 @@ struct Student
 vector<Student> studentList(0);
 int searchId;
 
-// Functions signatures
+// Functions prototypes
 void verifyZeroId(int);
 void verifyRepId(int);
 void verifyAge(int);
@@ -178,6 +176,7 @@ void verifyRepId(int *studentId)
     }
 }
 
+// verifies if users enter number between 0 and 100
 void verifyAge(int *studentAge)
 {
     while (*studentAge <= 0 || *studentAge > 100)
@@ -189,6 +188,8 @@ void verifyAge(int *studentAge)
     }
 }
 
+// ask to enter student information
+// add student object with its values to the student list
 void addStudent()
 {
     cout << "\nEnter the student ID: ";
@@ -243,6 +244,8 @@ void addStudent()
     studentList.push_back(student);
 }
 
+// swap students next to each other by using a temporary variable
+// auxiliar function to sort function below
 void swapStudent(Student *studentA, Student *studentB)
 {
     Student temp = *studentA;
@@ -250,6 +253,9 @@ void swapStudent(Student *studentA, Student *studentB)
     *studentB = temp;
 }
 
+// loop while the size of the student list is less then i
+// for each student, compares its ID to the next one
+// if smaller, then swap it using auxiliar function
 void sortStudent()
 {
     for (int i = 0; i < studentList.size(); i++)
@@ -266,6 +272,7 @@ void sortStudent()
     }
 }
 
+// print the list of students using a loop
 void printStudent()
 {
     if (studentList.size() == 0)
@@ -293,6 +300,8 @@ void printStudent()
     }
 }
 
+// ask for the id the user wants to search for
+// if the id matches an student, then display this student
 void searchStudent()
 {
     cout << "\nEnter the ID of the student: ";
@@ -321,6 +330,9 @@ void searchStudent()
     }
 }
 
+// ask for the id the user wants to edit
+// if the id matches an student, the ask for the user to enter new info
+// save and add this new info to the student list
 void editStudent()
 {
     cout << "\n* First, search for the student you want to edit *\n";
@@ -386,6 +398,9 @@ void editStudent()
     }
 }
 
+// ask for the id the user wants to delete
+// if the id matches an student, then delete this student
+// ask for confirmation
 void deleteStudent()
 {
     char del;
@@ -444,10 +459,151 @@ void deleteStudent()
     }
 }
 
-// Output
-
 /*
 
+Output:
 
+******** Student Management App *********
+
+Enter 1 to create and add a student
+Enter 2 to search for a student by number
+Enter 3 to modify the information of the student
+Enter 4 to delete the information of the student
+Enter 5 to display the student list in ascending order
+Enter 0 to exit the application
+>> Your option: 1
+
+1. Creating and adding a new student
+
+Enter the student ID: 2130414
+Enter the student first name: Samanta
+Enter the student last name: Gimenez Fluture
+Enter the student age: 33
+Enter the student address: 3846 Wellington Street
+Enter the student city: Montreal
+Enter the student postal code: H4G 1V2
+Enter the student state or province: Quebec
+
+2. Searching for a student
+
+Enter the ID of the student: 2130414
+
+* Student of ID 2130414 found! *
+
+Student ID: 2130414
+Student first name: Samanta
+Student last name: Gimenez Fluture
+Student age: 33
+Student address: 3846 Wellington Street
+Student city: Montreal
+Student postal code: H4G 1V2
+Student state or province: Quebec
+
+2. Searching for a student
+
+Enter the ID of the student: 1
+
+* Student of ID 1 not found! *
+
+3. Modifying the information of a student
+
+* First, search for the student you want to edit *
+
+Enter the ID of the student: 2130414
+
+* Student of ID 2130414 found! *
+
+Student ID: 2130414
+Student first name: Samanta
+Student last name: Gimenez Fluture
+Student age: 33
+Student address: 3846 Wellington Street
+Student city: Montreal
+Student postal code: H4G 1V2
+Student state or province: Quebec
+
+* Now, enter the new information *
+
+Enter the student first name: Samanta
+Enter the student last name: Gimenez Fluture
+Enter the student age: 33
+Enter the student address: 422 Rue de la Poudriere
+Enter the student city: Montreal
+Enter the student postal code: H4G 3K1
+Enter the student state or province: Quebec
+
+4. Deleting a student of the list
+
+* First, search for the student you want to delete *
+
+Enter the ID of the student: 2130414
+
+* Student of ID 2130414 found! *
+
+Student ID: 2130414
+Student first name: Samanta
+Student last name: Gimenez Fluture
+Student age: 33
+Student address: 422 Rue de la Poudriere
+Student city: Montreal
+Student postal code: H4G 3K1
+Student state or province: Quebec
+
+* Are you sure you want to delete? *
+
+Enter Y to delete or N to cancel
+>> Your option: y
+
+* Student of ID 2130414 deleted *
+
+1. Creating and adding a new student
+
+Enter the student ID: 2130414
+Enter the student first name: Samanta 
+Enter the student last name: Gimenez Fluture
+Enter the student age: 33
+Enter the student address: 4836 Rue Wellington
+Enter the student city: Montreal
+Enter the student postal code: H4G 1V2
+Enter the student state or province: Quebec
+
+Enter 1 to create and add a student
+Enter 2 to search for a student by number
+Enter 3 to modify the information of the student
+Enter 4 to delete the information of the student
+Enter 5 to display the student list in ascending order
+Enter 0 to exit the application
+>> Your option: 1
+
+1. Creating and adding a new student
+
+Enter the student ID: 1099363
+Enter the student first name: Jane    
+Enter the student last name: Doe
+Enter the student age: 21
+Enter the student address: 4000 Rue du Fort 
+Enter the student city: Montreal
+Enter the student postal code: H43 1K7
+Enter the student state or province: Quebec
+
+5. Displaying the list of students
+
+Student ID: 1099363
+Student first name: Jane
+Student last name: Doe
+Student age: 21
+Student address: 4000 Rue du Fort
+Student city: Montreal
+Student postal code: H43 1K7
+Student state or province: Quebec
+
+Student ID: 2130414
+Student first name: Samanta
+Student last name: Gimenez Fluture
+Student age: 33
+Student address: 4836 Rue Wellington
+Student city: Montreal
+Student postal code: H4G 1V2
+Student state or province: Quebec
 
 */

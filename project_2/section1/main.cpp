@@ -1,28 +1,8 @@
 // Samanta Gimenez Fluture, 2022-04-07, Project #2
 // Section 1
 
-/*
-
-========
-TO DO'S
-> pseudo-code
-> comments on the code
-> output
-> question 3.2 > find a way to enter courses without asking quantity 
-========
-
-*/
-
 // Question 1 
-
-/*
-
-pseudo-code:
-> each functionality
-> name of each function/algorithm
-> name and type of variables
-
-*/
+// > Please find the answer in the word documentation file.
 
 // Question 2
 
@@ -31,15 +11,18 @@ pseudo-code:
 #include <vector>
 using namespace std;
 
+// const variables
 const double TO_KILO = 0.4535;
 const double TO_POUND = 2.2046;
 const int MAX_CONVERT = 15;
 
+// global variables
 vector<double> enteredWeights(0), convertedWeights(0);
 double maxResult = -99999, minResult = 99999, sumResult = 0, avgResult = 0;
 double weight, result;
 bool isPound;
 
+// functions prototypes
 double getWeight(int);
 void convertWeight();
 void displayConversion();
@@ -53,7 +36,8 @@ int main()
     int count;
 
     cout << "\n******** Conversion App *********" << endl;
-
+    
+    // show menu and repeat until the user enters 3 to quit
     do
     {
         cout << "\nEnter 1 to convert pounds in kilograms\n"
@@ -82,6 +66,7 @@ int main()
             startConverter(count);
 
             break;
+        // confirm if the user wants to quit or go to the menu
         case '3':
             cout << "\nDo you want to quit?"
                  << "\nEnter Y to exit or N to go back"
@@ -117,6 +102,7 @@ int main()
     return 0;
 }
 
+// ask the value from the user, add it to the vector, then return it 
 double getWeight(int count)
 {
     cout << "\n* Enter 0 or negative to quit this feature *\n"
@@ -129,12 +115,16 @@ double getWeight(int count)
     return weight;
 }
 
+// do the conversion dependending on the selected menu 
+// then add the result to the vector
 void convertWeight()
 {
+    // if user chooses menu #1
     if (isPound == 1)
     {
         result = (weight * TO_KILO);
     }
+    // if the user chooses menu #2
     else if (isPound == 0)
     {
         result = (weight * TO_POUND);
@@ -143,6 +133,8 @@ void convertWeight()
     convertedWeights.push_back(result);
 }
 
+// display the result of the converstion
+// use 2 decimal points if kg and 0 if lbs
 void displayConversion()
 {
     cout << "\nResult: ";
@@ -166,6 +158,8 @@ void displayConversion()
     }
 }
 
+// calculate max, min, sum and average of results
+// print the values using kgs or lbs
 void calcMaxMinAvg()
 {
     string metric;
@@ -211,14 +205,17 @@ void calcMaxMinAvg()
     clear();
 }
 
+// reseting the values and the vectors
 void clear()
 {
-    // reseting the values and the vectors
     maxResult = -99999, minResult = 99999, sumResult = 0, avgResult = 0;
     enteredWeights.clear();
     convertedWeights.clear();
 }
 
+// do the conversation by calling the other functions
+// repeat until the size of the vector reaches 15
+// or the user enters 0
 void startConverter(int count)
 {
     while (enteredWeights.size() < MAX_CONVERT)
@@ -240,15 +237,7 @@ void startConverter(int count)
 }
 
 
-// Question 2 - Output
-
-/*
-
-*/
-
-// Question 3 
-
-// 3.1
+// Question 3.1
 
 /*
 
@@ -262,7 +251,41 @@ struct Courses
 
 */
 
-// 3.2
+// Question 3.2
+
+/*
+
+Name: printCoursesInfo
+Variables: qty (numerical type), currentCourses (vector of Courses type), i (numerical type)
+START
+    WRITE "How many courses do you have?"
+    READ qty
+    WRITE "Please answer the questions below"
+    i := 0
+    REPEAT 
+        ADD 1 to i
+        WRITE "Course #" + (i + 1)
+        WRITE "Course Number: "
+        READ course.courseNumber
+        WRITE "Course title: "
+        READ course.courseTitle
+        WRITE "Hours per week: "
+        READ course.hoursPerWeek
+        WRITE "Session: "
+        READ course.courseSession
+        ADD course to currentCourses
+    UNTIL (i < qty)
+    WRITE "Displaying all the courses you entered..."
+    i := 0
+    REPEAT 
+        ADD 1 to i
+        WRITE "Course number: " + currentCourses[i].courseNumber
+        WRITE "Course title: " + currentCourses[i].courseTitle 
+        WRITE "Hours per week: " + currentCourses[i].hoursPerWeek
+        WRITE "Session: " + currentCourses[i].courseSession
+    UNTIL (size of currentCourses < i)
+END
+*/
 
 /*
 #include <iostream>
@@ -276,17 +299,16 @@ struct Courses
     string courseTitle;
     int hoursPerWeek;
     string courseSession;
-};
+} course;
 
 int main()
 {
-    Courses course;
     int qty;
-    vector<Courses> currentCourses(0);
+    vector<Courses> currentCourses(0); // a vector of type Courses
 
     cout << "*** Courses Information ***" << endl;
 
-    cout << "How many courses do you have this session? ";
+    cout << "How many courses do you have?";
     cin >> qty;
 
     cout << "\n* Please answer the questions below about the courses *\n";
@@ -310,12 +332,14 @@ int main()
         cin >> course.courseSession;
         cin.ignore();
         
+        // add course to the vector
         currentCourses.push_back(course);
     }
 
     cout << "\n* Displaying all the courses you entered... *\n";
     
-        for (int i = 0; i < currentCourses.size(); i++)
+    // loop to show each course (and its values) of the vector
+    for (int i = 0; i < currentCourses.size(); i++)
     {
         cout << "\nCourse #" << (i + 1) << "\n"
              << "Course number: " << currentCourses[i].courseNumber << "\n"
@@ -328,9 +352,38 @@ int main()
 }
 */
 
-// Question 3 - Output
-
 /*
+Output:
 
+*** Courses Information ***
+How many courses do you have this session? 2
+
+* Please answer the questions below about the courses *
+
+Course #1
+Course Number: 420-AP1-AS 
+Course title: Algorithms programming
+Hours per week: 6
+Session: 07044 
+
+Course #2
+Course Number: 420-225-AS
+Course title: Computer architecture
+Hours per week: 5
+Session: 07030 
+
+* Displaying all the courses you entered... *
+
+Course #1
+Course number: 420-AP1-AS
+Course title: Algorithms programming
+Hours per week: 6
+Session: 07044
+
+Course #2
+Course number: 420-225-AS
+Course title: Computer architecture
+Hours per week: 5
+Session: 07030
 
 */
