@@ -1,7 +1,7 @@
 // Samanta Gimenez Fluture, 2022-04-07, Project #2
 // Section 1
 
-// Question 1 
+// Question 1
 // > Please find the answer in the word documentation file.
 
 // Question 2
@@ -36,7 +36,7 @@ int main()
     int count;
 
     cout << "\n******** Conversion App *********" << endl;
-    
+
     // show menu and repeat until the user enters 3 to quit
     do
     {
@@ -102,7 +102,7 @@ int main()
     return 0;
 }
 
-// ask the value from the user, add it to the vector, then return it 
+// ask the value from the user, add it to the vector, then return it
 double getWeight(int count)
 {
     cout << "\n* Enter 0 or negative to quit this feature *\n"
@@ -115,7 +115,7 @@ double getWeight(int count)
     return weight;
 }
 
-// do the conversion dependending on the selected menu 
+// do the conversion dependending on the selected menu
 // then add the result to the vector
 void convertWeight()
 {
@@ -236,7 +236,6 @@ void startConverter(int count)
     calcMaxMinAvg();
 }
 
-
 // Question 3.1
 
 /*
@@ -254,45 +253,10 @@ struct Courses
 // Question 3.2
 
 /*
-
-Name: printCoursesInfo
-Variables: qty (numerical type), currentCourses (vector of Courses type), i (numerical type)
-START
-    WRITE "How many courses do you have?"
-    READ qty
-    WRITE "Please answer the questions below"
-    i := 0
-    REPEAT 
-        ADD 1 to i
-        WRITE "Course #" + (i + 1)
-        WRITE "Course Number: "
-        READ course.courseNumber
-        WRITE "Course title: "
-        READ course.courseTitle
-        WRITE "Hours per week: "
-        READ course.hoursPerWeek
-        WRITE "Session: "
-        READ course.courseSession
-        ADD course to currentCourses
-    UNTIL (i < qty)
-    WRITE "Displaying all the courses you entered..."
-    i := 0
-    REPEAT 
-        ADD 1 to i
-        WRITE "Course number: " + currentCourses[i].courseNumber
-        WRITE "Course title: " + currentCourses[i].courseTitle 
-        WRITE "Hours per week: " + currentCourses[i].hoursPerWeek
-        WRITE "Session: " + currentCourses[i].courseSession
-    UNTIL (size of currentCourses < i)
-END
-*/
-
-/*
 #include <iostream>
 #include <string>
 #include <vector>
 using namespace std;
-
 struct Courses
 {
     string courseNumber;
@@ -301,16 +265,28 @@ struct Courses
     string courseSession;
 } course;
 
+vector<Courses> currentCourses(0); // a vector of type Courses
+
+// function prototypes
+void getCourses(int);
+void displayCourses();
+
 int main()
 {
     int qty;
-    vector<Courses> currentCourses(0); // a vector of type Courses
 
-    cout << "*** Courses Information ***" << endl;
-
-    cout << "How many courses do you have?";
+    cout << "\n*** Courses Information ***\n" << endl;
+    cout << "How many courses do you have? ";
     cin >> qty;
 
+    getCourses(qty);
+    displayCourses();
+
+    return 0;
+}
+
+void getCourses(int qty)
+{
     cout << "\n* Please answer the questions below about the courses *\n";
 
     for (int i = 0; i < qty; i++)
@@ -323,7 +299,7 @@ int main()
 
         cout << "Course title: ";
         getline(cin, course.courseTitle);
-        
+
         cout << "Hours per week: ";
         cin >> course.hoursPerWeek;
         cin.ignore();
@@ -331,13 +307,16 @@ int main()
         cout << "Session: ";
         cin >> course.courseSession;
         cin.ignore();
-        
+
         // add course to the vector
         currentCourses.push_back(course);
     }
+}
 
+void displayCourses()
+{
     cout << "\n* Displaying all the courses you entered... *\n";
-    
+
     // loop to show each course (and its values) of the vector
     for (int i = 0; i < currentCourses.size(); i++)
     {
@@ -347,8 +326,6 @@ int main()
              << "Hours per week: " << currentCourses[i].hoursPerWeek << "\n"
              << "Session: " << currentCourses[i].courseSession << "\n";
     }
-
-    return 0;
 }
 */
 
@@ -361,16 +338,16 @@ How many courses do you have this session? 2
 * Please answer the questions below about the courses *
 
 Course #1
-Course Number: 420-AP1-AS 
+Course Number: 420-AP1-AS
 Course title: Algorithms programming
 Hours per week: 6
-Session: 07044 
+Session: 07044
 
 Course #2
 Course Number: 420-225-AS
 Course title: Computer architecture
 Hours per week: 5
-Session: 07030 
+Session: 07030
 
 * Displaying all the courses you entered... *
 

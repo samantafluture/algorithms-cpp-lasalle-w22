@@ -149,7 +149,7 @@ void verifyZeroId(int *studentId)
 }
 
 // verifies if user enters id number equals to existing one
-// loop checks if id number exists and other loop aks to enter a valid id number until different to an 
+// loop checks if id number exists and other loop ask to enter a valid id number until different to an 
 void verifyRepId(int *studentId)
 {
     for (int i = 0; i < studentList.size(); i++)
@@ -176,7 +176,7 @@ void verifyRepId(int *studentId)
     }
 }
 
-// verifies if users enter number between 0 and 100
+// verifies if user enters number between 0 and 100
 void verifyAge(int *studentAge)
 {
     while (*studentAge <= 0 || *studentAge > 100)
