@@ -1,16 +1,8 @@
 // Samanta Gimenez Fluture, 2022-04-07, Project #2
+// Version 1.2
 // Section 2
 
 // Questions 4 - 9
-
-/*
-
-Name: studentManagementApp
-Variables: 
-START
-END
-
-*/
 
 #include <iostream>
 #include <string>

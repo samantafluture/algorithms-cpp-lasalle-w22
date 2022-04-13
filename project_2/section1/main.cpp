@@ -1,11 +1,12 @@
 // Samanta Gimenez Fluture, 2022-04-07, Project #2
+// Version 1.2
+
 // Section 1
 
 // Question 1
 // > Please find the answer in the word documentation file.
 
 // Question 2
-
 
 #include <iostream>
 #include <vector>
