@@ -1,11 +1,12 @@
-// Samanta Gimenez Fluture, 2022-04-07, Project #2
-// Version 1.3
+// Samanta Gimenez Fluture, 2022-04-20, Project #2
+// Version 1.5
 // Section 2
 
 // Questions 4 - 9
 
 #include <iostream>
 #include <string>
+#include <cstring>
 #include <vector>
 using namespace std;
 
@@ -31,16 +32,16 @@ struct Student
     int ID;
     Person person;
     Address address;
-} student;
+} student, s1, s2;
 
 // Global variables
 vector<Student> studentList(0);
 int searchId;
 
 // Functions prototypes
-void verifyZeroId(int);
-void verifyRepId(int);
-void verifyAge(int);
+void verifyZeroId(int*);
+void verifyRepId(int*);
+void verifyAge(int*);
 void addStudent();
 void searchStudent();
 void editStudent();
@@ -48,6 +49,7 @@ void deleteStudent();
 void swapStudent(Student, Student);
 void sortStudent();
 void printStudent();
+void addHardCodedStudents();
 
 int main()
 {
@@ -55,15 +57,17 @@ int main()
 
     cout << "\n******** Student Management App *********" << endl;
 
+    addHardCodedStudents();
+
     do
     {
         cout << "\nEnter 1 to create and add a student\n"
-             << "Enter 2 to search for a student by number\n"
-             << "Enter 3 to modify the information of the student\n"
-             << "Enter 4 to delete the information of the student\n"
-             << "Enter 5 to display the student list in ascending order\n"
-             << "Enter 0 to exit the application\n"
-             << ">> Your option: ";
+            << "Enter 2 to search for a student by number\n"
+            << "Enter 3 to modify the information of the student\n"
+            << "Enter 4 to delete the information of the student\n"
+            << "Enter 5 to display the student list in ascending order\n"
+            << "Enter 0 to exit the application\n"
+            << ">> Your option: ";
         cin >> ans;
         cin.ignore();
 
@@ -91,8 +95,8 @@ int main()
             break;
         case '0':
             cout << "\nDo you want to quit?"
-                 << "\nEnter Y to exit or N to go back"
-                 << "\n>> Your option: ";
+                << "\nEnter Y to exit or N to go back"
+                << "\n>> Your option: ";
             cin >> ans;
 
             // do confirmation if the user wants to quit or wants to go back to menu
@@ -128,13 +132,13 @@ int main()
 
 // verifies if user enters id number equals to 0
 // loop to enter valid id number until id number is different to 0
-void verifyZeroId(int *studentId)
+void verifyZeroId(int* studentId)
 {
     while (*studentId == 0)
     {
         cout << "\n* Error! The student ID can't be 0! *\n"
-             << "* Please input a valid ID number *\n"
-             << "\nEnter the student ID: ";
+            << "* Please input a valid ID number *\n"
+            << "\nEnter the student ID: ";
         cin >> *studentId;
         cin.ignore();
     }
@@ -142,7 +146,7 @@ void verifyZeroId(int *studentId)
 
 // verifies if user enters id number equals to existing one
 // loop checks if id number exists and other loop ask to enter a valid id number until different to an
-void verifyRepId(int *studentId)
+void verifyRepId(int* studentId)
 {
     for (int i = 0; i < studentList.size(); i++)
     {
@@ -151,16 +155,16 @@ void verifyRepId(int *studentId)
             if (*studentId == studentList[i].ID)
             {
                 cout << "\n* Error! The student ID " << *studentId << " already exists! *\n"
-                     << "* Please input a valid ID number *\n"
-                     << "\nEnter the student ID: ";
+                    << "* Please input a valid ID number *\n"
+                    << "\nEnter the student ID: ";
                 cin >> *studentId;
                 cin.ignore();
             }
             else if (*studentId == 0)
             {
                 cout << "\n* Error! The student ID can't be 0! *\n"
-                     << "* Please input a valid ID number *\n"
-                     << "\nEnter the student ID: ";
+                    << "* Please input a valid ID number *\n"
+                    << "\nEnter the student ID: ";
                 cin >> *studentId;
                 cin.ignore();
             }
@@ -169,7 +173,7 @@ void verifyRepId(int *studentId)
 }
 
 // verifies if user enters number between 0 and 100
-void verifyAge(int *studentAge)
+void verifyAge(int* studentAge)
 {
     while (*studentAge <= 0 || *studentAge > 100)
     {
@@ -238,7 +242,7 @@ void addStudent()
 
 // swap students next to each other by using a temporary variable
 // auxiliar function to sort function below
-void swapStudent(Student *studentA, Student *studentB)
+void swapStudent(Student* studentA, Student* studentB)
 {
     Student temp = *studentA;
     *studentA = *studentB;
@@ -280,14 +284,14 @@ void printStudent()
         {
 
             cout << "\nStudent ID: " << studentList[i].ID
-                 << "\nStudent first name: " << studentList[i].person.firstName
-                 << "\nStudent last name: " << studentList[i].person.lastName
-                 << "\nStudent age: " << studentList[i].person.age
-                 << "\nStudent address: " << studentList[i].address.address
-                 << "\nStudent city: " << studentList[i].address.city
-                 << "\nStudent postal code: " << studentList[i].address.postalCode
-                 << "\nStudent state or province: " << studentList[i].address.state
-                 << "\n";
+                << "\nStudent first name: " << studentList[i].person.firstName
+                << "\nStudent last name: " << studentList[i].person.lastName
+                << "\nStudent age: " << studentList[i].person.age
+                << "\nStudent address: " << studentList[i].address.address
+                << "\nStudent city: " << studentList[i].address.city
+                << "\nStudent postal code: " << studentList[i].address.postalCode
+                << "\nStudent state or province: " << studentList[i].address.state
+                << "\n";
         }
     }
 }
@@ -313,14 +317,14 @@ void searchStudent()
                 cout << "\n* Student of ID " << searchId << " found! *\n";
 
                 cout << "\nStudent ID: " << studentList[i].ID
-                     << "\nStudent first name: " << studentList[i].person.firstName
-                     << "\nStudent last name: " << studentList[i].person.lastName
-                     << "\nStudent age: " << studentList[i].person.age
-                     << "\nStudent address: " << studentList[i].address.address
-                     << "\nStudent city: " << studentList[i].address.city
-                     << "\nStudent postal code: " << studentList[i].address.postalCode
-                     << "\nStudent state or province: " << studentList[i].address.state
-                     << "\n";
+                    << "\nStudent first name: " << studentList[i].person.firstName
+                    << "\nStudent last name: " << studentList[i].person.lastName
+                    << "\nStudent age: " << studentList[i].person.age
+                    << "\nStudent address: " << studentList[i].address.address
+                    << "\nStudent city: " << studentList[i].address.city
+                    << "\nStudent postal code: " << studentList[i].address.postalCode
+                    << "\nStudent state or province: " << studentList[i].address.state
+                    << "\n";
             }
             else
             {
@@ -354,14 +358,14 @@ void editStudent()
                 cout << "\n* Student of ID " << searchId << " found! *\n";
 
                 cout << "\nStudent ID: " << studentList[i].ID
-                     << "\nStudent first name: " << studentList[i].person.firstName
-                     << "\nStudent last name: " << studentList[i].person.lastName
-                     << "\nStudent age: " << studentList[i].person.age
-                     << "\nStudent address: " << studentList[i].address.address
-                     << "\nStudent city: " << studentList[i].address.city
-                     << "\nStudent postal code: " << studentList[i].address.postalCode
-                     << "\nStudent state or province: " << studentList[i].address.state
-                     << "\n";
+                    << "\nStudent first name: " << studentList[i].person.firstName
+                    << "\nStudent last name: " << studentList[i].person.lastName
+                    << "\nStudent age: " << studentList[i].person.age
+                    << "\nStudent address: " << studentList[i].address.address
+                    << "\nStudent city: " << studentList[i].address.city
+                    << "\nStudent postal code: " << studentList[i].address.postalCode
+                    << "\nStudent state or province: " << studentList[i].address.state
+                    << "\n";
 
                 cout << "\n* Now, enter the new information *\n\n";
 
@@ -431,24 +435,25 @@ void deleteStudent()
                 cout << "\n* Student of ID " << searchId << " found! *\n";
 
                 cout << "\nStudent ID: " << studentList[i].ID
-                     << "\nStudent first name: " << studentList[i].person.firstName
-                     << "\nStudent last name: " << studentList[i].person.lastName
-                     << "\nStudent age: " << studentList[i].person.age
-                     << "\nStudent address: " << studentList[i].address.address
-                     << "\nStudent city: " << studentList[i].address.city
-                     << "\nStudent postal code: " << studentList[i].address.postalCode
-                     << "\nStudent state or province: " << studentList[i].address.state
-                     << "\n";
+                    << "\nStudent first name: " << studentList[i].person.firstName
+                    << "\nStudent last name: " << studentList[i].person.lastName
+                    << "\nStudent age: " << studentList[i].person.age
+                    << "\nStudent address: " << studentList[i].address.address
+                    << "\nStudent city: " << studentList[i].address.city
+                    << "\nStudent postal code: " << studentList[i].address.postalCode
+                    << "\nStudent state or province: " << studentList[i].address.state
+                    << "\n";
 
                 do
                 {
                     cout << "\n* Are you sure you want to delete? *\n"
-                         << "\nEnter Y to delete or N to cancel"
-                         << "\n>> Your option: ";
+                        << "\nEnter Y to delete or N to cancel"
+                        << "\n>> Your option: ";
                     cin >> del;
 
                     if (del == 'Y' || del == 'y')
                     {
+                        // use a pre defined c++ function to remove an element from an object at a specific position
                         studentList.erase(studentList.begin() + i);
 
                         cout << "\n* Student of ID " << searchId << " deleted *" << endl;
@@ -471,6 +476,36 @@ void deleteStudent()
             }
         }
     }
+}
+
+void addHardCodedStudents() {
+    s1.ID = 2130414;
+    s1.person.firstName = "Samanta";
+    s1.person.lastName = "Gimenez Fluture";
+    s1.person.age = 33;
+    string str_ad = "3846 Wellington Street";
+    strcpy(s1.address.address, str_ad.c_str());
+    string str_c = "Montreal";
+    strcpy(s1.address.city, str_c.c_str());
+    string str_pc = "H4G 1V2";
+    strcpy(s1.address.postalCode, str_pc.c_str());
+    string str_s = "Quebec";
+    strcpy(s1.address.state, str_s.c_str());
+
+    s2.ID = 1040919;
+    s2.person.firstName = "Alissa";
+    s2.person.lastName = "Osumi";
+    string str_ad2 = "422 Rue de la Poudriere";
+    strcpy(s2.address.address, str_ad2.c_str());
+    string str_c2 = "Montreal";
+    strcpy(s2.address.city, str_c2.c_str());
+    string str_pc2 = "H4G 3K1";
+    strcpy(s2.address.postalCode, str_pc2.c_str());
+    string str_s2 = "Quebec";
+    strcpy(s2.address.state, str_s2.c_str());
+
+    studentList.push_back(s1);
+    studentList.push_back(s2);
 }
 
 /*

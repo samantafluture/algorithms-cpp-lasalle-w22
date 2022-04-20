@@ -1,5 +1,5 @@
-// Samanta Gimenez Fluture, 2022-04-07, Project #2
-// Version 1.3
+// Samanta Gimenez Fluture, 2022-04-20, Project #2
+// Version 1.5
 
 // Section 1
 
@@ -143,7 +143,7 @@ void displayConversion()
 
     if (isPound == 1)
     {
-        cout.precision(0);
+        cout.precision(2);
         cout << weight << " pounds = ";
 
         cout.precision(2);
@@ -154,7 +154,7 @@ void displayConversion()
         cout.precision(2);
         cout << weight << " kilograms = ";
 
-        cout.precision(0);
+        cout.precision(2);
         cout << result << " pounds\n";
     }
 }
