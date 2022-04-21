@@ -1,5 +1,5 @@
-// Samanta Gimenez Fluture, 2022-04-20, Project #2
-// Version 1.5
+// Samanta Gimenez Fluture, 2022-04-21, Project #2
+// Version 1.6
 
 // Section 1
 
@@ -264,12 +264,13 @@ struct Courses
     string courseTitle;
     int hoursPerWeek;
     string courseSession;
-} course;
+} course, c1, c2;
 
 vector<Courses> currentCourses(0); // a vector of type Courses
 
 // function prototypes
 void getCourses(int);
+void addHardCodedCourses();
 void displayCourses();
 
 int main()
@@ -277,10 +278,11 @@ int main()
     int qty;
 
     cout << "\n*** Courses Information ***\n" << endl;
-    cout << "How many courses do you have? ";
+    cout << "How many courses do you want to add? ";
     cin >> qty;
 
     getCourses(qty);
+    addHardCodedCourses();
     displayCourses();
 
     return 0;
@@ -312,6 +314,21 @@ void getCourses(int qty)
         // add course to the vector
         currentCourses.push_back(course);
     }
+}
+
+void addHardCodedCourses() {
+    c1.courseNumber = "420-AP1-AS";
+    c1.courseTitle = "Algorithms programming";
+    c1.hoursPerWeek = 6;
+    c1.courseSession = "07044";
+
+    c2.courseNumber = "420-225-AS";
+    c2.courseTitle = "Computer architecture";
+    c2.hoursPerWeek = 5;
+    c2.courseSession = "07030";
+
+    currentCourses.push_back(c1);
+    currentCourses.push_back(c2);
 }
 
 void displayCourses()
