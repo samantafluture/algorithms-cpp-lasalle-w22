@@ -27,8 +27,8 @@ int main()
     do
     {
         cout << "\nEnter 1 to add a new player\n"
-             << "Enter 0 to exit\n"
-             << "Your option: ";
+            << "Enter 0 to exit\n"
+            << "Your option: ";
         cin >> ans;
         cin.ignore();
 
@@ -45,7 +45,7 @@ int main()
             cout << "\nInput error! Try again!\n";
             break;
         }
-    } while (playerList.size() < MAX_PLAYERS);
+    } while (ans != '0');
 
     cout << "\nQuitting the app...\n";
 
@@ -57,7 +57,7 @@ void addPlayer()
     if (playerList.size() < MAX_PLAYERS)
     {
         cout << "\nAdding new player..."
-             << "\nYou can add " << ((MAX_PLAYERS)-playerList.size()) << " players!\n";
+            << "\nYou can add " << ((MAX_PLAYERS)-playerList.size()) << " players!\n";
 
         cout << "\nName of the player: ";
         cin.get(player.name, 51);
