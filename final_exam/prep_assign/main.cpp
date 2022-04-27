@@ -35,14 +35,13 @@ int main()
 			addPlayer();
 			displayPlayers();
 		} else if(ans == '0') {
-			displayPlayers();
 			break;
 		}
 		else {
 			cout << "\nInput error! Try again!\n";
 		}
 
-	} while (playerList.size() < 21);
+	} while (playerList.size() < MAX_PLAYERS);
 
 	cout << "\nQuitting the app...\n";
 
@@ -50,7 +49,7 @@ int main()
 }
 
 void addPlayer() {
-	if (playerList.size() < 21) {
+	if (playerList.size() < MAX_PLAYERS) {
 		cout << "\nAdding new player..."
 			<< "\nYou can add " << ((MAX_PLAYERS) - playerList.size()) << " players!\n";
 
@@ -130,4 +129,67 @@ START
 		ADD player i to playerList
 	UNTIL i < 20
 END
+*/
+
+/*
+Output
+
+Enter 1 to add a new player
+Enter 0 to exit
+Your option: 1
+
+Adding new player...
+You can add 20 players!
+
+Name of the player: sam
+Age of the player: 33
+Weight of the player (kg): 59
+Height of the player (meters): 175
+Name of the team: 1
+
+Displaying the players...
+
+Player #: 1
+Name: sam
+Age: 33
+Weight: 59
+Height 175
+Name: 1
+
+Enter 1 to add a new player
+Enter 0 to exit
+Your option: 1
+
+Adding new player...
+You can add 19 players!
+
+Name of the player: ali
+Age of the player: 33
+Weight of the player (kg): 70
+Height of the player (meters): 169
+Name of the team: 1
+
+Displaying the players...
+
+Player #: 1
+Name: sam
+Age: 33
+Weight: 59
+Height 175
+Name: 1
+
+Player #: 2
+Name: ali
+Age: 33
+Weight: 70
+Height 169
+Name: 1
+
+Enter 1 to add a new player
+Enter 0 to exit
+Your option: 0
+
+Displaying the players...
+
+Quitting the app...
 */
