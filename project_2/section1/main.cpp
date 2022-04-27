@@ -8,6 +8,8 @@
 
 // Question 2
 
+/*
+
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -237,6 +239,8 @@ void startConverter(int count)
     calcMaxMinAvg();
 }
 
+*/
+
 // Question 3.1
 
 /*
@@ -253,7 +257,7 @@ struct Courses
 
 // Question 3.2
 
-/*
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -345,7 +349,7 @@ void displayCourses()
              << "Session: " << currentCourses[i].courseSession << "\n";
     }
 }
-*/
+
 
 /*
 Output:
